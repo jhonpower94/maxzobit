@@ -1,0 +1,82 @@
+.explore1,
+.frame {
+  align-self: stretch;
+}
+.explore1 {
+  position: relative;
+  line-height: 36px;
+}
+.frame {
+  height: 81px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0 35.20000076293945px;
+  box-sizing: border-box;
+}
+.createAWatchlist,
+.getPriceAlerts {
+  align-self: stretch;
+  position: relative;
+  font-size: var(--font-size-base);
+  line-height: 24px;
+  font-family: var(--font-roboto);
+  color: var(--color-gray-200);
+  text-align: left;
+}
+.getPriceAlerts {
+  font-size: var(--font-size-sm);
+  line-height: 20px;
+  color: var(--color-dimgray-100);
+}
+.frame2 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.frameIcon {
+  flex: 1;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  object-fit: cover;
+}
+.frame1 {
+  cursor: pointer;
+  border: 0;
+  padding: var(--padding-xl) var(--padding-4xl);
+  background-color: var(--color-whitesmoke-200);
+  align-self: stretch;
+  border-radius: var(--br-base);
+  height: 148px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+.explore,
+.frameWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.frameWrapper {
+  align-self: stretch;
+  padding: 0 var(--padding-10xl);
+}
+.explore {
+  position: relative;
+  background-color: var(--color-white);
+  width: 100%;
+  overflow: hidden;
+  gap: var(--gap-lg);
+  text-align: left;
+  font-size: var(--font-size-9xl);
+  color: var(--color-gray-200);
+  font-family: var(--font-roboto);
+}

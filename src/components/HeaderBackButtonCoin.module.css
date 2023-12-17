@@ -1,0 +1,55 @@
+.vectorIcon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 26px;
+  height: 26px;
+  object-fit: cover;
+}
+.vectorWrapper {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: relative;
+  width: 26px;
+  height: 26px;
+}
+.frameIcon {
+  position: absolute;
+  width: 15.62%;
+  top: 4px;
+  right: 84.38%;
+  left: 0;
+  border-radius: var(--br-981xl);
+  max-width: 100%;
+  overflow: hidden;
+  height: 22px;
+  object-fit: cover;
+}
+.bitcoin {
+  position: absolute;
+  top: 0;
+  left: 21.24%;
+  line-height: 28px;
+}
+.frame1 {
+  position: relative;
+  width: 140.8px;
+  height: 28px;
+}
+.frame {
+  align-self: stretch;
+  height: 48px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--padding-3xs) var(--padding-3xl);
+  box-sizing: border-box;
+  gap: var(--gap-mid);
+  text-align: left;
+  font-size: var(--font-size-xl);
+  color: var(--color-gray-200);
+  font-family: var(--font-roboto);
+}

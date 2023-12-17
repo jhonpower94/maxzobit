@@ -1,0 +1,39 @@
+.transactions1 {
+  align-self: stretch;
+  position: relative;
+  line-height: 36px;
+}
+.frame,
+.frameParent,
+.transactions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.frame {
+  align-self: stretch;
+  height: 81px;
+  justify-content: center;
+  padding: 0 35.20000076293945px;
+  box-sizing: border-box;
+}
+.frameParent,
+.transactions {
+  justify-content: flex-start;
+}
+.frameParent {
+  align-self: stretch;
+  height: 138px;
+  padding: 0 var(--padding-7xs);
+  box-sizing: border-box;
+  gap: var(--gap-3xs);
+}
+.transactions {
+  position: relative;
+  background-color: var(--color-white);
+  width: 100%;
+  text-align: left;
+  font-size: var(--font-size-9xl);
+  color: var(--color-gray-200);
+  font-family: var(--font-roboto);
+}

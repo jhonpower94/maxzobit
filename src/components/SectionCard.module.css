@@ -1,0 +1,121 @@
+.marketCap {
+  position: absolute;
+  width: 100%;
+  top: calc(50% - 15px);
+  left: 0;
+  line-height: 28px;
+  display: inline-block;
+}
+.frame1 {
+  position: relative;
+  width: 162.8px;
+  height: 28px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.frame {
+  align-self: stretch;
+  height: 45px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 0 35.20000076293945px;
+  box-sizing: border-box;
+}
+.frameIcon {
+  position: relative;
+  border-radius: var(--br-31xl);
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+.btc,
+.div {
+  position: relative;
+  font-size: var(--font-size-xl);
+  line-height: 20px;
+  font-family: var(--font-roboto);
+  color: var(--color-gray-200);
+  text-align: left;
+}
+.div {
+  font-size: var(--font-size-base);
+  color: var(--color-dimgray-100);
+}
+.btcParent {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--gap-2xs);
+}
+.callMadeIcon {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+}
+.div1 {
+  flex: 1;
+  position: relative;
+  font-size: var(--font-size-6xl);
+  line-height: 36px;
+  font-family: var(--font-roboto);
+  color: var(--color-seagreen);
+  text-align: left;
+}
+.callMadeParent,
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.wrapper {
+  width: 68px;
+  flex-shrink: 0;
+}
+.callMadeParent {
+  align-self: stretch;
+  gap: var(--gap-9xs);
+}
+.frameGroup {
+  cursor: pointer;
+  border: 0;
+  padding: var(--padding-3xs) var(--padding-4xl);
+  background-color: var(--color-whitesmoke-200);
+  border-radius: var(--br-base);
+  width: 200px;
+  height: 204px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  box-sizing: border-box;
+  gap: var(--gap-mini);
+}
+.frame2,
+.frameParent {
+  align-self: stretch;
+  display: flex;
+  justify-content: flex-start;
+}
+.frame2 {
+  overflow-x: auto;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: var(--padding-7xs) 0 var(--padding-7xs) 35.20001220703125px;
+  gap: var(--gap-11xl);
+}
+.frameParent {
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-8xs);
+  text-align: left;
+  font-size: var(--font-size-xl);
+  color: var(--color-gray-200);
+  font-family: var(--font-roboto);
+}

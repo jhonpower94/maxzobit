@@ -1,0 +1,39 @@
+.frameChild {
+  position: relative;
+  border-radius: var(--br-xl);
+  width: 88px;
+  height: 88px;
+  object-fit: cover;
+}
+.coinnameWallet,
+.resetEmail {
+  align-self: stretch;
+  position: relative;
+  font-weight: 600;
+}
+.resetEmail {
+  font-size: var(--font-size-5xl);
+  font-weight: 500;
+  color: var(--color-gray-300);
+}
+.coinnameWalletParent,
+.rectangleParent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.coinnameWalletParent {
+  align-self: stretch;
+  gap: var(--gap-6xs);
+}
+.rectangleParent {
+  width: 538px;
+  padding: var(--padding-xl) var(--padding-11xl);
+  box-sizing: border-box;
+  gap: var(--gap-7xl);
+  text-align: left;
+  font-size: var(--font-size-9xl);
+  color: var(--color-black);
+  font-family: var(--font-inter);
+}

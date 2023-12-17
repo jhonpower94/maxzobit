@@ -1,0 +1,229 @@
+.imageIcon {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  object-fit: cover;
+}
+.watch {
+  position: absolute;
+  width: 59.98%;
+  top: 8px;
+  left: 20.62%;
+  font-size: var(--font-size-base);
+  line-height: 24px;
+  font-family: var(--font-roboto);
+  color: var(--color-gray-200);
+  text-align: left;
+  display: inline-block;
+}
+.frame1 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: var(--color-whitesmoke-200);
+  position: relative;
+  border-radius: var(--br-21xl);
+  width: 90.7px;
+  height: 40px;
+}
+.frame {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--padding-7xl);
+}
+.div,
+.div1 {
+  position: relative;
+  line-height: 36px;
+}
+.div1 {
+  font-size: var(--font-size-sm);
+  line-height: 20px;
+  color: var(--color-seagreen);
+}
+.frame2 {
+  align-self: stretch;
+  height: 103px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0 28px;
+  box-sizing: border-box;
+  font-size: var(--font-size-9xl);
+}
+.frameIcon {
+  position: relative;
+  border-radius: var(--br-81xl);
+  width: 45px;
+  height: 45px;
+  object-fit: cover;
+}
+.send1 {
+  position: relative;
+  font-size: var(--font-size-sm);
+  line-height: 20px;
+  font-family: var(--font-roboto);
+  color: var(--color-gray-200);
+  text-align: center;
+  display: inline-block;
+  width: 34px;
+}
+.frame3,
+.send {
+  width: 34px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.send {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  width: 49.6px;
+  height: 70px;
+  gap: var(--gap-5xs);
+}
+.receive1 {
+  position: relative;
+  font-size: var(--font-size-sm);
+  line-height: 20px;
+  font-family: var(--font-roboto);
+  color: var(--color-gray-200);
+  text-align: center;
+  display: inline-block;
+  width: 52px;
+}
+.frame4,
+.sendParent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.frame4 {
+  width: 52px;
+  flex-direction: column;
+}
+.sendParent {
+  align-self: stretch;
+  border-bottom: 1px solid var(--color-gainsboro-100);
+  flex-direction: row;
+  padding: var(--padding-4xs) 0;
+  gap: 29px;
+}
+.aboutBitcoin {
+  position: relative;
+  line-height: 28px;
+  display: inline-block;
+  width: 142.9px;
+}
+.theWorldsFirst {
+  align-self: stretch;
+  position: relative;
+  font-size: var(--font-size-base);
+  line-height: 24px;
+}
+.viewMore {
+  position: relative;
+  font-size: var(--font-size-sm);
+  line-height: 20px;
+  color: var(--color-mediumblue);
+  display: inline-block;
+  width: 70px;
+}
+.frame5 {
+  align-self: stretch;
+  border-bottom: 1px solid var(--color-gainsboro-100);
+  box-sizing: border-box;
+  height: 208px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 24px var(--padding-7xl);
+  gap: var(--gap-5xs);
+}
+.marketStats {
+  align-self: stretch;
+  flex: 1;
+  position: relative;
+  line-height: 28px;
+}
+.marketStatsWrapper {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--padding-3xs) 43px;
+}
+.signalCellularAltIcon {
+  position: relative;
+  width: 15px;
+  height: 16px;
+  object-fit: cover;
+}
+.marketCap {
+  position: relative;
+  line-height: 20px;
+}
+.signalCellularAltParent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap-3xs);
+}
+.billion {
+  position: absolute;
+  top: 0;
+  left: 0;
+  line-height: 20px;
+}
+.billionWrapper {
+  position: relative;
+  width: 65px;
+  height: 20px;
+}
+.frameGroup {
+  align-self: stretch;
+  height: 37px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--padding-64xl);
+  box-sizing: border-box;
+}
+.coindetail,
+.frameParent {
+  display: flex;
+  flex-direction: column;
+}
+.frameParent {
+  align-self: stretch;
+  height: 96px;
+  align-items: flex-start;
+  justify-content: center;
+  padding: var(--padding-6xs) 0;
+  box-sizing: border-box;
+  gap: var(--gap-3xs);
+  font-size: var(--font-size-sm);
+}
+.coindetail {
+  position: relative;
+  background-color: var(--color-white);
+  width: 100%;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: var(--gap-5xs);
+  text-align: left;
+  font-size: var(--font-size-xl);
+  color: var(--color-gray-200);
+  font-family: var(--font-roboto);
+}

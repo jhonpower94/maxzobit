@@ -1,0 +1,75 @@
+.encryptedIcon {
+  position: relative;
+  width: 16px;
+  height: 20px;
+  object-fit: cover;
+}
+.frame {
+  border-radius: var(--br-981xl);
+  background-color: var(--color-whitesmoke-200);
+  width: 32px;
+  height: 32px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-9xs) 0;
+  box-sizing: border-box;
+}
+.connectLedgerWallet {
+  flex: 1;
+  position: relative;
+  font-size: var(--font-size-base);
+  line-height: 24px;
+  font-family: var(--font-roboto);
+  color: var(--color-gray-200);
+  text-align: left;
+}
+.frameContainer {
+  flex: 1;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--gap-base);
+}
+.arrowForwardIosIcon {
+  position: relative;
+  width: 11.8px;
+  height: 20px;
+  object-fit: cover;
+}
+.frameGroup,
+.frameParent,
+.settings {
+  display: flex;
+  justify-content: flex-start;
+}
+.frameGroup {
+  cursor: pointer;
+  border: 0;
+  padding: var(--padding-2xs) var(--padding-xl);
+  background-color: transparent;
+  align-self: stretch;
+  flex-direction: row;
+  align-items: center;
+}
+.frameParent,
+.settings {
+  flex-direction: column;
+  align-items: flex-start;
+}
+.frameParent {
+  align-self: stretch;
+  height: 292px;
+}
+.settings {
+  position: relative;
+  background-color: var(--color-white);
+  width: 100%;
+  overflow: hidden;
+  gap: var(--gap-base);
+}

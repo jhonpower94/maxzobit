@@ -1,0 +1,45 @@
+.frameChild {
+  border-radius: var(--br-22xl);
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+.bitcoin {
+  position: relative;
+  font-size: var(--font-size-xl);
+  line-height: 28px;
+  font-family: var(--font-roboto);
+  color: var(--color-black);
+  text-align: left;
+}
+.frameGroup {
+  flex: 1;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--gap-3xs);
+}
+.arrowForwardIosIcon {
+  position: relative;
+  width: 11.8px;
+  height: 20px;
+  object-fit: cover;
+}
+.arrowForwardIosWrapper,
+.frameParent {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.frameParent {
+  cursor: pointer;
+  border: 0;
+  padding: 0 var(--padding-3xs);
+  background-color: transparent;
+}

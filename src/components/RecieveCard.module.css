@@ -1,0 +1,80 @@
+.yourSolanaAddress {
+  align-self: stretch;
+  position: relative;
+  line-height: 24px;
+}
+.mkz6qaujb5nsymzcyzarctrecc2a3h {
+  position: relative;
+  font-size: var(--font-size-sm);
+  line-height: 20px;
+  color: var(--color-dimgray-100);
+  align-items: center;
+  width: 182px;
+  overflow: hidden;
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
+}
+.imageIcon {
+  position: relative;
+  border-radius: var(--br-xs);
+  width: 16px;
+  height: 16px;
+  object-fit: cover;
+}
+.yourSolanaAddressParent {
+  align-self: stretch;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--gap-9xs);
+}
+.vectorIcon {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
+}
+.frame1 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: var(--color-whitesmoke-200);
+  position: relative;
+  border-radius: var(--br-981xl);
+  width: 40px;
+  height: 40px;
+}
+.vectorIcon1 {
+  position: absolute;
+  top: 13px;
+  left: 12px;
+  width: 16px;
+  height: 18px;
+  object-fit: cover;
+}
+.frame,
+.frameParent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.frame {
+  flex-shrink: 0;
+  justify-content: flex-end;
+  gap: var(--gap-5xs);
+}
+.frameParent {
+  align-self: stretch;
+  border-radius: var(--br-5xs);
+  border: 1px solid var(--color-dimgray-300);
+  justify-content: space-between;
+  padding: var(--padding-mid);
+  text-align: left;
+  font-size: var(--font-size-base);
+  color: var(--color-gray-200);
+  font-family: var(--font-roboto);
+}

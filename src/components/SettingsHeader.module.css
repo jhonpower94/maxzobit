@@ -1,0 +1,61 @@
+.frame3,
+.rectangle,
+.rectangle3 {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 32px;
+}
+.rectangle3 {
+  border-radius: var(--br-981xl);
+}
+.frame3 {
+  overflow: hidden;
+}
+.frame {
+  position: relative;
+  border-radius: var(--br-2xl);
+  width: 32px;
+  height: 32px;
+  background-image: url(/public/frame21@3x.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+.div,
+.jhonpower94cbid {
+  position: relative;
+  line-height: 24px;
+  display: inline-block;
+  width: 143px;
+}
+.div {
+  color: var(--color-dimgray-100);
+  width: 44px;
+}
+.frameParent,
+.jhonpower94cbidParent {
+  display: flex;
+  justify-content: flex-start;
+}
+.jhonpower94cbidParent {
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.frameParent {
+  align-self: stretch;
+  border-bottom: 1px solid var(--color-gainsboro-100);
+  box-sizing: border-box;
+  height: 74px;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 var(--padding-xl);
+  gap: var(--gap-base);
+  text-align: left;
+  font-size: var(--font-size-base);
+  color: var(--color-gray-200);
+  font-family: var(--font-roboto);
+}

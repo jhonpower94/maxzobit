@@ -1,0 +1,111 @@
+.frameChild,
+.vectorIcon {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  z-index: 0;
+}
+.frameChild {
+  position: absolute;
+  margin: 0 !important;
+  height: 21.82%;
+  width: 22.73%;
+  top: 39.09%;
+  right: 38.86%;
+  bottom: 39.09%;
+  left: 38.41%;
+  border-radius: 50%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  z-index: 1;
+}
+.vectorParent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-3xs);
+}
+.frame {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.maticAddress,
+.xc9d36ef3 {
+  position: relative;
+  line-height: 24px;
+  display: inline-block;
+  width: 116px;
+}
+.xc9d36ef3 {
+  font-size: var(--font-size-sm);
+  line-height: 20px;
+  color: var(--color-dimgray-100);
+  width: 93px;
+}
+.maticAddressParent {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.copy {
+  position: absolute;
+  width: 54.05%;
+  top: 8px;
+  left: 22.97%;
+  font-size: var(--font-size-base);
+  line-height: 24px;
+  font-family: var(--font-roboto);
+  color: var(--color-gray-200);
+  text-align: left;
+  display: inline-block;
+}
+.frame1 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: var(--color-whitesmoke-200);
+  position: relative;
+  border-radius: var(--br-21xl);
+  width: 74px;
+  height: 40px;
+}
+.frameGroup {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.frameParent,
+.receivesingle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.frameParent {
+  align-self: stretch;
+  padding: 0 37px;
+  gap: 100px;
+}
+.receivesingle {
+  position: relative;
+  background-color: var(--color-white);
+  width: 100%;
+  gap: 60px;
+  text-align: left;
+  font-size: var(--font-size-base);
+  color: var(--color-gray-200);
+  font-family: var(--font-roboto);
+}

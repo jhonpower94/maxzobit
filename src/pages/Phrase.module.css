@@ -1,0 +1,138 @@
+.saveThese12,
+.yourRecoveryPhrase {
+  align-self: stretch;
+  position: relative;
+  line-height: 36px;
+}
+.saveThese12 {
+  font-size: var(--font-size-base);
+  line-height: 24px;
+  color: var(--color-dimgray-100);
+}
+.frame,
+.yourRecoveryPhraseParent {
+  align-self: stretch;
+  display: flex;
+  align-items: flex-start;
+}
+.yourRecoveryPhraseParent {
+  height: 130px;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 var(--padding-11xl);
+  box-sizing: border-box;
+  gap: var(--gap-9xs);
+}
+.frame {
+  border: 1px solid var(--color-dimgray-300);
+  background-color: transparent;
+  font-family: var(--font-roboto);
+  font-size: var(--font-size-base);
+  outline: 0;
+  flex: 1;
+  border-radius: var(--br-5xs);
+  flex-direction: row;
+  justify-content: flex-start;
+  padding: var(--padding-2xs) var(--padding-mini);
+  color: var(--color-dimgray-100);
+}
+.fileCopyIcon {
+  position: relative;
+  width: 15.8px;
+  height: 18.3px;
+  object-fit: cover;
+}
+.copyToClipboard {
+  position: relative;
+  font-size: var(--font-size-sm);
+  line-height: 20px;
+  font-family: var(--font-roboto);
+  color: var(--color-gray-200);
+  text-align: left;
+  display: inline-block;
+  width: 121px;
+  flex-shrink: 0;
+}
+.fileCopyParent {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap-8xs);
+}
+.frameParent {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 0 var(--padding-11xl);
+  gap: var(--gap-lg);
+}
+.done {
+  position: absolute;
+  width: 100%;
+  top: -2px;
+  left: 0;
+  font-size: var(--font-size-base);
+  line-height: 24px;
+  font-family: var(--font-roboto);
+  color: var(--color-white);
+  text-align: left;
+  display: inline-block;
+}
+.frame3 {
+  position: relative;
+  width: 41px;
+  height: 20px;
+}
+.frame1,
+.frame2,
+.frameWrapper {
+  align-self: stretch;
+  display: flex;
+  justify-content: center;
+}
+.frame2 {
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+}
+.frame1,
+.frameWrapper {
+  flex-direction: row;
+}
+.frame1 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: var(--color-mediumblue);
+  flex: 1;
+  border-radius: var(--br-37xl);
+  align-items: center;
+}
+.frameWrapper {
+  height: 46px;
+  align-items: flex-start;
+  padding: 0 61px;
+  box-sizing: border-box;
+}
+.phrase {
+  position: relative;
+  background-color: var(--color-white);
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--gap-11xl);
+  text-align: left;
+  font-size: var(--font-size-9xl);
+  color: var(--color-gray-200);
+  font-family: var(--font-roboto);
+}
