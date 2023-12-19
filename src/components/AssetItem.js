@@ -1,10 +1,11 @@
+import { Link } from "react-router-dom";
 import { CryptoCurrencyFormat, CurrencyFormat } from "../config/services";
 import styles from "./AssetItem.module.css";
 
 const AssetItem = ({ coin }) => {
   const { image, balance, balancecoin, coinnane, code, price } = coin;
   return (
-    <a className={styles.bitcoin}>
+    <Link to={"/coin"} state={{ coin: coin }} className={styles.bitcoin}>
       <div className={styles.frameParent}>
         <div
           className={styles.frame}
@@ -31,7 +32,7 @@ const AssetItem = ({ coin }) => {
           <CryptoCurrencyFormat amount={balancecoin} suffix={` ${code}`} />
         </div>
       </div>
-    </a>
+    </Link>
   );
 };
 
