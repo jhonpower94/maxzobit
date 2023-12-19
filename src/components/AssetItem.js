@@ -3,7 +3,8 @@ import { CryptoCurrencyFormat, CurrencyFormat } from "../config/services";
 import styles from "./AssetItem.module.css";
 
 const AssetItem = ({ coin }) => {
-  const { image, balance, balancecoin, coinnane, code, price } = coin;
+  const { image, balance, balancecoin, coinnane, difference, code, price } =
+    coin;
   return (
     <Link to={"/coin"} state={{ coin: coin }} className={styles.bitcoin}>
       <div className={styles.frameParent}>
@@ -19,6 +20,11 @@ const AssetItem = ({ coin }) => {
           </div>
           <div className={styles.dd}>
             <CurrencyFormat amount={price} prefix=" $" seperator={true} />
+            <span
+              style={{ marginLeft: 5, color: difference < 0 ? "red" : "green" }}
+            >
+              {difference.toFixed(2)}%
+            </span>
           </div>
         </div>
       </div>
