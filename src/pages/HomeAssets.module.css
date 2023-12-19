@@ -342,9 +342,9 @@
 }
 .coinlist {
   align-self: stretch;
-  height: 158px;
+  height: 100%;
   align-items: flex-start;
-  padding: 0 var(--padding-11xl);
+
   gap: var(--gap-11xl);
 }
 .homeAssets {

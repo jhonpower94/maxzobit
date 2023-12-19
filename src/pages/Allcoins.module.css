@@ -1,0 +1,60 @@
+.vectorIcon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 26px;
+  height: 26px;
+  object-fit: cover;
+}
+.vectorWrapper {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: relative;
+  width: 26px;
+  height: 26px;
+}
+.send {
+  position: relative;
+  line-height: 28px;
+}
+.allcoins,
+.coinlist,
+.frame {
+  display: flex;
+  justify-content: flex-start;
+}
+.frame {
+  align-self: stretch;
+  border-bottom: 1px solid var(--color-gainsboro-100);
+  box-sizing: border-box;
+  height: 63px;
+  overflow: hidden;
+  flex-shrink: 0;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 var(--padding-3xs);
+  gap: var(--gap-xl);
+}
+.allcoins,
+.coinlist {
+  flex-direction: column;
+  align-items: flex-start;
+}
+.coinlist {
+  align-self: stretch;
+  padding: 0 10px;
+  gap: 20px;
+}
+.allcoins {
+  position: relative;
+  background-color: var(--color-white);
+  width: 100%;
+  overflow: hidden;
+  gap: 20px;
+  text-align: left;
+  font-size: var(--font-size-xl);
+  color: var(--color-gray-200);
+  font-family: var(--font-roboto);
+}

@@ -15,7 +15,7 @@ const Explore = () => {
               Get price alerts and stay up to date
             </div>
           </div>
-          <img className={styles.frameIcon} alt="" src="/frame10@2x.png" />
+          <img className={styles.frameIcon} alt="" src="./images/coins/explore.svg" />
         </button>
       </div>
       <SectionCard />

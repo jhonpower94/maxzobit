@@ -1,19 +1,41 @@
 import { useState } from "react";
 import styles from "./Send.module.css";
 import HeaderBackButtonCoin from "../components/HeaderBackButtonCoin";
+import { useLocation } from "react-router-dom";
 
 const Send = () => {
   const [frameValue, setFrameValue] = useState();
   const [frame2Value, setFrame2Value] = useState();
+
+  let { state } = useLocation();
+  const { image, coinname, code, cointype, balance } = state.coin;
+
+  const [value, setValue] = useState({
+    amount: 0,
+    coin: 0,
+    address: "",
+    network: "Bitcoin",
+    alerMessage: "",
+    severity: "warning",
+  });
+
+  const handleChange = (event) => {
+    setValue({
+      ...state,
+      [event.target.name]: event.target.value,
+    });
+  };
+
   return (
     <div className={styles.send}>
-      <HeaderBackButtonCoin coinImage={"/image1@2x.png"} title={"Send BTC"} />
+      <HeaderBackButtonCoin coinImage={image} title={`Send ${code}`} />
       <div className={styles.frame1}>
         <div className={styles.amount}>Amount</div>
         <div className={styles.frameGroup}>
           <input
             className={styles.frame2}
-            type="password"
+            type="number"
+            placeholder="0.00"
             value={frameValue}
             onChange={(event) => setFrameValue(event.target.value)}
           />
@@ -29,7 +51,7 @@ const Send = () => {
         <div className={styles.amount}>Address</div>
         <input
           className={styles.frame5}
-          type="password"
+          type="text"
           value={frame2Value}
           onChange={(event) => setFrame2Value(event.target.value)}
         />

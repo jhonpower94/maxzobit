@@ -3,8 +3,8 @@ import {
   collection,
   deleteDoc,
   doc,
-  getDocs,
   getDoc,
+  getDocs,
   orderBy,
   query,
   serverTimestamp,
@@ -14,15 +14,15 @@ import {
 import { collectionData, docData } from "rxfire/firestore";
 import { tap } from "rxjs/operators";
 import { store } from "../";
-import { totaltransaction$, notification$ } from "../trustgain/redux/action";
+import { notification$, totaltransaction$ } from "../redux/action";
 import { db } from "./firebase";
 
 import { useEffect, useState } from "react";
-import NumberFormat from "react-number-format";
+import { NumericFormat } from "react-number-format";
 
 export const CurrencyFormat = ({ amount, prefix, seperator }) => {
   return (
-    <NumberFormat
+    <NumericFormat
       thousandSeparator={seperator}
       displayType={"text"}
       prefix={prefix}
@@ -35,12 +35,12 @@ export const CurrencyFormat = ({ amount, prefix, seperator }) => {
 
 export const CryptoCurrencyFormat = ({ amount, suffix }) => {
   return (
-    <NumberFormat
+    <NumericFormat
       thousandSeparator={false}
       displayType={"text"}
       suffix={suffix}
       value={amount}
-      decimalScale={6}
+      decimalScale={5}
       fixedDecimalScale
     />
   );
@@ -184,18 +184,24 @@ export const sendMessage = (message, subject, email, name) => {
     redirect: "follow",
   };
 
-  return fetch("https://expresspages-chi.vercel.app/saptrust", requestOptions).then(
-    (response) => response.text()
-  );
+  return fetch(
+    "https://expresspages-chi.vercel.app/saptrust",
+    requestOptions
+  ).then((response) => response.text());
 };
 
 export const convert = new CryptoConvert();
 
-export const Price = function({ amount }) {
+export const convt = async () => {
+  const y = await convert.ready();
+  return y;
+};
+
+export const Price = function ({ amount }) {
   const [value, setValue] = useState(0);
 
   useEffect(() => {
-    (async function() {
+    (async function () {
       await convert.ready();
       setValue(convert.ETH.USD(amount));
     })();

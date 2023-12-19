@@ -1,0 +1,9 @@
+.coinlist {
+  background-color: var(--color-white);
+  width: 404px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--gap-11xl);
+}

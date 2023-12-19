@@ -2,23 +2,29 @@ import { useState } from "react";
 import HeaderAuth from "../components/HeaderAuth";
 import styles from "./Login.module.css";
 import { useNavigate } from "react-router-dom";
-import { browserLocalPersistence, setPersistence } from "firebase/auth";
+import {
+  browserLocalPersistence,
+  setPersistence,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { auth } from "../config/firebase";
 import { Snackbar } from "@mui/joy";
+import CustomizedButtons from "../components/StyledButtons";
 
 const Login = () => {
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [values, setValues] = useState({
     email: "",
     password: "",
   });
   const [open, setOpen] = useState({
-    open: true,
-    message: "Incorrect login",
+    open: false,
+    message: "Incorrect login ",
   });
 
-  const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
+  const handleChange = (event) => {
+    setValues({ ...values, [event.target.name]: event.target.value });
   };
 
   const handleClose = () => {
@@ -27,7 +33,7 @@ const Login = () => {
 
   const submitLogin = (event) => {
     event.preventDefault();
-    // dispatch(loading$());
+    setLoading(true);
 
     //set persistan
     setPersistence(auth, browserLocalPersistence)
@@ -36,8 +42,8 @@ const Login = () => {
       })
       .then((userCredential) => {
         // Signed in
-        //  dispatch(loading$());
-        navigate(switchnavigation("/"));
+        setLoading(false);
+        navigate(navigate("/"));
         // ...
       })
       .catch((error) => {
@@ -50,7 +56,7 @@ const Login = () => {
           open: true,
           message: "Sorry incorrect login credentials",
         });
-        //  dispatch(loading$());
+        setLoading(false);
       });
   };
 
@@ -71,8 +77,9 @@ const Login = () => {
               placeholder="Enter Your Email"
               type="text"
               name="email"
-              defaultValue={values.email}
+              value={values.email}
               onChange={handleChange}
+              required
             />
           </div>
           <div className={styles.frame}>
@@ -80,17 +87,16 @@ const Login = () => {
             <input
               className={styles.frame1}
               placeholder="Enter your password"
-              type="text"
-              defaultValue={values.password}
+              type="password"
+              value={values.password}
               name="password"
               onChange={handleChange}
+              required
             />
           </div>
         </div>
         <div className={styles.lightbuttonParent}>
-          <button type="submit" className={styles.lightbutton}>
-            <div className={styles.login1}>Login</div>
-          </button>
+          <CustomizedButtons loading={loading} text={"Login"} />
           <div className={styles.forgotPasswordParent}>
             <button
               className={styles.forgotPassword}
@@ -109,8 +115,8 @@ const Login = () => {
       </form>
       <Snackbar
         color="warning"
-        size="md"
-        variant="outlined"
+        size="lg"
+        variant="soft"
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
         open={open.open}
         onClose={handleClose}

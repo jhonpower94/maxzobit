@@ -1,8 +1,9 @@
 .imageIcon {
   position: relative;
-  width: 22px;
-  height: 22px;
+  width: 25px;
+  height: 25px;
   object-fit: cover;
+  border-radius: 50px;
 }
 .watch {
   position: absolute;
@@ -127,6 +128,8 @@
   position: relative;
   font-size: var(--font-size-base);
   line-height: 24px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .viewMore {
   position: relative;

@@ -2190,6 +2190,19 @@
     clsx "^2.0.0"
     prop-types "^15.8.1"
 
+"@mui/lab@^5.0.0-alpha.156":
+  version "5.0.0-alpha.156"
+  resolved "https://registry.yarnpkg.com/@mui/lab/-/lab-5.0.0-alpha.156.tgz#9fee3a408ded367ab4fe84275789155b65dee7e7"
+  integrity sha512-OUAckFeqlAG6aIBG1Ud1fDCBqnU1wltWZYHsA7YCGzRBykNzQC/W/dYddp+RJLu0BgYpMiXwPXq2Hg0ERVtaog==
+  dependencies:
+    "@babel/runtime" "^7.23.5"
+    "@mui/base" "5.0.0-beta.27"
+    "@mui/system" "^5.15.0"
+    "@mui/types" "^7.2.11"
+    "@mui/utils" "^5.15.0"
+    clsx "^2.0.0"
+    prop-types "^15.8.1"
+
 "@mui/material@^5.14.20":
   version "5.15.0"
   resolved "https://registry.yarnpkg.com/@mui/material/-/material-5.15.0.tgz#f801cf56d505cc52dca225438360ab9c62057285"
@@ -4164,6 +4177,13 @@ cookie@0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/cookie/-/cookie-0.5.0.tgz#d1f5d71adec6558c58f389987c366aa47e994f8b"
   integrity sha512-YZ3GUyn/o8gfKJlnlX7g7xq4gyO6OSuhGPKaaGssGB2qgDUS0gPgtTvoyZLTt9Ab6dC4hfc9dV5arkvc/OCmrw==
+
+copy-to-clipboard@^3.3.1:
+  version "3.3.3"
+  resolved "https://registry.yarnpkg.com/copy-to-clipboard/-/copy-to-clipboard-3.3.3.tgz#55ac43a1db8ae639a4bd99511c148cdd1b83a1b0"
+  integrity sha512-2KV8NhB5JqC3ky0r9PMCAZKbUHSwtEo4CwCs0KXgruG43gX5PMqDEBbVU4OUzw2MuAWUfsuFmWvEKG5QRfSnJA==
+  dependencies:
+    toggle-selection "^1.0.6"
 
 core-js-compat@^3.31.0, core-js-compat@^3.33.1:
   version "3.34.0"
@@ -7254,6 +7274,11 @@ lodash.debounce@^4.0.8:
   resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
   integrity sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==
 
+lodash.isequal@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
+  integrity sha512-pDo3lu8Jhfjqls6GkMgpahsF9kCyayhgykjyLMNFTKWrpVdAQtYyB4muAMWozBB4ig/dtWAmsMxLEI8wuz+DYQ==
+
 lodash.memoize@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/lodash.memoize/-/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
@@ -8564,7 +8589,7 @@ prompts@^2.0.1, prompts@^2.4.2:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@^15.6.2, prop-types@^15.8.1:
+prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -8618,6 +8643,11 @@ q@^1.1.2:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/q/-/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
   integrity sha512-kV/CThkXo6xyFEZUugw/+pIOywXcDbFYgSct5cT3gqlbkBE1SJdwy6UQoZvodiWF/ckQLZyDE/Bu1M6gVu5lVw==
+
+qrcode-generator@^1.4.1:
+  version "1.4.4"
+  resolved "https://registry.yarnpkg.com/qrcode-generator/-/qrcode-generator-1.4.4.tgz#63f771224854759329a99048806a53ed278740e7"
+  integrity sha512-HM7yY8O2ilqhmULxGMpcHSF1EhJJ9yBj8gvDEuZ6M+KGJ0YY2hKpnXvRD+hZPLrDVck3ExIGhmPtSdcjC+guuw==
 
 qs@6.11.0:
   version "6.11.0"
@@ -8677,6 +8707,14 @@ react-app-polyfill@^3.0.0:
     regenerator-runtime "^0.13.9"
     whatwg-fetch "^3.6.2"
 
+react-copy-to-clipboard@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/react-copy-to-clipboard/-/react-copy-to-clipboard-5.1.0.tgz#09aae5ec4c62750ccb2e6421a58725eabc41255c"
+  integrity sha512-k61RsNgAayIJNoy9yDsYzDe/yAZAzEbEgcz3DZMhF686LEyukcE1hzurxe85JandPUG+yTfGVFzuEw3xt8WP/A==
+  dependencies:
+    copy-to-clipboard "^3.3.1"
+    prop-types "^15.8.1"
+
 react-dev-utils@^12.0.1:
   version "12.0.1"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-12.0.1.tgz#ba92edb4a1f379bd46ccd6bcd4e7bc398df33e73"
@@ -8734,6 +8772,21 @@ react-is@^18.0.0, react-is@^18.2.0:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.2.0.tgz#199431eeaaa2e09f86427efbb4f1473edb47609b"
   integrity sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==
+
+react-number-format@^5.3.1:
+  version "5.3.1"
+  resolved "https://registry.yarnpkg.com/react-number-format/-/react-number-format-5.3.1.tgz#840c257da9cb4b248990d8db46e4d23e8bac67ff"
+  integrity sha512-qpYcQLauIeEhCZUZY9jXZnnroOtdy3jYaS1zQ3M1Sr6r/KMOBEIGNIb7eKT19g2N1wbYgFgvDzs19hw5TrB8XQ==
+  dependencies:
+    prop-types "^15.7.2"
+
+react-qrcode-logo@^2.9.0:
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/react-qrcode-logo/-/react-qrcode-logo-2.9.0.tgz#34270d563b4a15396b5e7e7656ea2d079673adad"
+  integrity sha512-x9uctB/8kuQ+x7p4V/BRv6qbQV4xYopLcitBuQT3925U/zVFb3bbDUsUZsi7hEKuAX/wRsfhs331FhlPSYCO9Q==
+  dependencies:
+    lodash.isequal "^4.5.0"
+    qrcode-generator "^1.4.1"
 
 react-query@^3.39.3:
   version "3.39.3"
@@ -9114,6 +9167,18 @@ run-parallel@^1.1.9:
   integrity sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==
   dependencies:
     queue-microtask "^1.2.2"
+
+rxfire@^6.0.5:
+  version "6.0.5"
+  resolved "https://registry.yarnpkg.com/rxfire/-/rxfire-6.0.5.tgz#02035400b150dd730353c786ffa15283f0389dd4"
+  integrity sha512-ycBsANGbya3GNtOBKzZVATLEV+0S9gUrlTfwnN15TCXtgG8OgIMAuv2k9+kMeVaevp/DRp1KT+vYf6Wkop6gvw==
+
+rxjs@^7.8.1:
+  version "7.8.1"
+  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-7.8.1.tgz#6f6f3d99ea8044291efd92e7c7fcf562c4057543"
+  integrity sha512-AA3TVj+0A2iuIoQkWEK/tqFjBq2j+6PO6Y0zJcvzLAFhEFIO3HL0vls9hWLncZbAAbK0mar7oZ4V079I/qPMxg==
+  dependencies:
+    tslib "^2.1.0"
 
 safe-array-concat@^1.0.0, safe-array-concat@^1.0.1:
   version "1.0.1"
@@ -9890,6 +9955,11 @@ to-regex-range@^5.0.1:
   integrity sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==
   dependencies:
     is-number "^7.0.0"
+
+toggle-selection@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/toggle-selection/-/toggle-selection-1.0.6.tgz#6e45b1263f2017fa0acc7d89d78b15b8bf77da32"
+  integrity sha512-BiZS+C1OS8g/q2RRbJmy59xpyghNBqrr6k5L/uKBGRsTfxmu3ffiRnd8mlGPUVayg8pvfi5urfnu8TU7DVOkLQ==
 
 toidentifier@1.0.1:
   version "1.0.1"

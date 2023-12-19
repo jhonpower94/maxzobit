@@ -1,51 +1,37 @@
-import { useMemo } from "react";
+import { CryptoCurrencyFormat, CurrencyFormat } from "../config/services";
 import styles from "./AssetItem.module.css";
-import { Link } from "react-router-dom";
 
-const AssetItem = ({
-  frameImageUrl,
-  frameIconUrl,
-  propCursor,
-  propBackgroundImage,
-}) => {
-  const bitcoinStyle = useMemo(() => {
-    return {
-      cursor: propCursor,
-    };
-  }, [propCursor]);
-
-  const frame1Style = useMemo(() => {
-    return {
-      backgroundImage: propBackgroundImage,
-    };
-  }, [propBackgroundImage]);
-
+const AssetItem = ({ coin }) => {
+  const { image, balance, balancecoin, coinnane, code, price } = coin;
   return (
-    <Link to="coin" className={styles.bitcoin} style={bitcoinStyle}>
+    <a className={styles.bitcoin}>
       <div className={styles.frameParent}>
-        <div className={styles.frame} style={frame1Style}>
-          <img className={styles.imageIcon} alt="" src={frameIconUrl} />
+        <div
+          className={styles.frame}
+          style={{ backgroundImage: `url(${image})` }}
+        >
+          <img className={styles.imageIcon} alt="" src={image} />
         </div>
         <div className={styles.frame1}>
           <div className={styles.frame2}>
-            <div className={styles.frame3}>
-              <div className={styles.testnetMatic}>Testnet Matic</div>
-            </div>
-            <div className={styles.frame4}>
-              <div className={styles.matic}>MATIC</div>
-            </div>
+            <div className={styles.testnetMatic}>{code}</div>
+          </div>
+          <div className={styles.dd}>
+            <CurrencyFormat amount={price} prefix=" $" seperator={true} />
           </div>
         </div>
       </div>
-      <div className={styles.frame5}>
-        <div className={styles.frame6}>
-          <div className={styles.matic1}>0.1 MATIC</div>
+      <div className={styles.frame3}>
+        <div className={styles.frame4}>
+          <div className={styles.matic}>
+            <CurrencyFormat amount={balance} prefix="$" seperator={true} />
+          </div>
         </div>
-        <div className={styles.frame7}>
-          <div className={styles.chainId80001}>Chain ID: 80001</div>
+        <div className={styles.usdt}>
+          <CryptoCurrencyFormat amount={balancecoin} suffix={` ${code}`} />
         </div>
       </div>
-    </Link>
+    </a>
   );
 };
 

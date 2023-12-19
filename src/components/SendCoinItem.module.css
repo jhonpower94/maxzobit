@@ -8,8 +8,8 @@
 }
 .frame {
   border-radius: var(--br-981xl);
-  width: 35px;
-  height: 35px;
+  width: 32px;
+  height: 32px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -19,88 +19,83 @@
   background-position: top;
 }
 .testnetMatic {
+  align-self: stretch;
   position: relative;
   line-height: 24px;
 }
-.dd,
-.frame2,
-.testnetMatic {
+.frame1 {
   align-self: stretch;
-}
-.frame2 {
+  width: 121px;
   overflow: hidden;
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
 }
-.dd {
-  position: relative;
-  font-size: var(--font-size-sm);
-  line-height: 24px;
-  color: var(--color-dimgray-100);
-}
-.frame1,
 .frameParent {
-  align-self: stretch;
   flex: 1;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.frameParent {
   flex-direction: row;
+  align-items: center;
   justify-content: flex-start;
   gap: var(--gap-mini);
 }
-.matic {
+.div {
   position: relative;
   line-height: 24px;
-  display: inline-block;
-  
 }
-.frame4,
-.usdt {
+.frame3 {
   align-self: stretch;
-}
-.frame4 {
   overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   justify-content: center;
 }
-.usdt {
+.btc {
   position: relative;
-  font-size: var(--font-size-sm);
   line-height: 20px;
-  color: var(--color-dimgray-100);
-  text-align: right;
 }
-.bitcoin,
-.frame3 {
+.frame4 {
   align-self: stretch;
-  display: flex;
-}
-.frame3 {
-  flex: 1;
   flex-direction: column;
   align-items: flex-end;
   justify-content: center;
+  font-size: var(--font-size-sm);
+  color: var(--color-dimgray-100);
+}
+.bitcoin,
+.frame2,
+.frame4 {
+  overflow: hidden;
+  display: flex;
+}
+.frame2 {
+  flex: 1;
+  height: 44px;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: var(--gap-9xs);
   font-size: var(--font-size-mini);
 }
 .bitcoin {
   text-decoration: none;
-  border-radius: var(--br-5xs);
-  height: 64px;
+  align-self: stretch;
+  border-radius: var(--br-mini);
+  border: 1px solid var(--color-gainsboro-100);
+  box-sizing: border-box;
+  height: 79px;
+  flex-shrink: 0;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 0 var(--padding-xl);
-  box-sizing: border-box;
+  padding: 0 var(--padding-lg);
   text-align: left;
   font-size: var(--font-size-base);
   color: var(--color-gray-200);
   font-family: var(--font-roboto);
+  padding: 0 10px;
+  border-radius: 10px;
 }

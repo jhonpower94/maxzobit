@@ -1,6 +1,14 @@
+import { useSelector } from "react-redux";
 import styles from "./SettingsHeader.module.css";
+import { useEffect } from "react";
+import { CurrencyFormat } from "../config/services";
 
 const SettingsHeader = () => {
+  const userinfo = useSelector((state) => state.useInfos);
+  const { totalBalance } = userinfo;
+  useEffect(() => {
+    console.log(userinfo);
+  });
   return (
     <div className={styles.frameParent}>
       <div className={styles.frame}>
@@ -17,7 +25,9 @@ const SettingsHeader = () => {
       </div>
       <div className={styles.jhonpower94cbidParent}>
         <div className={styles.jhonpower94cbid}>jhonpower94.cb.id</div>
-        <div className={styles.div}>$0.00</div>
+        <div className={styles.div}>
+          <CurrencyFormat amount={totalBalance} prefix="$" seperator={true} />
+        </div>
       </div>
     </div>
   );

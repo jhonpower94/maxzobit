@@ -50,13 +50,13 @@ export const walletData = [
       address: "TSqZMQf8ofDwQ1nxBr6QideZrtfLpbRKpJ",
     },
     {
-      coinname: "USDT(ERC20)",
+      coinname: "USDT-Erc20",
       price: "$1",
       difference: "0.33%",
       balance: "$0.00",
       balancecoin: "0.00",
-      code: "USDT(ERC20)",
-      image: "./images/coins/usdt(erc20).svg",
+      code: "USDT-Erc20",
+      image: "./images/coins/USDT-Erc20.svg",
       address: "0x37894Da7791784ECB710DaFc624C75DE780F6145",
     },
   ];

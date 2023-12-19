@@ -4,9 +4,15 @@ import CustomizedTabs from "../components/tabs";
 import styles from "./HomeAssets.module.css";
 import { useState } from "react";
 import HistoryItem from "../components/HistoryItem";
+import { Dropdown, Menu, MenuButton, MenuItem } from "@mui/joy";
+import { signOut } from "firebase/auth";
+import { auth } from "../config/firebase";
+import { CurrencyFormat } from "../config/services";
+import { useSelector } from "react-redux";
 
 const HomeAssets = () => {
   const navigate = useNavigate();
+  const userinfo = useSelector((state) => state.useInfos);
   const [value, setValue] = useState("/");
 
   const handleChange = (event, newValue) => {
@@ -15,26 +21,48 @@ const HomeAssets = () => {
     console.log(newValue);
   };
 
+  const logOut = () => {
+    signOut(auth)
+      .then(() => {
+        console.log("Signed out");
+        navigate("/auth");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <div className={styles.homeAssets}>
       <div className={styles.header}>
         <div className={styles.frameParent}>
           <div className={styles.frameWrapper}>
-            <button className={styles.ellipseParent}>
-              <img
-                className={styles.frameChild}
-                alt=""
-                src="/ellipse-2@2x.png"
-              />
-              <div className={styles.jhonpower94cParent}>
-                <div className={styles.jhonpower94c}>jhonpower94.c</div>
+            <Dropdown>
+              <MenuButton
+                sx={{ border: "none", paddingInline: 0 }}
+                className={styles.ellipseParent}
+              >
                 <img
-                  className={styles.keyboardArrowDownIcon}
+                  className={styles.frameChild}
                   alt=""
-                  src="/keyboard-arrow-down@2x.png"
+                  src="/ellipse-2@2x.png"
                 />
-              </div>
-            </button>
+                <div className={styles.jhonpower94cParent}>
+                  <div className={styles.jhonpower94c}>jhonpower94.c</div>
+                  <img
+                    className={styles.keyboardArrowDownIcon}
+                    alt=""
+                    src="/keyboard-arrow-down@2x.png"
+                  />
+                </div>
+              </MenuButton>
+              <Menu size="lg">
+                <MenuItem onClick={() => navigate("profile")}>
+                  My profile
+                </MenuItem>
+                <MenuItem onClick={logOut}>Sign out</MenuItem>
+              </Menu>
+            </Dropdown>
           </div>
           <button className={styles.vectorWrapper}>
             <img className={styles.vectorIcon} alt="" src="/vector@2x.png" />
@@ -42,10 +70,19 @@ const HomeAssets = () => {
         </div>
       </div>
       <div className={styles.wrapper}>
-        <div className={styles.div}>$3,000.00</div>
+        <div className={styles.div}>
+          <CurrencyFormat
+            amount={userinfo.totalBalance}
+            prefix={"$"}
+            seperator={true}
+          />
+        </div>
       </div>
       <div className={styles.circlebuttonGroups}>
-        <button className={styles.buy} onClick={() => navigate("/buy")}>
+        <button
+          className={styles.buy}
+          onClick={() => window.open("https://www.kraken.com", "_blank")}
+        >
           <img className={styles.frameIcon} alt="" src="/frame2@2x.png" />
           <div className={styles.frame}>
             <div className={styles.buy1}>Buy</div>
@@ -58,7 +95,7 @@ const HomeAssets = () => {
           </div>
         </button>
 
-        <button className={styles.buy} onClick={() => navigate("/send")}>
+        <button className={styles.buy} onClick={() => navigate("/allcoin")}>
           <img className={styles.frameIcon} alt="" src="/frame5@2x.png" />
           <div className={styles.frame3}>
             <div className={styles.send1}>Send</div>
@@ -81,24 +118,31 @@ export default HomeAssets;
 
 // Assetstab
 export const Assets = () => {
+  const walletData = useSelector((state) => state.walletsData);
+
   return (
     <>
       <div className={styles.lightbuttonWrapper}>
-        <button className={styles.lightbutton}>
-          <div className={styles.getFreeTestnet}>Get free testnet funds</div>
+        <button
+          className={styles.lightbutton}
+          onClick={() => window.open("https://www.kraken.com", "_blank")}
+        >
+          <div className={styles.getFreeTestnet}>
+            Buy crypto at free commision
+          </div>
         </button>
       </div>
       <div className={styles.coinlist}>
-        <AssetItem
-          frameIconUrl="/frame1@2x.png"
-          propBackgroundImage="url('/frame7@3x.png')"
-        />
-        <AssetItem
-          frameImageUrl="/frame-80"
-          frameIconUrl="/frame@2x.png"
-          propCursor="pointer"
-          propBackgroundImage="url('/frame11@3x.png')"
-        />
+        {walletData.map((coin, index) => (
+          <AssetItem
+            coin={coin}
+            key={index}
+            frameImageUrl="/frame-80"
+            frameIconUrl={coin.image}
+            propCursor="pointer"
+            propBackgroundImage={`url(${coin.image})`}
+          />
+        ))}
       </div>
     </>
   );
@@ -106,11 +150,15 @@ export const Assets = () => {
 
 // NFTs tab
 export const Nfts = () => {
+  const navigate = useNavigate();
   return (
     <>
       <div className={styles.lightbuttonWrapper}>
-        <button className={styles.lightbutton}>
-          <div className={styles.getFreeTestnet}>Get free testnet funds</div>
+        <button
+          className={styles.lightbutton}
+          onClick={() => navigate("/receive")}
+        >
+          <div className={styles.getFreeTestnet}>Import NFTs</div>
         </button>
       </div>
     </>

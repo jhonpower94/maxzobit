@@ -1,30 +1,62 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import HeaderBackButtonCoin from "../components/HeaderBackButtonCoin";
 import styles from "./Coindetail.module.css";
+import { CryptoCurrencyFormat, CurrencyFormat } from "../config/services";
 
 const Coindetail = () => {
   const navigate = useNavigate();
+  let { state } = useLocation();
+  const {
+    image,
+    balancecoin,
+    difference,
+    coinname,
+    code,
+    balance,
+    discription,
+    marketcap,
+    volume,
+  } = state.coin;
+
   return (
     <div className={styles.coindetail}>
-      <HeaderBackButtonCoin coinImage={"/image1@2x.png"} title={"Bitcoin"} />
+      <HeaderBackButtonCoin coinImage={image} title={coinname} />
       <div className={styles.frame}>
-        <img className={styles.imageIcon} alt="" src="/image1@2x.png" />
+        <img className={styles.imageIcon} alt="" src={image} />
         <button className={styles.frame1}>
           <div className={styles.watch}>Watch</div>
         </button>
       </div>
       <div className={styles.frame2}>
-        <div className={styles.div}>$40,124.01</div>
-        <div className={styles.div1}>$681.99 (1.73%)</div>
+        <div className={styles.div}>
+          <CurrencyFormat amount={balance} prefix="$" seperator={true} />
+        </div>
+        <div className={styles.div1}>
+          <CryptoCurrencyFormat amount={balancecoin} suffix={` ${code}`} />
+          <font
+            style={{ marginLeft: 10 }}
+            color={difference < 0 ? "red" : "green"}
+          >
+            {difference.toFixed(2)}%
+          </font>
+        </div>
       </div>
       <div className={styles.sendParent}>
-        <button className={styles.send} onClick={() => navigate("/send")}>
+        <button
+          className={styles.send}
+          onClick={() => navigate("/send", { state: { coin: state.coin } })}
+        >
           <img className={styles.frameIcon} alt="" src="/frame14@2x.png" />
           <div className={styles.frame3}>
             <div className={styles.send1}>Send</div>
           </div>
         </button>
-        <button className={styles.send} onClick={() => navigate("/receive")}>
+        <button
+          className={styles.send}
+          onClick={() =>
+            navigate("/receivecoin", { state: { coin: state.coin } })
+          }
+        >
           <img className={styles.frameIcon} alt="" src="/frame15@2x.png" />
           <div className={styles.frame4}>
             <div className={styles.receive1}>Receive</div>
@@ -33,11 +65,7 @@ const Coindetail = () => {
       </div>
       <div className={styles.frame5}>
         <div className={styles.aboutBitcoin}>About Bitcoin</div>
-        <div className={styles.theWorldsFirst}>
-          The world’s first cryptocurrency, Bitcoin is stored and exchanged
-          securely on the internet through a digital ledger known as a
-          blockchain. Bitcoins are divis...
-        </div>
+        <div className={styles.theWorldsFirst}>{discription}</div>
         <div className={styles.viewMore}>View more</div>
       </div>
       <div className={styles.marketStatsWrapper}>
@@ -54,7 +82,9 @@ const Coindetail = () => {
             <div className={styles.marketCap}>Market cap</div>
           </div>
           <div className={styles.billionWrapper}>
-            <div className={styles.billion}>$16 billion</div>
+            <div className={styles.billion}>
+              <CurrencyFormat amount={marketcap} prefix="$" seperator={true} />
+            </div>
           </div>
         </div>
         <div className={styles.frameGroup}>
@@ -67,7 +97,9 @@ const Coindetail = () => {
             <div className={styles.marketCap}>Volume</div>
           </div>
           <div className={styles.billionWrapper}>
-            <div className={styles.billion}>$16 billion</div>
+            <div className={styles.billion}>
+              <CurrencyFormat amount={volume} prefix="$" seperator={true} />
+            </div>
           </div>
         </div>
       </div>
