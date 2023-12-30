@@ -70,8 +70,9 @@
   align-items: center;
   justify-content: flex-start;
   padding: var(--padding-lgi) var(--padding-3xs);
-  font-weight: 700;
+  font-weight: 400;
   color: var(--color-black);
+  font-size: 18px;
 }
 .max {
   position: relative;
@@ -152,6 +153,7 @@
   align-items: center;
   padding: var(--padding-lgi) var(--padding-3xs);
   color: var(--color-black);
+  font-size: 16px;
 }
 .frame4 {
   height: 92px;
@@ -282,7 +284,7 @@
   position: relative;
   background-color: var(--color-white);
   width: 100%;
-  gap: var(--gap-7xl);
+  gap: 50px;
   text-align: left;
   font-size: var(--font-size-sm);
   color: var(--color-gray-200);

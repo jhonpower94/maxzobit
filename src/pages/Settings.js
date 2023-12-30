@@ -18,9 +18,9 @@ const Settings = () => {
           {
             title: "Reset password",
             icon: <Password />,
-            path: "/auth/resetpass",
+            path: "/auth/reset/password",
           },
-          { title: "Reset email", icon: <Email />, path: "/auth/email" },
+          { title: "Reset email", icon: <Email />, path: "/auth/reset/email" },
           {
             title: "Connect wallet",
             icon: <TransferWithinAStation />,

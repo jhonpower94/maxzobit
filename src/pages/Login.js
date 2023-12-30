@@ -3,9 +3,9 @@ import HeaderAuth from "../components/HeaderAuth";
 import styles from "./Login.module.css";
 import { useNavigate } from "react-router-dom";
 import {
-  browserLocalPersistence,
-  setPersistence,
-  signInWithEmailAndPassword,
+    browserLocalPersistence,
+    setPersistence,
+    signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../config/firebase";
 import { Snackbar } from "@mui/joy";
@@ -100,7 +100,7 @@ const Login = () => {
           <div className={styles.forgotPasswordParent}>
             <button
               className={styles.forgotPassword}
-              onClick={() => navigate("/auth/resetpass")}
+              onClick={() => navigate("/auth/reset/password")}
             >
               Forgot Password?
             </button>

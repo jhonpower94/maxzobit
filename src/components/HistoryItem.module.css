@@ -60,6 +60,9 @@
   line-height: 24px;
   display: inline-block;
   width: 108px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .frame4 {
   width: 146px;

@@ -35,7 +35,10 @@ const AssetItem = ({ coin }) => {
           </div>
         </div>
         <div className={styles.usdt}>
-          <CryptoCurrencyFormat amount={balancecoin} suffix={` ${code}`} />
+          <CryptoCurrencyFormat
+            amount={balancecoin > 0 ? balancecoin : 0}
+            suffix={` ${code}`}
+          />
         </div>
       </div>
     </Link>

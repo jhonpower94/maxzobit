@@ -173,3 +173,11 @@ export const walletData$ = (data) => {
     payload: data,
   };
 };
+
+export const coinData$ = (data) => {
+  return {
+    type: "COINDATA",
+    payload: data,
+  };
+};
+

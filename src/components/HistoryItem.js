@@ -1,15 +1,53 @@
 import { useMemo } from "react";
 import styles from "./HistoryItem.module.css";
+import { Typography } from "@mui/material";
+import { CurrencyFormat } from "../config/services";
+import { useNavigate } from "react-router-dom";
 
-const HistoryItem = ({ itemCode, imageCode, frameBorder }) => {
+export function convertTimestamp(timestamp) {
+  let date = timestamp.toDate();
+  let mm = date.getMonth() + 1;
+  let dd = date.getDate();
+  let yyyy = date.getFullYear();
+
+  date = mm + "/" + dd + "/" + yyyy;
+  return date;
+}
+
+export function convertTimestampTime(timestamp) {
+  let time = timestamp.toDate();
+  let hours = time.getHours();
+  let minutes = time.getMinutes();
+  let ampm = hours >= 12 ? "pm" : "am";
+
+  time = hours + ":" + minutes + " " + ampm;
+  return time;
+}
+
+const HistoryItem = ({ data, itemCode, imageCode, frameBorder }) => {
+  const navigate = useNavigate();
   const frameStyle = useMemo(() => {
     return {
       border: frameBorder,
     };
   }, [frameBorder]);
 
+  const {
+    transaction_type,
+    pending,
+    recipient,
+    amount,
+    timestamp,
+    confirmation,
+  } = data;
+  const isCredit = transaction_type === "Credit";
+  const isPending = confirmation < 3;
+
   return (
-    <div className={styles.frame}>
+    <div
+      onClick={() => navigate("/detail", { state: { data: data } })}
+      className={styles.frame}
+    >
       <div className={styles.frame1}>
         <div className={styles.frameParent}>
           <div className={styles.frameWrapper}>
@@ -21,15 +59,24 @@ const HistoryItem = ({ itemCode, imageCode, frameBorder }) => {
         </div>
         <div className={styles.frame3}>
           <div className={styles.frame4}>
-            <div className={styles.x321248d6}>0x3212…48d6</div>
+            <div className={styles.x321248d6}>{recipient}</div>
           </div>
           <div className={styles.frame5}>
-            <div className={styles.receive1242}>Receive • 12:42 AM</div>
+            <div className={styles.receive1242}>
+              {isCredit ? "Receive" : "Sent"} •{" "}
+              {convertTimestampTime(timestamp)}
+            </div>
           </div>
         </div>
       </div>
       <div className={styles.frame6}>
-        <div className={styles.matic}>0.001 MATIC</div>
+        <Typography color={isPending ? "red" : "green"}>
+          {isCredit ? "+" : "-"}
+          <CurrencyFormat amount={amount} prefix={"$"} seperator={true} />
+        </Typography>
+        <Typography variant="caption" color={isPending ? "orange" : "green"}>
+          {isPending ? "Pending" : "Confirmed"}
+        </Typography>
       </div>
     </div>
   );

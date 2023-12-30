@@ -18,7 +18,7 @@ import { notification$, totaltransaction$ } from "../redux/action";
 import { db } from "./firebase";
 
 import { useEffect, useState } from "react";
-import { NumericFormat } from "react-number-format";
+import { NumericFormat, } from "react-number-format";
 
 export const CurrencyFormat = ({ amount, prefix, seperator }) => {
   return (

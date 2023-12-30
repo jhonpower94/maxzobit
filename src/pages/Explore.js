@@ -1,7 +1,18 @@
+import { useSelector } from "react-redux";
 import SectionCard from "../components/SectionCard";
 import styles from "./Explore.module.css";
+import { useEffect } from "react";
 
 const Explore = () => {
+  let coinData = useSelector((state) => state.coinData);
+
+  const dataAsc = coinData.slice(0, 5);
+  const dataDesc = coinData.slice(5, 11);
+
+  useEffect(() => {
+    console.log(dataAsc, dataDesc);
+  });
+
   return (
     <div className={styles.explore}>
       <div className={styles.frame}>
@@ -15,11 +26,15 @@ const Explore = () => {
               Get price alerts and stay up to date
             </div>
           </div>
-          <img className={styles.frameIcon} alt="" src="./images/coins/explore.svg" />
+          <img
+            className={styles.frameIcon}
+            alt=""
+            src="./images/coins/explore.svg"
+          />
         </button>
       </div>
-      <SectionCard />
-      <SectionCard />
+      <SectionCard data={dataAsc} type={"Market cap"} />
+      <SectionCard data={dataDesc} type={"Top movers"} />
     </div>
   );
 };

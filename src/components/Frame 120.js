@@ -1,8 +1,8 @@
 import styles from "./CoinItem.module.css";
 
-const CoinItem = () => {
+const CoinItem = ({onClick}) => {
   return (
-    <button className={styles.frameParent}>
+    <button onClick={onClick} className={styles.frameParent}>
       <div className={styles.frameGroup}>
         <img className={styles.frameChild} alt="" src="/frame-118@2x.png" />
         <div className={styles.bitcoin}>Bitcoin</div>

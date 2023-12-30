@@ -17,6 +17,7 @@ const BootstrapButton = styled(LoadingButton)({
   flexDirection: "row",
   alignItems: "center",
   justifyContent: "center",
+  width: "100%",
 });
 
 export default function CustomizedButtons({ text, loading }) {

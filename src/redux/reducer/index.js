@@ -291,6 +291,15 @@ const walletsData = (state = [], action) => {
   }
 };
 
+const coinData = (state = [], action) => {
+  switch (action.type) {
+    case "COINDATA":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 export const allreducer = combineReducers({
   //  language: languageSelected,
   // darkMode: darkMode,
@@ -316,4 +325,5 @@ export const allreducer = combineReducers({
   // pathname: pathname,
   walletInfos: walletInfos,
   walletsData: walletsData,
+  coinData: coinData,
 });

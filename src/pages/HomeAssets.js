@@ -1,18 +1,22 @@
+import { Badge, Dropdown, Menu, MenuButton, MenuItem } from "@mui/joy";
+import { useFirestoreQuery } from "@react-query-firebase/firestore";
+import { signOut } from "firebase/auth";
+import { collection, orderBy, query } from "firebase/firestore";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 import { Outlet, useNavigate } from "react-router-dom";
 import AssetItem from "../components/AssetItem";
-import CustomizedTabs from "../components/tabs";
-import styles from "./HomeAssets.module.css";
-import { useState } from "react";
 import HistoryItem from "../components/HistoryItem";
-import { Dropdown, Menu, MenuButton, MenuItem } from "@mui/joy";
-import { signOut } from "firebase/auth";
-import { auth } from "../config/firebase";
+import CustomizedTabs from "../components/tabs";
+import { auth, db } from "../config/firebase";
 import { CurrencyFormat } from "../config/services";
-import { useSelector } from "react-redux";
+import styles from "./HomeAssets.module.css";
+import { Typography } from "@mui/material";
 
 const HomeAssets = () => {
   const navigate = useNavigate();
   const userinfo = useSelector((state) => state.useInfos);
+  const allNotifications = useSelector((state) => state.notification);
   const [value, setValue] = useState("/");
 
   const handleChange = (event, newValue) => {
@@ -64,8 +68,18 @@ const HomeAssets = () => {
               </Menu>
             </Dropdown>
           </div>
-          <button className={styles.vectorWrapper}>
-            <img className={styles.vectorIcon} alt="" src="/vector@2x.png" />
+
+          <button
+            className={styles.vectorWrapper}
+            onClick={() => navigate("notifications")}
+          >
+            <Badge
+              badgeContent={allNotifications.length}
+              color="warning"
+              variant="solid"
+            >
+              <img className={styles.vectorIcon} alt="" src="/vector@2x.png" />
+            </Badge>
           </button>
         </div>
       </div>
@@ -128,7 +142,7 @@ export const Assets = () => {
           onClick={() => window.open("https://www.kraken.com", "_blank")}
         >
           <div className={styles.getFreeTestnet}>
-            Buy crypto at free commision
+            Buy crypto at cheaper rate
           </div>
         </button>
       </div>
@@ -167,11 +181,51 @@ export const Nfts = () => {
 
 // Activity tab
 export const Activity = () => {
-  return (
-    <HistoryItem
-      itemCode="/call-received@2x.png"
-      imageCode="/frame11@3x.png"
-      frameBorder="1px solid blue"
-    />
+  const userInfos = useSelector((state) => state.useInfos);
+
+  const ref = query(
+    collection(db, "users", userInfos.id, "transactions"),
+    orderBy("timestamp", "desc")
   );
+  const querY = useFirestoreQuery(["transactions"], ref);
+
+  if (querY.isLoading) {
+    return <Typography>Loading...</Typography>;
+  }
+
+  const snapshot = querY.data;
+
+  return snapshot.docs.map((docSnapshot, index) => {
+    const data = docSnapshot.data();
+    const { transaction_type, cointitle } = data;
+
+    const isCredit = transaction_type === "Credit";
+
+    const switchImage = (key) => {
+      switch (key) {
+        case "BTC":
+          return "./images/coins/btc.png";
+        case "ETH":
+          return "./images/coins/eth.png";
+        case "BNB":
+          return "./images/coins/eth.png";
+        case "TRX":
+          return "./images/coins/tron.png";
+        case "USDT":
+          return "./images/coins/usdt.png";
+        default:
+          return "./images/coins/usdt.png";
+      }
+    };
+
+    return (
+      <HistoryItem
+        key={index}
+        data={data}
+        itemCode={isCredit ? "/call-received@2x.png" : "/call-made@2x.png"}
+        imageCode={switchImage(cointitle)}
+        frameBorder={isCredit ? "1px solid blue" : "1px solid #8a919e"}
+      />
+    );
+  });
 };

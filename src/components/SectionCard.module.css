@@ -60,7 +60,7 @@
 .div1 {
   flex: 1;
   position: relative;
-  font-size: var(--font-size-6xl);
+  font-size: xx-large;
   line-height: 36px;
   font-family: var(--font-roboto);
   color: var(--color-seagreen);
