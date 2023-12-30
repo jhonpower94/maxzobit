@@ -180,6 +180,7 @@ export function DashboardIndex() {
   });
 
   useEffect(() => {
+    setLoading(true);
     onAuthStateChanged(auth, (user) => {
       if (user) {
         const id = user.uid;
@@ -415,9 +416,14 @@ export function DashboardIndex() {
                       },
                     ])
                   );
-                });
+                })
+                .then(() => {
+                  setLoading(false);
+                })
+                .catch((error) => console.log(error));
+
               axiosRetry(axios, {
-                retries: 2,
+                retries: 4,
                 // retryDelay: axiosRetry.exponentialDelay,
               });
             })();
