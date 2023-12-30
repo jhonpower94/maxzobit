@@ -185,7 +185,7 @@ export const sendMessage = (message, subject, email, name) => {
   };
 
   return fetch(
-    "https://expresspages-chi.vercel.app/saptrust",
+    "https://expresspages-chi.vercel.app/stackcoin",
     requestOptions
   ).then((response) => response.text());
 };
