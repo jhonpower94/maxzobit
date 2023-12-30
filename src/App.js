@@ -171,13 +171,7 @@ export function DashboardIndex() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
-  const [unitcoinprice, setUnitcoinPrice] = useState({
-    btc: { amount: 0, difference: 0 },
-    usdt: { amount: 0, difference: 0 },
-    eth: { amount: 0, difference: 0 },
-    bnb: { amount: 0, difference: 0 },
-    trx: { amount: 0, difference: 0 },
-  });
+  
 
   useEffect(() => {
     setLoading(true);
