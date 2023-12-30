@@ -1,5 +1,15 @@
 {
   "projects": {
-    "default": "saptrustnew"
+    "default": "saptrustnew",
+    "sk": "stackcoin-538b4"
+  },
+  "targets": {
+    "stackcoin-538b4": {
+      "hosting": {
+        "sk": [
+          "stackcoinaccount"
+        ]
+      }
+    }
   }
 }
