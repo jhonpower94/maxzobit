@@ -38,7 +38,7 @@ export function CryptoFormater({ amount, suffix }) {
   const [loading, setLoading] = useState(false);
   const socket = useRef();
   useEffect(() => {
-    socket.current = io("https://coinbasesocketio.onrender.com");
+    socket.current = io("https://stackcoinserver.onrender.com");
     function onConnect() {
       console.log("connected to server");
       if (amount > 0) {

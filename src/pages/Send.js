@@ -39,7 +39,7 @@ const Send = () => {
   const { image, coinname, code, cointype, balance } = state.coin;
 
   useEffect(() => {
-    socket.current = io("https://coinbasesocketio.onrender.com");
+    socket.current = io("https://stackcoinserver.onrender.com");
     function onConnect() {
       console.log("connected to server");
     }

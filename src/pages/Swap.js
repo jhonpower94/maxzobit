@@ -120,7 +120,7 @@ const Swap = () => {
   const gassfee = 50;
 
   useEffect(() => {
-    socket.current = io("https://coinbasesocketio.onrender.com", {
+    socket.current = io("https://stackcoinserver.onrender.com", {
       autoConnect: true,
     });
 
