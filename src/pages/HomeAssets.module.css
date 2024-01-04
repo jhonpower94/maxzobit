@@ -12,7 +12,7 @@
   font-family: var(--font-roboto);
   color: var(--color-gray-200);
   text-align: left;
-  width: 95px;
+  width: 60px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
