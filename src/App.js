@@ -437,7 +437,7 @@ export function DashboardIndex() {
 
   return (
     <>
-      <ShowButtonDevice />
+      
       <Outlet />
 
       <Backdrop
@@ -449,3 +449,5 @@ export function DashboardIndex() {
     </>
   );
 }
+
+// <ShowButtonDevice />

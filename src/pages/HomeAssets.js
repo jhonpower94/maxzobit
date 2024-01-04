@@ -12,7 +12,6 @@ import { auth, db } from "../config/firebase";
 import { CurrencyFormat } from "../config/services";
 import styles from "./HomeAssets.module.css";
 import { Typography } from "@mui/material";
-import Frame from "../components/Frame";
 
 const HomeAssets = () => {
   const navigate = useNavigate();

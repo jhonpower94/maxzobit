@@ -149,17 +149,13 @@ export const InstallPWAiOS = ({ os }) => {
     setOpen(false);
   };
 
-  const isStandalone = navigator.standalone;
-
-  useEffect(() => {
-    console.log(isStandalone);
-  });
+  const isRunningStandalone = () => {
+    return window.matchMedia("(display-mode: standalone)").matches;
+  };
 
   return (
     <>
-      {isStandalone ? (
-        <></>
-      ) : (
+      {isRunningStandalone ? (
         <>
           <Snackbar
             anchorOrigin={{ vertical: "top", horizontal: "center" }}
@@ -199,6 +195,8 @@ export const InstallPWAiOS = ({ os }) => {
             </button>
           </div>
         </>
+      ) : (
+        <></>
       )}
     </>
   );
