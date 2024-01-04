@@ -24,13 +24,23 @@
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>Stackcoin</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <style>
+      #tidio-chat-iframe {
+        bottom: 50px !important;
+      }
+      @media only screen and (max-width: 980px) {
+        #tidio-chat-iframe {
+          bottom: 50px !important;
+        }
+      }
+    </style>
     <script
       src="//code.tidio.co/e59juhmfptstwba30opcfvvtxhgp8pai.js"
       async
     ></script>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
   </body>
 </html>
