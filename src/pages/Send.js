@@ -69,7 +69,7 @@ const Send = () => {
       case "Tron":
         return { name: "Tron", type: "tron_balance" };
       default:
-        return { name: "Etheruem", type: "eth_balance" };
+        return { name: "Ethereum", type: "eth_balance" };
     }
   };
 

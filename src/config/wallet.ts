@@ -10,7 +10,7 @@ export const walletData = [
       address: "bc1qvd28x3lzqdjn56748n76ftgydgymm45fmuakuw",
     },
     {
-      coinname: "ETHERUEM",
+      coinname: "ETHEREUM",
       price: "$1,797",
       difference: "-0.94%",
       balance: "$0.00",

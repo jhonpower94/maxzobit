@@ -35,6 +35,7 @@ import Notifications from "./pages/notification";
 import TabIndex from "./pages/tabindex";
 import { InstallPWA, InstallPWAiOS } from "./pwainstallbutton";
 import { coinData$, userinfo$, walletData$ } from "./redux/action";
+import { Helmet } from "react-helmet";
 
 class ShowButtonDevice extends Component {
   constructor(props) {
@@ -338,7 +339,7 @@ export function DashboardIndex() {
                         "Bitcoin is the first successful internet money based on peer-to-peer technology; whereby no central bank or authority is involved in the transaction and production of the Bitcoin currency. It was created by an anonymous individual/group under the name, Satoshi Nakamoto.  It is a decentralized peer-to-peer internet currency making mobile payment easy, very low transaction fees, protects your identity, and it works anywhere all the time with no central authority and banks.",
                     },
                     {
-                      coinname: "ETHERUEM",
+                      coinname: "ETHEREUM",
                       cointype: "eth_balance",
                       price: res.data.ethereum.usd,
                       difference: res.data.ethereum.usd_24h_change,
@@ -383,7 +384,7 @@ export function DashboardIndex() {
                         "Tron's mission is to build a truly decentralized internet and aims to be the largest blockchain-based operating system in the world, known as the TRON protocol. The TRON protocol will offer high scalability, high availability, and high throughput computing to serve decentralized applications via smart contracts. Ethereum EVM-based smart contracts will be compatible and deployable on the TRON network as such Solidity developers do not have to rewrite their applications.",
                     },
                     {
-                      coinname: "USDT-Trc20",
+                      coinname: "USDT-TRC20",
                       cointype: "usdt_balance",
                       price: res.data.tether.usd,
                       difference: res.data.tether.usd_24h_change,
@@ -391,14 +392,14 @@ export function DashboardIndex() {
                       marketcap: res.data.tether.usd_market_cap,
                       balance: usdt_balance,
                       balancecoin: usdt_balance,
-                      code: "USDT trc20",
+                      code: "USDT TRC20",
                       image: "./images/coins/usdt.png",
                       address: "TJts2hDfyFgGr36r1X8bMJLMRPa8yiewho",
                       discription:
                         "Tether (USDT) is a cryptocurrency with a value meant to mirror the value of the U.S. dollar. The idea was to create a stable cryptocurrency that can be used like digital dollars. Coins that serve this purpose of being a stable dollar substitute are called “stable coins.” Tether is the most popular stable coin and even acts as a dollar replacement on many popular exchanges! According to their site, Tether converts cash into digital currency, to anchor or “tether” the value of the coin to the price of national currencies like the US dollar, the Euro, and the Yen.",
                     },
                     {
-                      coinname: "USDT-Erc20",
+                      coinname: "USDT-ERC20",
                       cointype: "usdterc20_balance",
                       price: res.data.tether.usd,
                       difference: res.data.tether.usd_24h_change,
@@ -406,7 +407,7 @@ export function DashboardIndex() {
                       marketcap: res.data.tether.usd_market_cap,
                       balance: usdterc20_balance,
                       balancecoin: usdterc20_balance,
-                      code: "USDT erc20",
+                      code: "USDT ERC20",
                       image: "./images/coins/usdt.png",
                       address: "0xf63feb4A25a015226b89E2eEAD6cC95beC748374",
                       discription:
@@ -437,7 +438,12 @@ export function DashboardIndex() {
 
   return (
     <>
-      
+      <Helmet>
+        <script
+          src="//code.tidio.co/e59juhmfptstwba30opcfvvtxhgp8pai.js"
+          async
+        ></script>
+      </Helmet>
       <Outlet />
 
       <Backdrop
