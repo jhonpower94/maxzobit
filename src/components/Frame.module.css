@@ -1,0 +1,77 @@
+.frame3,
+.rectangle,
+.rectangle3 {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 32px;
+}
+.rectangle3 {
+  border-radius: var(--br-981xl);
+}
+.frame3 {
+  overflow: hidden;
+}
+.frame {
+  position: relative;
+  border-radius: var(--br-2xl);
+  width: 32px;
+  height: 32px;
+  background-image: url(/public/frame5@3x.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+.installForIos {
+  position: relative;
+  line-height: 24px;
+  display: inline-block;
+  width: 143px;
+}
+.installForIosWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.install {
+  position: relative;
+  font-size: var(--font-size-sm);
+  line-height: 24px;
+  font-family: var(--font-roboto);
+  color: var(--color-white);
+  text-align: center;
+}
+.frame4,
+.frameParent {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.frame4 {
+  cursor: pointer;
+  border: 0;
+  padding: 0 var(--padding-base);
+  background-color: var(--color-mediumblue);
+  border-radius: 15px;
+  width: 63px;
+  height: 28px;
+  justify-content: center;
+}
+.frameParent {
+  background-color: var(--color-white);
+  border-bottom: 1px solid var(--color-gainsboro-100);
+  width: 100%;
+  height: 53px;
+  justify-content: flex-start;
+  padding: 30px 15px;
+  gap: var(--gap-base);
+  text-align: left;
+  font-size: var(--font-size-base);
+  color: var(--color-gray-200);
+  font-family: var(--font-roboto);
+}

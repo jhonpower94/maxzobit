@@ -1,8 +1,45 @@
 import { Link } from "react-router-dom";
-import { CryptoCurrencyFormat, CurrencyFormat } from "../config/services";
+import { CurrencyFormat } from "../config/services";
 import styles from "./AssetItem.module.css";
+import { CryptoFormater } from "../config/services";
 
 const AssetItem = ({ coin }) => {
+  /*
+  const [value, setValue] = useState(0);
+  const socket = useRef();
+  useEffect(() => {
+    socket.current = io("https://coinbasesocketio.onrender.com");
+    function onConnect() {
+      console.log("connected to server");
+      if (amount > 0) {
+        socket.current.emit("convert", {
+          from: "USDT",
+          to: "ETH",
+          amount: amount,
+        });
+      }
+    }
+
+    function onConvrtEvent(data) {
+      setValue(data);
+    }
+
+    function onDisconnect() {
+      console.log("socket disconnected ");
+
+      socket.current.on("connect", onConnect);
+    }
+    socket.current.on("connect", onConnect);
+    socket.current.on("convert", onConvrtEvent);
+    socket.current.on("disconnect", onDisconnect);
+
+    return () => {
+      socket.current.off("connect", onConnect);
+      socket.current.off("disconnect", onDisconnect);
+      socket.current.off("convert", onConvrtEvent);
+    };
+  }, []);
+*/
   const { image, balance, balancecoin, coinnane, difference, code, price } =
     coin;
   return (
@@ -31,14 +68,13 @@ const AssetItem = ({ coin }) => {
       <div className={styles.frame3}>
         <div className={styles.frame4}>
           <div className={styles.matic}>
+            
             <CurrencyFormat amount={balance} prefix="$" seperator={true} />
           </div>
         </div>
         <div className={styles.usdt}>
-          <CryptoCurrencyFormat
-            amount={balancecoin > 0 ? balancecoin : 0}
-            suffix={` ${code}`}
-          />
+        <CryptoFormater amount={balance} suffix={code} />
+          
         </div>
       </div>
     </Link>
@@ -46,3 +82,6 @@ const AssetItem = ({ coin }) => {
 };
 
 export default AssetItem;
+/*
+<CryptoFormater amount={balance} suffix={` ${code}`} />
+*/

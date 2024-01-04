@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
-import { CryptoCurrencyFormat, CurrencyFormat } from "../config/services";
+import { CurrencyFormat } from "../config/services";
 import styles from "./SendCoinItem.module.css";
+import { CryptoFormater } from "../config/services";
+
 
 const SendCoinItem = ({ coin }) => {
   const { image, coinname, balance, balancecoin, code } = coin;
@@ -25,7 +27,7 @@ const SendCoinItem = ({ coin }) => {
         </div>
         <div className={styles.frame4}>
           <div className={styles.btc}>
-            <CryptoCurrencyFormat amount={balancecoin} suffix={` ${code}`} />
+            <CryptoFormater amount={balance} suffix={code} />
           </div>
         </div>
       </div>

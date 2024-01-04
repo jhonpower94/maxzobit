@@ -58,7 +58,6 @@
   position: relative;
   line-height: 24px;
   display: inline-block;
-  
 }
 .frame4,
 .usdt {
@@ -77,6 +76,8 @@
   line-height: 20px;
   color: var(--color-dimgray-100);
   text-align: right;
+  display: flex;
+  justify-content: flex-end;
 }
 .bitcoin,
 .frame3 {
@@ -88,7 +89,8 @@
   flex-direction: column;
   align-items: flex-end;
   justify-content: center;
-  font-size: var(--font-size-mini);
+  font-size: 17px;
+  /* font-size: var(--font-size-mini) */
 }
 .bitcoin {
   text-decoration: none;

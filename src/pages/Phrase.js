@@ -71,7 +71,8 @@ const Phrase = () => {
         >
           <div className={styles.frame2}>
             <div className={styles.frame3}>
-              <div className={styles.done}>Done</div>
+              <div className={styles.done}>
+              {phrase ? "Done" : "Generate"}</div>
             </div>
           </div>
         </button>

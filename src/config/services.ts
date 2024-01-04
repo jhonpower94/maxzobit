@@ -1,3 +1,4 @@
+import CryptoConvert from "crypto-convert";
 import {
   collection,
   deleteDoc,
@@ -16,10 +17,7 @@ import { store } from "../";
 import { notification$, totaltransaction$ } from "../redux/action";
 import { db } from "./firebase";
 
-import { useEffect, useRef, useState } from "react";
 import { NumericFormat } from "react-number-format";
-import { io } from "socket.io-client";
-import { LoaderSmall } from "../components/loader";
 
 export const CurrencyFormat = ({ amount, prefix, seperator }) => {
   return (
@@ -33,62 +31,7 @@ export const CurrencyFormat = ({ amount, prefix, seperator }) => {
     />
   );
 };
-export function CryptoFormater({ amount, suffix }) {
-  const [value, setValue] = useState(0);
-  const [loading, setLoading] = useState(false);
-  const socket = useRef();
-  useEffect(() => {
-    socket.current = io("https://coinbasesocketio.onrender.com");
-    function onConnect() {
-      console.log("connected to server");
-      if (amount > 0) {
-        setLoading(true);
-        socket.current.emit("convert", {
-          from: "USDT",
-          to: suffix,
-          amount: amount,
-        });
-      }
-    }
 
-    function onConvrtEvent(data) {
-      setValue(data);
-      setLoading(false);
-    }
-
-    function onDisconnect() {
-      console.log("socket disconnected ");
-
-      socket.current.on("connect", onConnect);
-    }
-    socket.current.on("connect", onConnect);
-    socket.current.on("convert", onConvrtEvent);
-    socket.current.on("disconnect", onDisconnect);
-
-    return () => {
-      socket.current.off("connect", onConnect);
-      socket.current.off("disconnect", onDisconnect);
-      socket.current.off("convert", onConvrtEvent);
-    };
-  }, []);
-
-  return (
-    <>
-      {loading ? (
-        <LoaderSmall />
-      ) : (
-        <NumericFormat
-          thousandSeparator={false}
-          displayType={"text"}
-          suffix={` ${suffix}`}
-          value={value}
-          decimalScale={5}
-          fixedDecimalScale
-        />
-      )}
-    </>
-  );
-}
 export const CryptoCurrencyFormat = ({ amount, suffix }) => {
   return (
     <NumericFormat
@@ -245,3 +188,7 @@ export const sendMessage = (message, subject, email, name) => {
     requestOptions
   ).then((response) => response.text());
 };
+
+export const convert = new CryptoConvert();
+
+

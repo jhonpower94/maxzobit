@@ -12,6 +12,7 @@ import { auth, db } from "../config/firebase";
 import { CurrencyFormat } from "../config/services";
 import styles from "./HomeAssets.module.css";
 import { Typography } from "@mui/material";
+import Frame from "../components/Frame";
 
 const HomeAssets = () => {
   const navigate = useNavigate();
@@ -38,6 +39,7 @@ const HomeAssets = () => {
 
   return (
     <div className={styles.homeAssets}>
+      
       <div className={styles.header}>
         <div className={styles.frameParent}>
           <div className={styles.frameWrapper}>
@@ -52,7 +54,7 @@ const HomeAssets = () => {
                   src="/ellipse-2@2x.png"
                 />
                 <div className={styles.jhonpower94cParent}>
-                  <div className={styles.jhonpower94c}>jhonpower94.c</div>
+                  <div className={styles.jhonpower94c}>{userinfo.username}</div>
                   <img
                     className={styles.keyboardArrowDownIcon}
                     alt=""

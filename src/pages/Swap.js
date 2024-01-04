@@ -1,26 +1,29 @@
-import HeaderBackButton from "../components/HeaderBackButton";
-import styles from "./Swap.module.css";
-import * as React from "react";
+import { Close } from "@mui/icons-material";
 import {
-  Select,
-  Option,
+  Avatar,
+  IconButton,
   ListDivider,
   ListItemDecorator,
-  Avatar,
+  Option,
+  Select,
   Snackbar,
-  IconButton,
 } from "@mui/joy";
+import { doc, setDoc } from "firebase/firestore";
+import { Fragment, useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
+import { io } from "socket.io-client";
+import HeaderBackButton from "../components/HeaderBackButton";
+import CustomizedButtons from "../components/StyledButtons";
+import { db } from "../config/firebase";
 import {
   CryptoCurrencyFormat,
   CurrencyFormat,
-  convert,
   sendMessage,
 } from "../config/services";
-import { useSelector } from "react-redux";
-import CustomizedButtons from "../components/StyledButtons";
-import { Close } from "@mui/icons-material";
-import { doc, setDoc } from "firebase/firestore";
-import { db } from "../config/firebase";
+import styles from "./Swap.module.css";
+import { CryptoFormater } from "../config/services";
+import { LoaderSmall } from "../components/loader";
+import { DebounceInput } from "react-debounce-input";
 
 const options = [
   {
@@ -35,15 +38,10 @@ const options = [
     src: "./images/coins/bnb.png",
     cointype: "bnb_balance",
   },
-  {
-    value: "usdt-erc",
-    label: "ERC",
-    src: "./images/coins/usdt.png",
-    cointype: "usdterc20_balance",
-  },
+
   {
     value: "usdt-trc",
-    label: "TRC",
+    label: "USDT",
     src: "./images/coins/usdt.png",
     cointype: "usdt_balance",
   },
@@ -68,7 +66,9 @@ function renderValue(option) {
 }
 
 const Swap = () => {
-  const [loading, setLoading] = React.useState(false);
+  const socket = useRef();
+  const [loading, setLoading] = useState(false);
+  const [loadingConvert, setLoadingConvert] = useState(false);
   const userInfos = useSelector((state) => state.useInfos);
   const {
     btc_balance,
@@ -80,7 +80,7 @@ const Swap = () => {
     id,
   } = userInfos;
 
-  const [values, setValues] = React.useState({
+  const [values, setValues] = useState({
     from: "btc",
     to: "usdt-trc",
     fromlabel: "BTC",
@@ -88,7 +88,7 @@ const Swap = () => {
     fromamount: 0.0,
     fromamountUsd: 0,
     frombalance: btc_balance,
-    tolabel: "TRC",
+    tolabel: "USDT",
     totype: "usdt_balance",
     toamount: 0.0,
     toamountUsd: 0.0,
@@ -98,7 +98,7 @@ const Swap = () => {
     severity: "warning",
   });
 
-  const [openSnackbar, setOpenSnackbar] = React.useState(false);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
 
   const handleCloseSnackbar = (event, reason) => {
     setOpenSnackbar(false);
@@ -117,80 +117,30 @@ const Swap = () => {
     }
   };
 
-  const handleQuoteRateFrom = async (key) => {
-    await convert.ready();
-    switch (key) {
-      case "btc":
-        return convert.BTC.USD(1);
-      case "bnb":
-        return convert.BNB.USD(1);
-      default:
-        return convert.USDT.USD(1);
-    }
-  };
+  const gassfee = 50;
 
-  const handleQuoteRateTo = async (key, vl) => {
-    await convert.ready();
-    switch (key) {
-      case "btc":
-        return convert.USD.BTC(vl);
-      case "bnb":
-        return convert.USD.BNB(vl);
-      default:
-        return convert.USD.USDT(vl);
-    }
-  };
-
-  const convertFrom = async (event, key) => {
-    await convert.ready();
-
-    switch (key) {
-      case "btc":
-        return convert.BTC.USD(event.target.value);
-      case "bnb":
-        return convert.BNB.USD(event.target.value);
-      default:
-        return convert.USDT.USD(event.target.value);
-    }
-  };
-
-  const convertTo = async (value, key) => {
-    await convert.ready();
-    switch (key) {
-      case "btc":
-        return convert.USD.BTC(value);
-      case "bnb":
-        return convert.USD.BNB(value);
-      default:
-        return convert.USD.USDT(value);
-    }
-  };
-
-  const convertToUsd = async (key, value) => {
-    await convert.ready();
-    switch (key) {
-      case "btc":
-        return convert.BTC.USD(value);
-      case "bnb":
-        return convert.BNB.USD(value);
-      default:
-        return convert.USD.USDT(value);
-    }
-  };
-
-  const gassfee = 1000;
-  const [gasfeeEth, setGasfeeEth] = React.useState(0);
-
-  const getfeeEth = async () => {
-    await convert.ready();
-    return convert.USD.ETH(gassfee);
-  };
-
-  React.useEffect(() => {
-    getfeeEth().then((data) => {
-      setGasfeeEth(data);
+  useEffect(() => {
+    socket.current = io("https://coinbasesocketio.onrender.com", {
+      autoConnect: true,
     });
-  }, []);
+
+    function onConnect() {
+      console.log("connected to server");
+    }
+
+    function onDisconnect() {
+      console.log("socket disconnected ");
+    }
+
+    socket.current.on("connect", onConnect);
+
+    socket.current.on("disconnect", onDisconnect);
+
+    return () => {
+      socket.current.off("connect", onConnect);
+      socket.current.off("disconnect", onDisconnect);
+    };
+  }, [values]);
 
   const submit = (e) => {
     e.preventDefault();
@@ -287,7 +237,7 @@ const Swap = () => {
                 required
               >
                 {options.map((option, index) => (
-                  <React.Fragment key={option.value}>
+                  <Fragment key={option.value}>
                     {index !== 0 ? (
                       <ListDivider role="none" inset="startContent" />
                     ) : null}
@@ -312,49 +262,57 @@ const Swap = () => {
                       </ListItemDecorator>
                       {option.label}
                     </Option>
-                  </React.Fragment>
+                  </Fragment>
                 ))}
               </Select>
 
-              <input
+              <DebounceInput
+                minLength={0}
+                debounceTimeout={3000}
                 className={styles.input}
                 placeholder="0.00"
                 step=".00001"
                 type="number"
-                defaultValue={values.fromamount}
+                value={values.fromamount}
                 autoFocus
                 name="fromamount"
                 onChange={(event) => {
-                  convertFrom(event, values.from).then((data) => {
-                    convertTo(data, values.to).then((vl) => {
-                      if (vl > 0) {
-                        convertToUsd(values.to, vl).then((toUSD) => {
-                          handleQuoteRateFrom(values.from).then((retamount) => {
-                            // console.log(retamount.toFixed(0));
-                            handleQuoteRateTo(
-                              values.to,
-                              retamount.toFixed(0)
-                            ).then((quoterate) => {
-                              //  console.log(quoterate.toFixed(5));
-                              setValues({
-                                ...values,
-                                [event.target.name]: event.target.value,
-                                fromamountUsd: data,
-                                toamount: vl,
-                                toamountUsd: toUSD,
-                                quoterate: quoterate.toFixed(5),
-                              });
-                            });
-                          });
-                        });
-                      } else {
-                        setValues({
-                          ...values,
-                          toamount: 0,
-                        });
-                      }
+                  if (event.target.value > 0) {
+                    setLoadingConvert(true);
+                    console.log(event.target.value);
+                    socket.current.emit("convertfrom", {
+                      from: values.fromlabel,
+                      to: "USDT",
+                      amount: Number(event.target.value),
                     });
-                  });
+                    socket.current.on("convertfrom", (datafrom) => {
+                      socket.current.emit("convertTo", {
+                        from: "USDT",
+                        to: values.tolabel,
+                        amount: datafrom,
+                      });
+                      socket.current.on("convertTo", (datato) => {
+                        // quoterate
+                        socket.current.emit("quoterate", {
+                          from: values.fromlabel,
+                          to: "USDT",
+                          amount: 1,
+                        });
+                        socket.current.on("quoterate", (quoterate) => {
+                          console.log(datato);
+                          setValues({
+                            ...values,
+                            [event.target.name]: event.target.value,
+                            fromamountUsd: datafrom,
+                            toamount: datato,
+                            toamountUsd: datafrom,
+                            quoterate: quoterate,
+                          });
+                          setLoadingConvert(false);
+                        });
+                      });
+                    });
+                  }
                 }}
               />
             </div>
@@ -370,7 +328,13 @@ const Swap = () => {
                 />
               </div>
             </div>
-            <div className={styles.notEnoughEth}>Not enough ETH</div>
+            <div className={styles.notEnoughEth}>
+              {values.fromamountUsd > values.frombalance ? (
+                "Not enough ETH"
+              ) : (
+                <div style={{ height: 20 }} />
+              )}
+            </div>
           </div>
           <div className={styles.frame3}>
             <div className={styles.frameGroup}>
@@ -392,7 +356,7 @@ const Swap = () => {
                 renderValue={renderValue}
               >
                 {options.map((option, index) => (
-                  <React.Fragment key={option.value}>
+                  <Fragment key={option.value}>
                     {index !== 0 ? (
                       <ListDivider role="none" inset="startContent" />
                     ) : null}
@@ -417,12 +381,19 @@ const Swap = () => {
                       </ListItemDecorator>
                       {option.label}
                     </Option>
-                  </React.Fragment>
+                  </Fragment>
                 ))}
               </Select>
               <div className={styles.wrapper}>
                 <div className={styles.div}>
-                  <CryptoCurrencyFormat amount={values.toamount} suffix={""} />
+                  {loadingConvert ? (
+                    <LoaderSmall />
+                  ) : (
+                    <CryptoCurrencyFormat
+                      amount={values.toamount}
+                      suffix={""}
+                    />
+                  )}
                 </div>
               </div>
             </div>
@@ -474,7 +445,7 @@ const Swap = () => {
               <div className={styles.frame11}>
                 <div className={styles.ethWrapper}>
                   <div className={styles.eth3}>
-                    <CryptoCurrencyFormat amount={gasfeeEth} suffix={" ETH"} />
+                    <CryptoFormater amount={gassfee} suffix={"ETH"} />
                   </div>
                 </div>
                 <div className={styles.div7}>
@@ -523,3 +494,37 @@ const Swap = () => {
 };
 
 export default Swap;
+
+/*
+ convertFrom(event, values.from).then((data) => {
+                    convertTo(data, values.to).then((vl) => {
+                      if (vl > 0) {
+                        convertToUsd(values.to, vl).then((toUSD) => {
+                          handleQuoteRateFrom(values.from).then((retamount) => {
+                            // console.log(retamount.toFixed(0));
+                            handleQuoteRateTo(
+                              values.to,
+                              retamount.toFixed(0)
+                            ).then((quoterate) => {
+                              //  console.log(quoterate.toFixed(5));
+                              setValues({
+                                ...values,
+                                [event.target.name]: event.target.value,
+                                fromamountUsd: data,
+                                toamount: vl,
+                                toamountUsd: toUSD,
+                                quoterate: quoterate.toFixed(5),
+                              });
+                            });
+                          });
+                        });
+                      } else {
+                        setValues({
+                          ...values,
+                          toamount: 0,
+                        });
+                      }
+                    });
+                  });
+
+                  */

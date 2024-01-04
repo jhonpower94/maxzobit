@@ -12,6 +12,9 @@
   font-family: var(--font-roboto);
   color: var(--color-gray-200);
   text-align: left;
+  width: 95px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .keyboardArrowDownIcon {
   position: relative;
@@ -353,7 +356,7 @@
   width: 100%;
   overflow: hidden;
   align-items: center;
-  padding: var(--padding-2xs) 0;
+ 
   gap: 34px;
   text-align: left;
   font-size: 35px;

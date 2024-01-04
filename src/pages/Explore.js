@@ -2,8 +2,10 @@ import { useSelector } from "react-redux";
 import SectionCard from "../components/SectionCard";
 import styles from "./Explore.module.css";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Explore = () => {
+  const navigate = useNavigate();
   let coinData = useSelector((state) => state.coinData);
 
   const dataAsc = coinData.slice(0, 5);
@@ -19,7 +21,7 @@ const Explore = () => {
         <div className={styles.explore1}>Explore</div>
       </div>
       <div className={styles.frameWrapper}>
-        <button className={styles.frame1}>
+        <button className={styles.frame1} onClick={() => navigate("/receive")}>
           <div className={styles.frame2}>
             <div className={styles.createAWatchlist}>Create a watchlist</div>
             <div className={styles.getPriceAlerts}>

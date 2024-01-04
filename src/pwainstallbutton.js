@@ -1,19 +1,11 @@
-import { Apple, Close } from "@mui/icons-material";
-import {
-  Alert,
-  Box,
-  CssBaseline,
-  IconButton,
-  Snackbar,
-  Typography,
-  styled,
-} from "@mui/material";
+import { Alert, Snackbar, Typography, styled } from "@mui/material";
 import { blue } from "@mui/material/colors";
 import clsx from "clsx";
 import React, { useEffect, useState } from "react";
 import IosShareIcon from "@mui/icons-material/IosShare";
 import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
 import { useButton } from "@mui/base/useButton";
+import styles from "../src/components/Frame.module.css";
 
 const CustomButtonRoot = styled("button")`
   font-family: IBM Plex Sans, sans-serif;
@@ -118,40 +110,26 @@ export const InstallPWA = () => {
     return null;
   }
   return (
-    <>
-      <CssBaseline />
-
-      <div
-        style={{
-          position: "fixed",
-          bottom: 0,
-          zIndex: 100000,
-          padding: 15,
-          width: "100%",
-          backgroundColor: "white",
-        }}
-      >
-        <Box display={"flex"}>
-          <IconButton onClick={cancel} size="large">
-            <Close />
-          </IconButton>
-          <Box ml={1}>
-            <Typography variant="h6" gutterBottom>
-              Install our App
-            </Typography>
-            <CustomButton
-              className="link-button"
-              id="setup_button"
-              aria-label="Install app"
-              title="Install app"
-              onClick={onClick}
-            >
-              Install
-            </CustomButton>
-          </Box>
-        </Box>
+    <div className={styles.frameParent}>
+      <div className={styles.frame}>
+        <div className={styles.rectangle} />
+        <div className={styles.rectangle}>
+          <div className={styles.rectangle} />
+          <div className={styles.rectangle}>
+            <div className={styles.rectangle} />
+            <div className={styles.frame3}>
+              <div className={styles.rectangle3} />
+            </div>
+          </div>
+        </div>
       </div>
-    </>
+      <div className={styles.installForIosWrapper}>
+        <div className={styles.installForIos}>Install for android</div>
+      </div>
+      <button className={styles.frame4} onClick={onClick}>
+        <div className={styles.install}>Install</div>
+      </button>
+    </div>
   );
 };
 
@@ -183,61 +161,42 @@ export const InstallPWAiOS = ({ os }) => {
         <></>
       ) : (
         <>
-          <CssBaseline />
-
-          <div
-            style={{
-              position: "fixed",
-              bottom: 0,
-              zIndex: 100000,
-              padding: 15,
-              width: "100%",
-              backgroundColor: "white",
-            }}
+          <Snackbar
+            anchorOrigin={{ vertical: "top", horizontal: "center" }}
+            open={open}
+            autoHideDuration={9999999}
+            onClose={handleClose}
           >
-            <Snackbar
-              anchorOrigin={{ vertical: "top", horizontal: "center" }}
-              open={open}
-              autoHideDuration={9999999}
-              onClose={handleClose}
-            >
-              <Alert
-                onClose={handleClose}
-                severity="info"
-                sx={{ width: "100%" }}
-              >
-                <Typography gutterBottom>
-                  Click on browser share button <IosShareIcon />
-                </Typography>
+            <Alert onClose={handleClose} severity="info" sx={{ width: "100%" }}>
+              <Typography gutterBottom>
+                Click on browser share button <IosShareIcon />
+              </Typography>
 
-                <Typography gutterBottom>
-                  Then click on the Add to home screen button{" "}
-                  <AddBoxOutlinedIcon /> to install
-                </Typography>
-              </Alert>
-            </Snackbar>
-            <Box ml={1}>
-              <Box display={"flex"}>
-                <Typography variant="h6" gutterBottom mr={2}>
-                  Install our App
-                </Typography>
-                <Apple />
-              </Box>
-
-              <CustomButton
-                className="link-button"
-                id="setup_button"
-                aria-label="Install app"
-                title="Install app"
-                onClick={handleClick}
-              >
-                Install for{" "}
-                {
-                  "iOS"
-                  //os
-                }
-              </CustomButton>
-            </Box>
+              <Typography gutterBottom>
+                Then click on the Add to home screen button{" "}
+                <AddBoxOutlinedIcon /> to install
+              </Typography>
+            </Alert>
+          </Snackbar>
+          <div className={styles.frameParent}>
+            <div className={styles.frame}>
+              <div className={styles.rectangle} />
+              <div className={styles.rectangle}>
+                <div className={styles.rectangle} />
+                <div className={styles.rectangle}>
+                  <div className={styles.rectangle} />
+                  <div className={styles.frame3}>
+                    <div className={styles.rectangle3} />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className={styles.installForIosWrapper}>
+              <div className={styles.installForIos}>Install for IOS</div>
+            </div>
+            <button className={styles.frame4} onClick={handleClick}>
+              <div className={styles.install}>Install</div>
+            </button>
           </div>
         </>
       )}

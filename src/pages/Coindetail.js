@@ -1,11 +1,16 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import HeaderBackButtonCoin from "../components/HeaderBackButtonCoin";
 import styles from "./Coindetail.module.css";
-import { CryptoCurrencyFormat, CurrencyFormat } from "../config/services";
+import { CurrencyFormat } from "../config/services";
+import { CryptoFormater } from "../config/services";
+import { useState } from "react";
+import { WatchButton } from "../components/StyledButtons";
+import { Snackbar } from "@mui/joy";
 
 const Coindetail = () => {
   const navigate = useNavigate();
   let { state } = useLocation();
+  const [loading, setLoading] = useState(false);
   const {
     image,
     balancecoin,
@@ -18,21 +23,34 @@ const Coindetail = () => {
     volume,
   } = state.coin;
 
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+
+  const handleCloseSnackbar = (event, reason) => {
+    setOpenSnackbar(false);
+  };
+
+  const watch = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setOpenSnackbar(true);
+      setLoading(false);
+    }, 4000);
+  };
+
   return (
     <div className={styles.coindetail}>
       <HeaderBackButtonCoin coinImage={image} title={coinname} />
       <div className={styles.frame}>
         <img className={styles.imageIcon} alt="" src={image} />
-        <button className={styles.frame1}>
-          <div className={styles.watch}>Watch</div>
-        </button>
+        <WatchButton text={"Watch"} loading={loading} handleClick={watch} />
       </div>
       <div className={styles.frame2}>
         <div className={styles.div}>
           <CurrencyFormat amount={balance} prefix="$" seperator={true} />
         </div>
         <div className={styles.div1}>
-          <CryptoCurrencyFormat amount={balancecoin} suffix={` ${code}`} />
+          <CryptoFormater amount={balance} suffix={code} />
+
           <font
             style={{ marginLeft: 10 }}
             color={difference < 0 ? "red" : "green"}
@@ -103,6 +121,16 @@ const Coindetail = () => {
           </div>
         </div>
       </div>
+      <Snackbar
+        color="success"
+        size="lg"
+        variant="soft"
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        open={openSnackbar}
+        onClose={handleCloseSnackbar}
+      >
+        {`${code} Added to watchlist`}
+      </Snackbar>
     </div>
   );
 };
