@@ -268,7 +268,7 @@ const Swap = () => {
 
               <DebounceInput
                 minLength={0}
-                debounceTimeout={3000}
+                debounceTimeout={1000}
                 className={styles.input}
                 placeholder="0.00"
                 step=".00001"
