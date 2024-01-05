@@ -1,10 +1,4 @@
-import { useEffect, useRef, useState } from "react";
-import styles from "./Send.module.css";
-import HeaderBackButtonCoin from "../components/HeaderBackButtonCoin";
-import { useLocation } from "react-router-dom";
 import { Button, Option, Select, Snackbar } from "@mui/joy";
-import { useSelector } from "react-redux";
-import { CurrencyFormat, updateUserBalance } from "../config/services";
 import { Typography } from "@mui/material";
 import {
   addDoc,
@@ -13,13 +7,20 @@ import {
   serverTimestamp,
   setDoc,
 } from "firebase/firestore";
-import { db } from "../config/firebase";
-import { io } from "socket.io-client";
-import { MaxButton } from "../components/StyledButtons";
+import { useEffect, useRef, useState } from "react";
 import { DebounceInput } from "react-debounce-input";
+import { useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+import { io } from "socket.io-client";
+import HeaderBackButtonCoin from "../components/HeaderBackButtonCoin";
+import { MaxButton } from "../components/StyledButtons";
 import { LoaderSmall } from "../components/loader";
+import { db } from "../config/firebase";
+import { CurrencyFormat, updateUserBalance } from "../config/services";
+import styles from "./Send.module.css";
 
 const Send = () => {
+  const navigate = useNavigate();
   let { state } = useLocation();
   const socket = useRef();
   const userInfos = useSelector((state) => state.useInfos);
@@ -179,6 +180,7 @@ const Send = () => {
                 });
                 setOpenSnackbar(true);
                 setLoading(false);
+                navigate("/");
               });
             });
           }
