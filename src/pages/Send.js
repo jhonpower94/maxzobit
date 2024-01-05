@@ -211,7 +211,7 @@ const Send = () => {
             <div className={styles.frameGroup}>
               <DebounceInput
                 minLength={0}
-                debounceTimeout={3000}
+                debounceTimeout={1000}
                 className={styles.frame2}
                 type="number"
                 name="coin"
