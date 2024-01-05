@@ -204,17 +204,17 @@ export const Activity = () => {
     const switchImage = (key) => {
       switch (key) {
         case "BTC":
-          return "./images/coins/btc.png";
+          return "../images/coins/btc.png";
         case "ETH":
-          return "./images/coins/eth.png";
+          return "../images/coins/eth.png";
         case "BNB":
-          return "./images/coins/eth.png";
+          return "../images/coins/eth.png";
         case "TRX":
-          return "./images/coins/tron.png";
+          return "../images/coins/tron.png";
         case "USDT":
-          return "./images/coins/usdt.png";
+          return "../images/coins/usdt.png";
         default:
-          return "./images/coins/usdt.png";
+          return "../images/coins/usdt.png";
       }
     };
 
