@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
 import { styled } from "@mui/material/styles";
+import { useSelector } from "react-redux";
 
 const AntTabs = styled((props) => <Tabs centered {...props} />)({
   borderBottom: "1px solid #e8e8e8",
@@ -47,15 +48,16 @@ const AntTab = styled((props) => <Tab disableRipple {...props} />)(
   })
 );
 
-export default function CustomizedTabs({value, handleChange}) {
-  
+export default function CustomizedTabs({ value, handleChange }) {
+  const userInfos = useSelector((state) => state.useInfos);
+  const { id } = userInfos;
 
   return (
     <Box sx={{ width: "100%" }}>
       <AntTabs value={value} onChange={handleChange} aria-label="ant example">
         <AntTab label="Crypto" value="/" />
         <AntTab label="NFTs" value="/nfts" />
-        <AntTab label="Activity" value="/activities" />
+        <AntTab label="Activity" value={`/activities/${id}`} />
       </AntTabs>
     </Box>
   );

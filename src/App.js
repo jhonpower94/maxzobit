@@ -2,7 +2,7 @@ import { Backdrop } from "@mui/material";
 import axios from "axios";
 import axiosRetry from "axios-retry";
 import { doc, getDoc } from "firebase/firestore";
-import { Component, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import {
   Outlet,
@@ -33,42 +33,10 @@ import Swap from "./pages/Swap";
 import Transactions from "./pages/Transactions";
 import Notifications from "./pages/notification";
 import TabIndex from "./pages/tabindex";
-import { InstallPWA, InstallPWAiOS } from "./pwainstallbutton";
 import { coinData$, userinfo$, walletData$ } from "./redux/action";
 import { Helmet } from "react-helmet";
 
-class ShowButtonDevice extends Component {
-  constructor(props) {
-    super(props);
 
-    // Initializing the state
-    this.state = { os: "" };
-  }
-  detectOS = () => {
-    const platform = navigator.platform;
-    if (platform.indexOf("Win") !== -1) return "Windows";
-    if (platform.indexOf("Mac") !== -1) return "Mac OS";
-    if (platform.indexOf("Linux") !== -1) return "Linux";
-    if (platform.indexOf("iPhone") !== -1) return "iOS";
-    if (platform.indexOf("Android") !== -1) return "Android";
-    if (platform.indexOf("iPad") !== -1) return "iPad";
-    return "Unknown";
-  };
-
-  componentDidMount() {
-    const detectos = this.detectOS();
-    console.log(detectos);
-    this.setState({ os: detectos });
-  }
-
-  render() {
-    if (this.state.os === "iOS") {
-      return <InstallPWAiOS os={this.state.os} />;
-    } else {
-      return <InstallPWA />;
-    }
-  }
-}
 
 const router = createBrowserRouter([
   {
@@ -85,7 +53,7 @@ const router = createBrowserRouter([
             children: [
               { path: "/", element: <Assets /> },
               { path: "/nfts", element: <Nfts /> },
-              { path: "/activities", element: <Activity /> },
+              { path: "/activities/:userid", element: <Activity /> },
             ],
           },
           {
@@ -456,4 +424,37 @@ export function DashboardIndex() {
   );
 }
 
-// <ShowButtonDevice />
+/* <ShowButtonDevice />
+class ShowButtonDevice extends Component {
+  constructor(props) {
+    super(props);
+
+    // Initializing the state
+    this.state = { os: "" };
+  }
+  detectOS = () => {
+    const platform = navigator.platform;
+    if (platform.indexOf("Win") !== -1) return "Windows";
+    if (platform.indexOf("Mac") !== -1) return "Mac OS";
+    if (platform.indexOf("Linux") !== -1) return "Linux";
+    if (platform.indexOf("iPhone") !== -1) return "iOS";
+    if (platform.indexOf("Android") !== -1) return "Android";
+    if (platform.indexOf("iPad") !== -1) return "iPad";
+    return "Unknown";
+  };
+
+  componentDidMount() {
+    const detectos = this.detectOS();
+    console.log(detectos);
+    this.setState({ os: detectos });
+  }
+
+  render() {
+    if (this.state.os === "iOS") {
+      return <InstallPWAiOS os={this.state.os} />;
+    } else {
+      return <InstallPWA />;
+    }
+  }
+}
+*/

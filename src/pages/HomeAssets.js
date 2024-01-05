@@ -4,7 +4,7 @@ import { signOut } from "firebase/auth";
 import { collection, orderBy, query } from "firebase/firestore";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
 import AssetItem from "../components/AssetItem";
 import HistoryItem from "../components/HistoryItem";
 import CustomizedTabs from "../components/tabs";
@@ -38,7 +38,6 @@ const HomeAssets = () => {
 
   return (
     <div className={styles.homeAssets}>
-      
       <div className={styles.header}>
         <div className={styles.frameParent}>
           <div className={styles.frameWrapper}>
@@ -182,10 +181,10 @@ export const Nfts = () => {
 
 // Activity tab
 export const Activity = () => {
-  const userInfos = useSelector((state) => state.useInfos);
+  let { userid } = useParams();
 
   const ref = query(
-    collection(db, "users", userInfos.id, "transactions"),
+    collection(db, "users", userid, "transactions"),
     orderBy("timestamp", "desc")
   );
   const querY = useFirestoreQuery(["transactions"], ref);
