@@ -24,7 +24,7 @@ const SettingsHeader = () => {
         </div>
       </div>
       <div className={styles.jhonpower94cbidParent}>
-        <div className={styles.jhonpower94cbid}>jhonpower94.cb.id</div>
+        <div className={styles.jhonpower94cbid}>{userinfo.email}</div>
         <div className={styles.div}>
           <CurrencyFormat amount={totalBalance} prefix="$" seperator={true} />
         </div>

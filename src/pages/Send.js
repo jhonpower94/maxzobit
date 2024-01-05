@@ -280,7 +280,12 @@ const Send = () => {
           </div>
 
           <div className={styles.frameWrapper}>
-            <Button type="submit" size="lg" loading={loading} fullWidth>
+            <Button
+              type="submit"
+              size="lg"
+              loading={loading || loadingConvert}
+              fullWidth
+            >
               Continue
             </Button>
           </div>
