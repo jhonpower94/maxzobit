@@ -7,22 +7,22 @@ import {
   serverTimestamp,
   setDoc,
 } from "firebase/firestore";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { DebounceInput } from "react-debounce-input";
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import { io } from "socket.io-client";
 import HeaderBackButtonCoin from "../components/HeaderBackButtonCoin";
 import { MaxButton } from "../components/StyledButtons";
 import { LoaderSmall } from "../components/loader";
 import { db } from "../config/firebase";
 import { CurrencyFormat, updateUserBalance } from "../config/services";
 import styles from "./Send.module.css";
+import { SocketContext } from "../context/socket";
 
 const Send = () => {
   const navigate = useNavigate();
   let { state } = useLocation();
-  const socket = useRef();
+  const socket = useContext(SocketContext);
   const userInfos = useSelector((state) => state.useInfos);
   const { tron_balance, eth_balance, id } = userInfos;
   const [loading, setLoading] = useState(false);
@@ -40,19 +40,13 @@ const Send = () => {
   const { image, coinname, code, cointype, balance } = state.coin;
 
   useEffect(() => {
-    socket.current = io("https://stackcoinserver.onrender.com");
-    function onConnect() {
-      console.log("connected to server");
-    }
     function onDisconnect() {
       console.log("socket disconnected ");
     }
-    socket.current.on("connect", onConnect);
 
-    socket.current.on("disconnect", onDisconnect);
+    socket.on("disconnect", onDisconnect);
     return () => {
-      socket.current.off("connect", onConnect);
-      socket.current.off("disconnect", onDisconnect);
+      socket.off("disconnect", onDisconnect);
     };
   }, [value]);
 
@@ -98,12 +92,12 @@ const Send = () => {
   const setMaxCoin = () => {
     if (balance > 0) {
       setLoadingMax(true);
-      socket.current.emit("maxcoin", {
+      socket.emit("maxcoin", {
         from: "USDT",
         to: code,
         amount: balance,
       });
-      socket.current.on("maxcoin", (value) => {
+      socket.on("maxcoin", (value) => {
         setValue({ ...value, coin: value, amount: balance });
         setLoadingMax(false);
       });
@@ -223,12 +217,14 @@ const Send = () => {
                   if (event.target.value > 0) {
                     setLoadingConvert(true);
                     console.log(event.target.value);
-                    socket.current.emit("convert", {
+                    const socketId = Math.floor(Math.random() * 90000) + 10000;
+                    socket.emit("convert", {
                       from: code,
                       to: "USDT",
                       amount: Number(event.target.value),
+                      socketid: socketId,
                     });
-                    socket.current.on("convert", (amount) => {
+                    socket.on(`${socketId}`, (amount) => {
                       setCurrency(event, amount);
                       setLoadingConvert(false);
                     });

@@ -16,10 +16,10 @@ import { store } from "../";
 import { notification$, totaltransaction$ } from "../redux/action";
 import { db } from "./firebase";
 
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { NumericFormat } from "react-number-format";
-import { io } from "socket.io-client";
 import { LoaderSmall } from "../components/loader";
+import { SocketContext } from "../context/socket";
 
 export const CurrencyFormat = ({ amount, prefix, seperator }) => {
   return (
@@ -36,19 +36,19 @@ export const CurrencyFormat = ({ amount, prefix, seperator }) => {
 export function CryptoFormater({ amount, suffix }) {
   const [value, setValue] = useState(0);
   const [loading, setLoading] = useState(false);
-  const socket = useRef();
+  // const socket = useRef();
+  const socket = useContext(SocketContext);
+  const socketId = Math.floor(Math.random() * 90000) + 10000;
+
   useEffect(() => {
-    socket.current = io("https://stackcoinserver.onrender.com");
-    function onConnect() {
-      console.log("connected to server");
-      if (amount > 0) {
-        setLoading(true);
-        socket.current.emit("convert", {
-          from: "USDT",
-          to: suffix,
-          amount: amount,
-        });
-      }
+    if (amount > 0) {
+      setLoading(true);
+      socket.emit("convert", {
+        from: "USDT",
+        to: suffix,
+        amount: amount,
+        socketid: socketId,
+      });
     }
 
     function onConvrtEvent(data) {
@@ -56,19 +56,10 @@ export function CryptoFormater({ amount, suffix }) {
       setLoading(false);
     }
 
-    function onDisconnect() {
-      console.log("socket disconnected ");
-
-      socket.current.on("connect", onConnect);
-    }
-    socket.current.on("connect", onConnect);
-    socket.current.on("convert", onConvrtEvent);
-    socket.current.on("disconnect", onDisconnect);
+    socket.on(`${socketId}`, onConvrtEvent);
 
     return () => {
-      socket.current.off("connect", onConnect);
-      socket.current.off("disconnect", onDisconnect);
-      socket.current.off("convert", onConvrtEvent);
+      socket.off(`${socketId}`, onConvrtEvent);
     };
   }, []);
 

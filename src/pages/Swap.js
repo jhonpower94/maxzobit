@@ -9,9 +9,8 @@ import {
   Snackbar,
 } from "@mui/joy";
 import { doc, setDoc } from "firebase/firestore";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { io } from "socket.io-client";
 import HeaderBackButton from "../components/HeaderBackButton";
 import CustomizedButtons from "../components/StyledButtons";
 import { db } from "../config/firebase";
@@ -24,6 +23,7 @@ import styles from "./Swap.module.css";
 import { CryptoFormater } from "../config/services";
 import { LoaderSmall } from "../components/loader";
 import { DebounceInput } from "react-debounce-input";
+import { SocketContext } from "../context/socket";
 
 const options = [
   {
@@ -66,7 +66,7 @@ function renderValue(option) {
 }
 
 const Swap = () => {
-  const socket = useRef();
+  const socket = useContext(SocketContext);
   const [loading, setLoading] = useState(false);
   const [loadingConvert, setLoadingConvert] = useState(false);
   const userInfos = useSelector((state) => state.useInfos);
@@ -120,25 +120,10 @@ const Swap = () => {
   const gassfee = 50;
 
   useEffect(() => {
-    socket.current = io("https://stackcoinserver.onrender.com", {
-      autoConnect: true,
-    });
-
-    function onConnect() {
-      console.log("connected to server");
-    }
-
-    function onDisconnect() {
-      console.log("socket disconnected ");
-    }
-
-    socket.current.on("connect", onConnect);
-
-    socket.current.on("disconnect", onDisconnect);
-
     return () => {
-      socket.current.off("connect", onConnect);
-      socket.current.off("disconnect", onDisconnect);
+      socket.off("convertfrom");
+      socket.off("convertTo");
+      socket.off("quoterate");
     };
   }, [values]);
 
@@ -280,25 +265,27 @@ const Swap = () => {
                   if (event.target.value > 0) {
                     setLoadingConvert(true);
                     console.log(event.target.value);
-                    socket.current.emit("convertfrom", {
+
+                    socket.emit("convertfrom", {
                       from: values.fromlabel,
                       to: "USDT",
                       amount: Number(event.target.value),
                     });
-                    socket.current.on("convertfrom", (datafrom) => {
-                      socket.current.emit("convertTo", {
+
+                    socket.on("convertfrom", (datafrom) => {
+                      socket.emit("convertTo", {
                         from: "USDT",
                         to: values.tolabel,
                         amount: datafrom,
                       });
-                      socket.current.on("convertTo", (datato) => {
+                      socket.on("convertTo", (datato) => {
                         // quoterate
-                        socket.current.emit("quoterate", {
+                        socket.emit("quoterate", {
                           from: values.fromlabel,
                           to: "USDT",
                           amount: 1,
                         });
-                        socket.current.on("quoterate", (quoterate) => {
+                        socket.on("quoterate", (quoterate) => {
                           console.log(datato);
                           setValues({
                             ...values,
@@ -470,7 +457,10 @@ const Swap = () => {
           <div className={styles.viewAllQuotes}>view all quotes</div>
         </div>
         <div className={styles.frameWrapper}>
-          <CustomizedButtons loading={loading} text={"Swap"} />
+          <CustomizedButtons
+            loading={loading || loadingConvert}
+            text={"Swap"}
+          />
         </div>
       </div>
       <Snackbar
