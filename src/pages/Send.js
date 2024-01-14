@@ -79,6 +79,7 @@ const Send = () => {
       ...value,
       [event.target.name]: event.target.value,
     });
+    console.log({ name: event.target.name, value: event.target.value });
   };
 
   const setCurrency = (event, amount) => {
@@ -127,9 +128,7 @@ const Send = () => {
           ...value,
           severity: "warning",
           alerMessage: `
-          You do not have enough ${selectedNetwork} to cover your network and gas fee, deposit ${
-            selectedNetwork === "Tron" ? "$1,050 worth of" : 0.8
-          } ${selectedNetwork} to proceed!`,
+          You do not have enough ${selectedNetwork} to cover your network fees`,
         });
         setOpenSnackbar(true);
         setLoading(false);
@@ -271,7 +270,13 @@ const Send = () => {
               name="network"
               required
               size="lg"
-              onChange={handleChange}
+              defaultValue={value.network}
+              onChange={(event) => {
+                setValue({
+                  ...value,
+                  network: event.target.value,
+                });
+              }}
               sx={{ width: "100%" }}
             >
               <Option value="Tron">Tron</Option>

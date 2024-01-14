@@ -17,6 +17,7 @@ const Coindetail = () => {
     difference,
     coinname,
     code,
+    symbol,
     balance,
     discription,
     marketcap,
@@ -49,7 +50,7 @@ const Coindetail = () => {
           <CurrencyFormat amount={balance} prefix="$" seperator={true} />
         </div>
         <div className={styles.div1}>
-          <CryptoFormater amount={balance} suffix={code} />
+          <CryptoFormater amount={balance} suffix={symbol} />
 
           <font
             style={{ marginLeft: 10 }}
@@ -129,7 +130,7 @@ const Coindetail = () => {
         open={openSnackbar}
         onClose={handleCloseSnackbar}
       >
-        {`${code} Added to watchlist`}
+        {`${symbol} Added to watchlist`}
       </Snackbar>
     </div>
   );

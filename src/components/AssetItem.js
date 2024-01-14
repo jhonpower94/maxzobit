@@ -40,7 +40,7 @@ const AssetItem = ({ coin }) => {
     };
   }, []);
 */
-  const { image, balance, balancecoin, coinnane, difference, code, price } =
+  const { image, balance, balancecoin, coinnane, difference, code, symbol, price } =
     coin;
   return (
     <Link to={"/coin"} state={{ coin: coin }} className={styles.bitcoin}>
@@ -73,7 +73,7 @@ const AssetItem = ({ coin }) => {
           </div>
         </div>
         <div className={styles.usdt}>
-        <CryptoFormater amount={balance} suffix={code} />
+        <CryptoFormater amount={balance} suffix={symbol} />
           
         </div>
       </div>
