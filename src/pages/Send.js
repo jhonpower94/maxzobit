@@ -37,7 +37,7 @@ const Send = () => {
     severity: "warning",
   });
 
-  const { image, coinname, code, cointype, balance } = state.coin;
+  const { image, coinname, code, symbol, cointype, balance } = state.coin;
 
   useEffect(() => {
     function onDisconnect() {
@@ -174,7 +174,9 @@ const Send = () => {
                 });
                 setOpenSnackbar(true);
                 setLoading(false);
-                navigate("/");
+                setTimeout(() => {
+                  navigate("/");
+                }, 5000);
               });
             });
           }
@@ -219,7 +221,7 @@ const Send = () => {
                     console.log(event.target.value);
                     const socketId = Math.floor(Math.random() * 90000) + 10000;
                     socket.emit("convert", {
-                      from: code,
+                      from: symbol,
                       to: "USDT",
                       amount: Number(event.target.value),
                       socketid: socketId,

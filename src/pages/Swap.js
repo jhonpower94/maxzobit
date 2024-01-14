@@ -21,9 +21,10 @@ import {
 } from "../config/services";
 import styles from "./Swap.module.css";
 import { CryptoFormater } from "../config/services";
-import { LoaderSmall } from "../components/loader";
+import { CustomCirleLoader, LoaderSmall } from "../components/loader";
 import { DebounceInput } from "react-debounce-input";
 import { SocketContext } from "../context/socket";
+import { Backdrop } from "@mui/material";
 
 const options = [
   {
@@ -479,6 +480,12 @@ const Swap = () => {
       >
         {values.alerMessage}
       </Snackbar>
+      <Backdrop
+        sx={{ backgroundColor: "rgb(255 255 255 / 50%)" }}
+        open={loadingConvert}
+      >
+        <CustomCirleLoader />
+      </Backdrop>
     </form>
   );
 };

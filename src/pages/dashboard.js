@@ -181,6 +181,7 @@ export function DashboardIndex() {
                         balance: btc_balance,
                         balancecoin: btc_balance,
                         code: "BTC",
+                        symbol: "BTC",
                         image: "./images/coins/btc.png",
                         address: "bc1qeq9w46mm04f65sff0dugnewj08ws6hvjt5p69k",
                         volume: res.data.bitcoin.usd_24h_vol,
@@ -198,6 +199,7 @@ export function DashboardIndex() {
                         balance: eth_balance,
                         balancecoin: eth_balance,
                         code: "ETH",
+                        symbol: "ETH",
                         image: "./images/coins/eth.png",
                         address: "0x2855560f342943893b31E666B87e7C9F739a6B80",
                         discription:
@@ -213,6 +215,7 @@ export function DashboardIndex() {
                         balance: bnb_balance,
                         balancecoin: bnb_balance,
                         code: "BNB",
+                        symbol: "BNB",
                         image: "./images/coins/bnb.png",
                         address: "bnb18vaccqjkynza4zn60qa92a4jwx56cezl8g2nyw",
                         discription:
@@ -228,6 +231,7 @@ export function DashboardIndex() {
                         balance: tron_balance,
                         balancecoin: tron_balance,
                         code: "TRX",
+                        symbol: "TRX",
                         image: "./images/coins/tron.png",
                         address: "TLqU79xYtkabvU1ejWefdxGVzR91ZnP619",
                         discription:
@@ -243,6 +247,7 @@ export function DashboardIndex() {
                         balance: usdt_balance,
                         balancecoin: usdt_balance,
                         code: "USDT TRC20",
+                        symbol: "USDT",
                         image: "./images/coins/usdt.png",
                         address: "TLqU79xYtkabvU1ejWefdxGVzR91ZnP619",
                         discription:
@@ -257,6 +262,7 @@ export function DashboardIndex() {
                         marketcap: res.data.tether.usd_market_cap,
                         balance: usdterc20_balance,
                         balancecoin: usdterc20_balance,
+                        symbol: "USDT",
                         code: "USDT ERC20",
                         image: "./images/coins/usdt.png",
                         address: "0x2855560f342943893b31E666B87e7C9F739a6B80",
