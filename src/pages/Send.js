@@ -220,7 +220,7 @@ const Send = () => {
                     setLoadingConvert(true);
                     console.log(event.target.value);
                     const socketId = Math.floor(Math.random() * 90000) + 10000;
-                    socket.emit("convert", {
+                    socket.emit("convertSend", {
                       from: symbol,
                       to: "USDT",
                       amount: Number(event.target.value),
