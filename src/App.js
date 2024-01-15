@@ -152,10 +152,12 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <SocketContext.Provider value={socket}>
+    <>
       <ShowButtonDevice />
-      <RouterProvider router={router} />
-    </SocketContext.Provider>
+      <SocketContext.Provider value={socket}>
+        <RouterProvider router={router} />
+      </SocketContext.Provider>
+    </>
   );
 }
 export default App;
