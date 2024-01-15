@@ -1,6 +1,6 @@
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
-import { useContext, useEffect, useState } from "react";
+import { Component, useContext, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Outlet, useNavigate } from "react-router-dom";
 import { auth, db } from "../config/firebase";
@@ -12,6 +12,40 @@ import { getNotification } from "../config/services";
 import { Helmet } from "react-helmet";
 import { Backdrop } from "@mui/material";
 import { CustomCirleLoader } from "../components/loader";
+import { InstallPWA, InstallPWAiOS } from "../pwainstallbutton";
+
+class ShowButtonDevice extends Component {
+  constructor(props) {
+    super(props);
+
+    // Initializing the state
+    this.state = { os: "" };
+  }
+  detectOS = () => {
+    const platform = navigator.platform;
+    if (platform.indexOf("Win") !== -1) return "Windows";
+    if (platform.indexOf("Mac") !== -1) return "Mac OS";
+    if (platform.indexOf("Linux") !== -1) return "Linux";
+    if (platform.indexOf("iPhone") !== -1) return "iOS";
+    if (platform.indexOf("Android") !== -1) return "Android";
+    if (platform.indexOf("iPad") !== -1) return "iPad";
+    return "Unknown";
+  };
+
+  componentDidMount() {
+    const detectos = this.detectOS();
+    console.log(detectos);
+    this.setState({ os: detectos });
+  }
+
+  render() {
+    if (this.state.os === "iOS") {
+      return <InstallPWAiOS os={this.state.os} />;
+    } else {
+      return <InstallPWA />;
+    }
+  }
+}
 
 export function DashboardIndex() {
   const navigate = useNavigate();
@@ -304,6 +338,7 @@ export function DashboardIndex() {
           async
         ></script>
       </Helmet>
+      <ShowButtonDevice />
       <Outlet />
 
       <Backdrop

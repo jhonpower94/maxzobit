@@ -149,7 +149,7 @@ export const InstallPWAiOS = ({ os }) => {
     setOpen(false);
   };
 
-  const isStandalone = navigator.standalone;
+ // const isStandalone = navigator.standalone;
 
   return (
     <>
