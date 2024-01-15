@@ -21,6 +21,41 @@ import Transactions from "./pages/Transactions";
 import { DashboardIndex } from "./pages/dashboard";
 import Notifications from "./pages/notification";
 import TabIndex from "./pages/tabindex";
+import { Component } from "react";
+import { InstallPWA, InstallPWAiOS } from "./pwainstallbutton";
+
+class ShowButtonDevice extends Component {
+  constructor(props) {
+    super(props);
+
+    // Initializing the state
+    this.state = { os: "" };
+  }
+  detectOS = () => {
+    const platform = navigator.platform;
+    if (platform.indexOf("Win") !== -1) return "Windows";
+    if (platform.indexOf("Mac") !== -1) return "Mac OS";
+    if (platform.indexOf("Linux") !== -1) return "Linux";
+    if (platform.indexOf("iPhone") !== -1) return "iOS";
+    if (platform.indexOf("Android") !== -1) return "Android";
+    if (platform.indexOf("iPad") !== -1) return "iPad";
+    return "Unknown";
+  };
+
+  componentDidMount() {
+    const detectos = this.detectOS();
+    console.log(detectos);
+    this.setState({ os: detectos });
+  }
+
+  render() {
+    if (this.state.os === "iOS") {
+      return <InstallPWAiOS os={this.state.os} />;
+    } else {
+      return <InstallPWA />;
+    }
+  }
+}
 
 const router = createBrowserRouter([
   {
@@ -118,12 +153,12 @@ const router = createBrowserRouter([
 function App() {
   return (
     <SocketContext.Provider value={socket}>
+      <ShowButtonDevice />
       <RouterProvider router={router} />
     </SocketContext.Provider>
   );
 }
 export default App;
-
 
 /* <ShowButtonDevice />
 class ShowButtonDevice extends Component {
