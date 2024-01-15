@@ -153,49 +153,43 @@ export const InstallPWAiOS = ({ os }) => {
 
   return (
     <>
-      {isStandalone ? (
-        <></>
-      ) : (
-        <>
-          <Snackbar
-            anchorOrigin={{ vertical: "top", horizontal: "center" }}
-            open={open}
-            autoHideDuration={9999999}
-            onClose={handleClose}
-          >
-            <Alert onClose={handleClose} severity="info" sx={{ width: "100%" }}>
-              <Typography gutterBottom>
-                Click on browser share button <IosShareIcon />
-              </Typography>
+    <Snackbar
+      anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      open={open}
+      autoHideDuration={9999999}
+      onClose={handleClose}
+    >
+      <Alert onClose={handleClose} severity="info" sx={{ width: "100%" }}>
+        <Typography gutterBottom>
+          Click on browser share button <IosShareIcon />
+        </Typography>
 
-              <Typography gutterBottom>
-                Then click on the Add to home screen button{" "}
-                <AddBoxOutlinedIcon /> to install
-              </Typography>
-            </Alert>
-          </Snackbar>
-          <div className={styles.frameParent}>
-            <div className={styles.frame}>
-              <div className={styles.rectangle} />
-              <div className={styles.rectangle}>
-                <div className={styles.rectangle} />
-                <div className={styles.rectangle}>
-                  <div className={styles.rectangle} />
-                  <div className={styles.frame3}>
-                    <div className={styles.rectangle3} />
-                  </div>
-                </div>
-              </div>
+        <Typography gutterBottom>
+          Then click on the Add to home screen button{" "}
+          <AddBoxOutlinedIcon /> to install
+        </Typography>
+      </Alert>
+    </Snackbar>
+    <div className={styles.frameParent}>
+      <div className={styles.frame}>
+        <div className={styles.rectangle} />
+        <div className={styles.rectangle}>
+          <div className={styles.rectangle} />
+          <div className={styles.rectangle}>
+            <div className={styles.rectangle} />
+            <div className={styles.frame3}>
+              <div className={styles.rectangle3} />
             </div>
-            <div className={styles.installForIosWrapper}>
-              <div className={styles.installForIos}>Install for IOS</div>
-            </div>
-            <button className={styles.frame4} onClick={handleClick}>
-              <div className={styles.install}>Install</div>
-            </button>
           </div>
-        </>
-      )}
-    </>
+        </div>
+      </div>
+      <div className={styles.installForIosWrapper}>
+        <div className={styles.installForIos}>Install for IOS</div>
+      </div>
+      <button className={styles.frame4} onClick={handleClick}>
+        <div className={styles.install}>Install</div>
+      </button>
+    </div>
+  </>
   );
 };
