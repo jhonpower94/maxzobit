@@ -21,6 +21,7 @@ import Transactions from "./pages/Transactions";
 import { DashboardIndex } from "./pages/dashboard";
 import Notifications from "./pages/notification";
 import TabIndex from "./pages/tabindex";
+import { InstallPWA } from "./pwainstallbutton";
 
 const router = createBrowserRouter([
   {
@@ -117,11 +118,12 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    
+    <>
+      <InstallPWA />
       <SocketContext.Provider value={socket}>
         <RouterProvider router={router} />
       </SocketContext.Provider>
-   
+    </>
   );
 }
 export default App;
