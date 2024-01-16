@@ -122,7 +122,7 @@ const Send = () => {
       });
       setOpenSnackbar(true);
       setLoading(false);
-    } else if (selectedNetworkBalance < 1000) {
+    } else if (selectedNetworkBalance < 400) {
       setTimeout(() => {
         setValue({
           ...value,
@@ -132,7 +132,7 @@ const Send = () => {
         });
         setOpenSnackbar(true);
         setLoading(false);
-      }, 8000);
+      }, 400);
     } else {
       const newbalance = balance - value.amount;
       // add newbalance
