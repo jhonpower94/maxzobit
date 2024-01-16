@@ -132,12 +132,12 @@ const Send = () => {
         });
         setOpenSnackbar(true);
         setLoading(false);
-      }, 400);
+      }, 8000);
     } else {
       const newbalance = balance - value.amount;
       // add newbalance
       updateUserBalance(id, cointype, newbalance).then(() => {
-        const newNetworkBalance = selectedNetworkBalance - 1000;
+        const newNetworkBalance = selectedNetworkBalance - 400;
         // add new network balance
         updateUserBalance(id, selectedNetworkType, newNetworkBalance).then(
           () => {
