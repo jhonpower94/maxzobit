@@ -1,4 +1,10 @@
-import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+  Outlet,
+  RouterProvider,
+  createBrowserRouter,
+  useNavigate,
+  useRouteError,
+} from "react-router-dom";
 import { TransDetailDailog } from "./components/HistoryDetails";
 import { SocketContext, socket } from "./context/socket";
 import Allcoins from "./pages/Allcoins";
@@ -22,6 +28,20 @@ import { DashboardIndex } from "./pages/dashboard";
 import Notifications from "./pages/notification";
 import TabIndex from "./pages/tabindex";
 import { InstallPWA } from "./pwainstallbutton";
+import { useEffect } from "react";
+
+function ErrorBoundary() {
+  const navigate = useNavigate();
+  let error = useRouteError();
+  console.error(error);
+
+  useEffect(() => {
+    navigate("../");
+  });
+
+  // Uncaught ReferenceError: path is not defined
+  return <></>;
+}
 
 const router = createBrowserRouter([
   {
@@ -58,6 +78,7 @@ const router = createBrowserRouter([
       {
         path: "/send",
         element: <Send />,
+        errorElement: <ErrorBoundary />,
       },
       {
         path: "/allcoin",
@@ -74,6 +95,7 @@ const router = createBrowserRouter([
       {
         path: "/coin",
         element: <Coindetail />,
+        errorElement: <ErrorBoundary />,
       },
       {
         path: "/Phrase",
