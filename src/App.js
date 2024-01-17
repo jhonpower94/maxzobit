@@ -87,6 +87,7 @@ const router = createBrowserRouter([
       {
         path: "/receivecoin",
         element: <Receivesingle />,
+        errorElement: <ErrorBoundary />,
       },
       {
         path: "/receive",
