@@ -11,12 +11,11 @@ const Coindetail = () => {
   const navigate = useNavigate();
   let { state } = useLocation();
   const [loading, setLoading] = useState(false);
+
   const {
     image,
-    balancecoin,
     difference,
     coinname,
-    code,
     symbol,
     balance,
     discription,
