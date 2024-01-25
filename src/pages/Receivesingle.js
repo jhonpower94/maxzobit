@@ -3,17 +3,34 @@ import HeaderBackButton from "../components/HeaderBackButton";
 import styles from "./Receivesingle.module.css";
 import CopyToClipboard from "react-copy-to-clipboard";
 import { QRCode } from "react-qrcode-logo";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Snackbar } from "@mui/joy";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../config/firebase";
+import { LoaderSmall } from "../components/loader";
 
 const Receivesingle = () => {
   let { state } = useLocation();
-  const { image, coinname, address } = state.coin;
+  const [adminWallet, setadminWallet] = useState("");
+  const [loading, setLoading] = useState(true);
+  const { image, coinname, code } = state.coin;
 
   const [open, setOpen] = useState(false);
   const handleClose = () => {
     setOpen(false);
   };
+
+  useEffect(() => {
+    const docRef = doc(db, "walletaddresses", code);
+    getDoc(docRef).then((data) => {
+      console.log(data.data());
+
+      if (data.data().address) {
+        setadminWallet(data.data().address);
+        setLoading(false);
+      }
+    });
+  }, []);
 
   return (
     <div className={styles.receivesingle}>
@@ -23,7 +40,7 @@ const Receivesingle = () => {
           <div className={styles.vectorParent}>
             <QRCode
               size={200}
-              value={address}
+              value={adminWallet}
               logoImage={image}
               logoPaddingStyle="circle"
               removeQrCodeBehindLogo={true}
@@ -33,13 +50,17 @@ const Receivesingle = () => {
         <div className={styles.frameGroup}>
           <div className={styles.maticAddressParent}>
             <div className={styles.maticAddress}>{coinname} address</div>
-            <div className={styles.xc9d36ef3}>{address}</div>
+            <div className={styles.xc9d36ef3}>{adminWallet}</div>
           </div>
-          <CopyToClipboard text={address} onCopy={() => setOpen(true)}>
-            <button className={styles.frame1}>
-              <div className={styles.copy}>Copy</div>
-            </button>
-          </CopyToClipboard>
+          {loading ? (
+            <LoaderSmall />
+          ) : (
+            <CopyToClipboard text={adminWallet} onCopy={() => setOpen(true)}>
+              <button className={styles.frame1}>
+                <div className={styles.copy}>Copy</div>
+              </button>
+            </CopyToClipboard>
+          )}
         </div>
       </div>
       <Snackbar
