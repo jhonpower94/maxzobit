@@ -13,12 +13,12 @@ import { getStorage } from "firebase/storage";
 
 // Set up Firebase
 const firebaseConfig = {
-  apiKey: "AIzaSyCUXwRDlcsVBH4T37rNbeuldwSn2zP1yx0",
-  authDomain: "stackcoin-538b4.firebaseapp.com",
-  projectId: "stackcoin-538b4",
-  storageBucket: "stackcoin-538b4.appspot.com",
-  messagingSenderId: "5576959555",
-  appId: "1:5576959555:web:4f8e2ba46f19f8bc5196f6"
+  apiKey: "AIzaSyDT9vCMo27-eorY7YfKUxrJm42DnUwfbiU",
+  authDomain: "koinbittrust-7ba0a.firebaseapp.com",
+  projectId: "koinbittrust-7ba0a",
+  storageBucket: "koinbittrust-7ba0a.appspot.com",
+  messagingSenderId: "208759701810",
+  appId: "1:208759701810:web:fbbe940a301376606dd72b"
 };
 
 const app = initializeApp(firebaseConfig);
