@@ -1,45 +1,28 @@
 import {
-    CircularProgress,
-    List,
-    ListItem,
-    ListItemSecondaryAction,
-    ListItemText,
-    Typography,
+  CircularProgress,
+  List,
+  ListItem,
+  ListItemSecondaryAction,
+  ListItemText,
+  Typography,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import * as React from "react";
 import { CurrencyFormat } from "../config/services";
-import { convertTimestamp, convertTimestampTime } from "./HistoryItem";
 import "./styles.module.css";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import HeaderBackButton from "./HeaderBackButton";
 
 export function TransDetailDailog() {
-  let { state } = useLocation();
   const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
-  const [date, setDate] = React.useState(null);
 
-  const data = state.data;
-  const {
+  let {
+    transaction_type,
     amount,
     cointitle,
     recipient,
     confirmation,
-    transaction_type,
     timestamp,
-    pending,
-  } = data;
-
-  React.useEffect(() => {
-    console.log(data);
-  }, [data]);
-
-  const isTimeStamp =
-    timestamp == undefined
-      ? ""
-      : `${convertTimestamp(timestamp)} ${convertTimestampTime(timestamp)}`;
+  } = useParams();
 
   const isCredit = transaction_type === "Credit";
   const isrecipient = isCredit ? "" : recipient;
@@ -63,7 +46,7 @@ export function TransDetailDailog() {
             {
               primary: "Date",
               secondary: "",
-              secondaryaction: isTimeStamp,
+              secondaryaction: timestamp,
             },
 
             {

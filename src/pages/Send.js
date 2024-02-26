@@ -118,7 +118,7 @@ const Send = () => {
         ...value,
         severity: "warning",
         alerMessage: `
-        Insufficient ${coinname} balance`,
+        Insufficient ${value.network} balance`,
       });
       setOpenSnackbar(true);
       setLoading(false);

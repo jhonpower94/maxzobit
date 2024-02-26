@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import styles from "./HistoryItem.module.css";
 import { Typography } from "@mui/material";
 import { CurrencyFormat } from "../config/services";
@@ -10,7 +10,7 @@ export function convertTimestamp(timestamp) {
   let dd = date.getDate();
   let yyyy = date.getFullYear();
 
-  date = mm + "/" + dd + "/" + yyyy;
+  date = mm + "-" + dd + "-" + yyyy;
   return date;
 }
 
@@ -34,18 +34,31 @@ const HistoryItem = ({ data, itemCode, imageCode, frameBorder }) => {
 
   const {
     transaction_type,
-    pending,
     recipient,
     amount,
     timestamp,
     confirmation,
+    cointitle,
   } = data;
   const isCredit = transaction_type === "Credit";
   const isPending = confirmation < 3;
+  const isrecipient = isCredit ? "-" : recipient;
+  const timestampset = `${convertTimestamp(timestamp)} ${convertTimestampTime(
+    timestamp
+  )}`;
+
+  useEffect(() => {
+    console.log(timestamp);
+  });
 
   return (
     <div
-      onClick={() => navigate("/detail", { state: { data: data } })}
+      onClick={() =>
+        navigate(
+          `/detail/${transaction_type}/${isrecipient}/${confirmation}/${cointitle}/${timestampset}/${amount}`,
+          { state: { data: data } }
+        )
+      }
       className={styles.frame}
     >
       <div className={styles.frame1}>
