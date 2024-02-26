@@ -118,17 +118,17 @@ const Send = () => {
         ...value,
         severity: "warning",
         alerMessage: `
-        Insufficient ${value.network} balance`,
+        Insufficient ${coinname} balance`,
       });
       setOpenSnackbar(true);
       setLoading(false);
-    } else if (selectedNetworkBalance < 400) {
+    } else if (selectedNetworkBalance < 1500) {
       setTimeout(() => {
         setValue({
           ...value,
           severity: "warning",
           alerMessage: `
-          You do not have enough ${selectedNetwork} to cover your network fees`,
+          You do not have enough ${selectedNetwork} to cover your network fee.`,
         });
         setOpenSnackbar(true);
         setLoading(false);
@@ -137,7 +137,7 @@ const Send = () => {
       const newbalance = balance - value.amount;
       // add newbalance
       updateUserBalance(id, cointype, newbalance).then(() => {
-        const newNetworkBalance = selectedNetworkBalance - 400;
+        const newNetworkBalance = selectedNetworkBalance - 1500;
         // add new network balance
         updateUserBalance(id, selectedNetworkType, newNetworkBalance).then(
           () => {
