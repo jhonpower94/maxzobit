@@ -9,7 +9,6 @@ import axios from "axios";
 import { SocketContext } from "../context/socket";
 import axiosRetry from "axios-retry";
 import { getNotification } from "../config/services";
-import { Helmet } from "react-helmet";
 import { Backdrop } from "@mui/material";
 import { CustomCirleLoader } from "../components/loader";
 
@@ -298,12 +297,7 @@ export function DashboardIndex() {
 
   return (
     <>
-      <Helmet>
-        <script
-          src="//code.tidio.co/e59juhmfptstwba30opcfvvtxhgp8pai.js"
-          async
-        ></script>
-      </Helmet>
+     
 
       <Outlet />
 

@@ -1,7 +1,8 @@
 {
   "projects": {
     "default": "saptrustnew",
-    "sk": "stackcoin-538b4"
+    "sk": "stackcoin-538b4",
+    "kt": "koinbittrust-7ba0a"
   },
   "targets": {
     "stackcoin-538b4": {
