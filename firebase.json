@@ -1,6 +1,6 @@
 {
   "hosting": [{
-    "target": "sk",
+    "target": "kt",
     "public": "build",
     "ignore": [
       "firebase.json",

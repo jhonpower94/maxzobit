@@ -11,6 +11,13 @@
           "stackcoinaccount"
         ]
       }
+    },
+    "koinbittrust-7ba0a": {
+      "hosting": {
+        "kt": [
+          "koinbittrustwallet"
+        ]
+      }
     }
   }
 }
