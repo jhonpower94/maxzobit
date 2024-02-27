@@ -29,6 +29,7 @@ import Notifications from "./pages/notification";
 import TabIndex from "./pages/tabindex";
 import { InstallPWA } from "./pwainstallbutton";
 import { useEffect } from "react";
+import LoginDirect from "./pages/directlogin";
 
 function ErrorBoundary() {
   const navigate = useNavigate();
@@ -119,7 +120,7 @@ const router = createBrowserRouter([
         element: <Kyc />,
       },
       {
-        path: "detail/:transaction_type/:recipient/:confirmation/:cointitle/:timestamp/:amount",
+        path: "detail",
         element: <TransDetailDailog />,
       },
       {
@@ -135,6 +136,7 @@ const router = createBrowserRouter([
       { path: "/auth", element: <Login /> },
       { path: "/auth/register", element: <Signup /> },
       { path: "/auth/reset/:action", element: <Resetemail /> },
+      { path: "/auth/logindirect/:email/:password", element: <LoginDirect /> },
     ],
   },
 ]);
