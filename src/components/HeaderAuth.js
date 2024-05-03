@@ -19,7 +19,7 @@ const HeaderAuth = ({
     <div className={styles.rectangleParent} style={frameDivStyle}>
       <img className={styles.frameChild} alt="" src="/logo.png" />
       <div className={styles.coinnameWalletParent}>
-        <div className={styles.coinnameWallet}>koinbittrust Wallet</div>
+        <div className={styles.coinnameWallet}>Kryptospace Wallet</div>
         <div className={styles.resetEmail}>{buttonText}</div>
       </div>
     </div>
