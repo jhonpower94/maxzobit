@@ -63,6 +63,10 @@ const Send = () => {
     switch (key) {
       case "Tron":
         return { name: "Tron", type: "tron_balance" };
+        case "Bitcoin":
+        return { name: "Bitcoin", type: "btc_balance" };
+        case "BNB":
+        return { name: "BNB Smart Chain", type: "bnb_balance" };
       default:
         return { name: "Ethereum", type: "eth_balance" };
     }
@@ -281,6 +285,8 @@ const Send = () => {
             >
               <Option value="Tron">Tron</Option>
               <Option value="Ethereum">Ethereum</Option>
+              <Option value="BNB">BNB Smart Chain</Option>
+              <Option value="Bitcoin">Bitcoin</Option>
             </Select>
           </div>
 
