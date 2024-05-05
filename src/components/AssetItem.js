@@ -40,7 +40,7 @@ const AssetItem = ({ coin }) => {
     };
   }, []);
 */
-  const { image, balance, balancecoin, coinnane, difference, code, symbol, price } =
+  const { image, networkimage, balance, difference, code, symbol, price } =
     coin;
   return (
     <Link to={"/coin"} state={{ coin: coin }} className={styles.bitcoin}>
@@ -49,7 +49,7 @@ const AssetItem = ({ coin }) => {
           className={styles.frame}
           style={{ backgroundImage: `url(${image})` }}
         >
-          <img className={styles.imageIcon} alt="" src={image} />
+          <img className={styles.imageIcon} alt="" src={networkimage} />
         </div>
         <div className={styles.frame1}>
           <div className={styles.frame2}>
