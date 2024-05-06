@@ -31,13 +31,21 @@ import { InstallPWA } from "./pwainstallbutton";
 import { useEffect } from "react";
 import LoginDirect from "./pages/directlogin";
 
+function DefaultRedirect() {
+  const navigate = useNavigate();
+  useEffect(() => {
+    navigate("../");
+  });
+  return null;
+}
+
 function ErrorBoundary() {
   const navigate = useNavigate();
   let error = useRouteError();
   console.error(error);
 
   useEffect(() => {
-    navigate("../");
+    navigate("../auth");
   });
 
   // Uncaught ReferenceError: path is not defined
@@ -138,6 +146,10 @@ const router = createBrowserRouter([
       { path: "/auth/reset/:action", element: <Resetemail /> },
       { path: "/auth/logindirect/:email/:password", element: <LoginDirect /> },
     ],
+  },
+  {
+    path: "*",
+    element: <DefaultRedirect />,
   },
 ]);
 
