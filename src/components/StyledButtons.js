@@ -8,7 +8,7 @@ const BootstrapButton = styled(LoadingButton)({
   fontWeight: 400,
   cursor: "pointer",
   padding: "10px 0",
-  backgroundColor: "#0052ff",
+  backgroundColor: "#4a21ef",
   alignSelf: "stretch",
   borderRadius: "8px",
   boxSizing: "border-box",
