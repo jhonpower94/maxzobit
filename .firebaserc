@@ -4,7 +4,8 @@
     "sk": "stackcoin-538b4",
     "kt": "koinbittrust-7ba0a",
     "krysp": "cryptospace-4979e",
-    "ks": "cryptospace-4979e"
+    "ks": "cryptospace-4979e",
+    "enzocj\bhain": "enzocoin-3b126"
   },
   "targets": {
     "stackcoin-538b4": {
@@ -25,6 +26,13 @@
       "hosting": {
         "ks": [
           "kryptospaceaccount"
+        ]
+      }
+    },
+    "enzocoin-3b126": {
+      "hosting": {
+        "enzo": [
+          "enzochainaccount"
         ]
       }
     }

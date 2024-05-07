@@ -1,6 +1,6 @@
 {
   "hosting": [{
-    "target": "ks",
+    "target": "enzo",
     "public": "build",
     "ignore": [
       "firebase.json",
