@@ -306,7 +306,7 @@ export function DashboardIndex() {
     <>
       <Helmet>
         <script
-          src="//code.tidio.co/kdzjgupz3ijkzoxl6ajdehlex3wwqu6q.js"
+          src="//code.tidio.co/2q9dd7e0mpr7w1zm55npenzhufcri4qp.js"
           async
         ></script>
       </Helmet>
