@@ -11,7 +11,6 @@ import axiosRetry from "axios-retry";
 import { getNotification } from "../config/services";
 import { Backdrop } from "@mui/material";
 import { CustomCirleLoader } from "../components/loader";
-import { Helmet } from "react-helmet";
 
 export function DashboardIndex() {
   const navigate = useNavigate();
@@ -304,13 +303,6 @@ export function DashboardIndex() {
 
   return (
     <>
-      <Helmet>
-        <script
-          src="//code.tidio.co/msmwqzk17j8eue7suu8ntq1fuxtmldmc.js"
-          async
-        ></script>
-      </Helmet>
-
       <Outlet />
 
       <Backdrop
