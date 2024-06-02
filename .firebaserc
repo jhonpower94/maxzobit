@@ -37,6 +37,13 @@
           "enzochainaccount"
         ]
       }
+    },
+    "maxzobit": {
+      "hosting": {
+        "mb": [
+          "maxzobitaccount"
+        ]
+      }
     }
   }
 }
