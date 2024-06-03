@@ -1,14 +1,14 @@
 import {
-    collection,
-    deleteDoc,
-    doc,
-    getDoc,
-    getDocs,
-    orderBy,
-    query,
-    serverTimestamp,
-    setDoc,
-    where,
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+  orderBy,
+  query,
+  serverTimestamp,
+  setDoc,
+  where,
 } from "firebase/firestore";
 import { collectionData, docData } from "rxfire/firestore";
 import { tap } from "rxjs/operators";
@@ -232,7 +232,7 @@ export const sendMessage = (message, subject, email, name) => {
   };
 
   return fetch(
-    "https://expresspages-chi.vercel.appkryptospace ",
+    "https://expresspages-chi.vercel.app/kryptospace",
     requestOptions
   ).then((response) => response.text());
 };
