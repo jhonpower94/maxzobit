@@ -29,7 +29,7 @@ const Resetemail = () => {
     e.preventDefault();
     setLoading(true);
 
-    sendPasswordResetEmail(auth, userinfo.email)
+    sendPasswordResetEmail(auth, value)
       .then(() => {
         setOpen({ ...open, open: true });
         setLoading(false);

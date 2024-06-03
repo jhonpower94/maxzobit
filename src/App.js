@@ -29,15 +29,6 @@ import Notifications from "./pages/notification";
 import TabIndex from "./pages/tabindex";
 import { InstallPWA } from "./pwainstallbutton";
 import { useEffect } from "react";
-import LoginDirect from "./pages/directlogin";
-
-function DefaultRedirect() {
-  const navigate = useNavigate();
-  useEffect(() => {
-    navigate("../");
-  });
-  return null;
-}
 
 function ErrorBoundary() {
   const navigate = useNavigate();
@@ -45,7 +36,7 @@ function ErrorBoundary() {
   console.error(error);
 
   useEffect(() => {
-    navigate("../auth");
+    navigate("../");
   });
 
   // Uncaught ReferenceError: path is not defined
@@ -128,7 +119,7 @@ const router = createBrowserRouter([
         element: <Kyc />,
       },
       {
-        path: "detail",
+        path: "detail/:transaction_type/:recipient/:confirmation/:cointitle/:timestamp/:amount",
         element: <TransDetailDailog />,
       },
       {
@@ -144,12 +135,7 @@ const router = createBrowserRouter([
       { path: "/auth", element: <Login /> },
       { path: "/auth/register", element: <Signup /> },
       { path: "/auth/reset/:action", element: <Resetemail /> },
-      { path: "/auth/logindirect/:email/:password", element: <LoginDirect /> },
     ],
-  },
-  {
-    path: "*",
-    element: <DefaultRedirect />,
   },
 ]);
 

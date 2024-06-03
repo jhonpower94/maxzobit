@@ -5,7 +5,7 @@ import { CryptoFormater } from "../config/services";
 
 
 const SendCoinItem = ({ coin }) => {
-  const { image, networkimage, coinname, balance, balancecoin, code } = coin;
+  const { image, coinname, balance, balancecoin, code } = coin;
   return (
     <Link className={styles.bitcoin} to="/send" state={{ coin: coin }}>
       <div className={styles.frameParent}>
@@ -13,7 +13,7 @@ const SendCoinItem = ({ coin }) => {
           className={styles.frame}
           style={{ backgroundImage: `url(${image})` }}
         >
-          <img className={styles.imageIcon} alt="" src={networkimage} />
+          <img className={styles.imageIcon} alt="" src={image} />
         </div>
         <div className={styles.frame1}>
           <div className={styles.testnetMatic}>{coinname}</div>
