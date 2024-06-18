@@ -1,26 +1,8 @@
 {
   "projects": {
-    "default": "saptrustnew",
-    "sk": "stackcoin-538b4",
-    "kt": "koinbittrust-7ba0a",
-    "krysp": "cryptospace-4979e",
-    "ks": "cryptospace-4979e"
+    "default": "cryptospace-4979e"
   },
   "targets": {
-    "stackcoin-538b4": {
-      "hosting": {
-        "sk": [
-          "stackcoinaccount"
-        ]
-      }
-    },
-    "koinbittrust-7ba0a": {
-      "hosting": {
-        "kt": [
-          "koinbittrustwallet"
-        ]
-      }
-    },
     "cryptospace-4979e": {
       "hosting": {
         "ks": [
