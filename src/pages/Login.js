@@ -3,12 +3,12 @@ import HeaderAuth from "../components/HeaderAuth";
 import styles from "./Login.module.css";
 import { useNavigate } from "react-router-dom";
 import {
-    browserLocalPersistence,
-    setPersistence,
-    signInWithEmailAndPassword,
+  browserLocalPersistence,
+  setPersistence,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../config/firebase";
-import { Snackbar } from "@mui/joy";
+import { FormControl, FormLabel, Input, Snackbar } from "@mui/joy";
 import CustomizedButtons from "../components/StyledButtons";
 
 const Login = () => {
@@ -71,28 +71,33 @@ const Login = () => {
       <form onSubmit={submitLogin} style={{ width: "100%" }}>
         <div className={styles.frameParent}>
           <div className={styles.frame}>
-            <div className={styles.address}>Email</div>
-            <input
-              className={styles.frame1}
-              placeholder="Enter Your Email"
-              type="text"
-              name="email"
-              value={values.email}
-              onChange={handleChange}
-              required
-            />
+            <FormControl required size="lg" style={{ width: "100%" }}>
+              <FormLabel>Email</FormLabel>
+              <Input
+                variant="soft"
+                color="primary"
+                defaultValue={values.email}
+                type="email"
+                placeholder="Your email"
+                autoFocus
+                name="email"
+                onChange={handleChange}
+              />
+            </FormControl>
           </div>
           <div className={styles.frame}>
-            <div className={styles.address}>Password</div>
-            <input
-              className={styles.frame1}
-              placeholder="Enter your password"
-              type="password"
-              value={values.password}
-              name="password"
-              onChange={handleChange}
-              required
-            />
+            <FormControl required size="lg" style={{ width: "100%" }}>
+              <FormLabel>Password</FormLabel>
+              <Input
+                variant="soft"
+                color="primary"
+                defaultValue={values.password}
+                type="password"
+                placeholder="Your password"
+                name="password"
+                onChange={handleChange}
+              />
+            </FormControl>
           </div>
         </div>
         <div className={styles.lightbuttonParent}>

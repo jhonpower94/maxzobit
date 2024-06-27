@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
-import Tab from "@mui/material/Tab";
-import Tabs from "@mui/material/Tabs";
+import Tabs from "@mui/joy/Tabs";
+import TabList from "@mui/joy/TabList";
+import Tab from "@mui/joy/Tab";
 import { styled } from "@mui/material/styles";
 import { useSelector } from "react-redux";
 
@@ -54,11 +55,31 @@ export default function CustomizedTabs({ value, handleChange }) {
 
   return (
     <Box sx={{ width: "100%" }}>
-      <AntTabs value={value} onChange={handleChange} aria-label="ant example">
-        <AntTab label="Crypto" value="/" />
-        <AntTab label="NFTs" value="/nfts" />
-        <AntTab label="Activity" value={`/activities/${id}`} />
-      </AntTabs>
+      <Tabs aria-label="Basic tabs" defaultValue={0}>
+        <TabList sx={{ justifyContent: "center" }}>
+          <Tab
+            color="primary"
+            disableIndicator
+            sx={{
+              borderRadius: "10px 10px 0 0",
+            }}
+          >
+            First tab
+          </Tab>
+          <Tab
+            color="primary"
+            disableIndicator
+            sx={{
+              borderRadius: "10px 10px 0 0",
+            }}
+          >
+            Second tab
+          </Tab>
+          <Tab color="primary" disableIndicator>
+            Third tab
+          </Tab>
+        </TabList>
+      </Tabs>
     </Box>
   );
 }

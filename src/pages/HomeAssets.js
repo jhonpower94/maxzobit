@@ -1,4 +1,23 @@
-import { Badge, Dropdown, Menu, MenuButton, MenuItem } from "@mui/joy";
+import {
+  AccountCircle,
+  Add,
+  ArrowDownward,
+  ArrowDropDown,
+  ArrowUpward,
+  Notifications,
+  Settings,
+  SwapHoriz,
+} from "@mui/icons-material";
+import {
+  Badge,
+  Dropdown,
+  IconButton,
+  Menu,
+  MenuButton,
+  MenuItem,
+  Stack,
+} from "@mui/joy";
+import { Typography } from "@mui/material";
 import { useFirestoreQuery } from "@react-query-firebase/firestore";
 import { signOut } from "firebase/auth";
 import { collection, orderBy, query } from "firebase/firestore";
@@ -11,7 +30,6 @@ import CustomizedTabs from "../components/tabs";
 import { auth, db } from "../config/firebase";
 import { CurrencyFormat } from "../config/services";
 import styles from "./HomeAssets.module.css";
-import { Typography } from "@mui/material";
 
 const HomeAssets = () => {
   const navigate = useNavigate();
@@ -43,22 +61,13 @@ const HomeAssets = () => {
           <div className={styles.frameWrapper}>
             <Dropdown>
               <MenuButton
-                sx={{ border: "none", paddingInline: 0 }}
-                className={styles.ellipseParent}
+                variant="soft"
+                color="primary"
+                startDecorator={<AccountCircle />}
+                endDecorator={<ArrowDropDown />}
               >
-                <img
-                  className={styles.frameChild}
-                  alt=""
-                  src="/ellipse-2@2x.png"
-                />
-                <div className={styles.jhonpower94cParent}>
-                  <div className={styles.jhonpower94c}>{userinfo.username}</div>
-                  <img
-                    className={styles.keyboardArrowDownIcon}
-                    alt=""
-                    src="/keyboard-arrow-down@2x.png"
-                  />
-                </div>
+                {/*<div className={styles.jhonpower94c}>{userinfo.username}</div>*/}
+                Account
               </MenuButton>
               <Menu size="lg">
                 <MenuItem onClick={() => navigate("profile")}>
@@ -68,19 +77,28 @@ const HomeAssets = () => {
               </Menu>
             </Dropdown>
           </div>
-
-          <button
-            className={styles.vectorWrapper}
-            onClick={() => navigate("notifications")}
-          >
+          <Stack direction="row" spacing={2}>
+            <IconButton
+              //  onClick={() => navigate("notifications")}
+              color="primary"
+              variant="soft"
+            >
+              <Settings />
+            </IconButton>
             <Badge
               badgeContent={allNotifications.length}
               color="warning"
               variant="solid"
             >
-              <img className={styles.vectorIcon} alt="" src="/vector@2x.png" />
+              <IconButton
+                onClick={() => navigate("notifications")}
+                color="primary"
+                variant="soft"
+              >
+                <Notifications />
+              </IconButton>
             </Badge>
-          </button>
+          </Stack>
         </div>
       </div>
       <div className={styles.wrapper}>
@@ -93,34 +111,34 @@ const HomeAssets = () => {
         </div>
       </div>
       <div className={styles.circlebuttonGroups}>
-        <button
-          className={styles.buy}
-          onClick={() => window.open("https://www.kraken.com", "_blank")}
-        >
-          <img className={styles.frameIcon} alt="" src="/frame2@2x.png" />
-          <div className={styles.frame}>
-            <div className={styles.buy1}>Buy</div>
-          </div>
-        </button>
-        <button className={styles.buy} onClick={() => navigate("/swap")}>
-          <img className={styles.frameIcon} alt="" src="/frame3@2x.png" />
-          <div className={styles.frame1}>
-            <div className={styles.swap1}>Swap</div>
-          </div>
-        </button>
-
-        <button className={styles.buy} onClick={() => navigate("/allcoin")}>
-          <img className={styles.frameIcon} alt="" src="/frame5@2x.png" />
-          <div className={styles.frame3}>
-            <div className={styles.send1}>Send</div>
-          </div>
-        </button>
-        <button className={styles.buy} onClick={() => navigate("/receive")}>
-          <img className={styles.frameIcon} alt="" src="/frame6@2x.png" />
-          <div className={styles.frame4}>
-            <div className={styles.receive1}>Receive</div>
-          </div>
-        </button>
+        {[
+          { title: "Send", path: "allcoin", icon: <ArrowUpward /> },
+          { title: "Receive", path: "receive", icon: <ArrowDownward /> },
+          { title: "Swap", path: "swap", icon: <SwapHoriz /> },
+          { title: "Buy", path: "buy", icon: <Add /> },
+        ].map((btn, index) => (
+          <Stack
+            key={index}
+            direction="column"
+            spacing={1}
+            justifyContent="center"
+            alignItems="center"
+          >
+            <IconButton
+              sx={{
+                "--IconButton-size": "50px",
+                width: "fit-content",
+              }}
+              variant="soft"
+              color="primary"
+              size="lg"
+              onClick={() => navigate(`/${btn.path}`)}
+            >
+              {btn.icon}
+            </IconButton>
+            <div className={styles.buy1}>{btn.title}</div>
+          </Stack>
+        ))}
       </div>
       <CustomizedTabs value={value} handleChange={handleChange} />
       <Outlet />

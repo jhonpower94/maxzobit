@@ -7,7 +7,7 @@ import CustomizedButtons from "../components/StyledButtons";
 import { auth } from "../config/firebase";
 import { addUsers, sendMessage } from "../config/services";
 import styles from "./Signup.module.css";
-import { Snackbar } from "@mui/joy";
+import { FormControl, FormLabel, Input, Snackbar } from "@mui/joy";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -110,39 +110,47 @@ const Signup = () => {
       <form onSubmit={submitForm} style={{ width: "100%" }}>
         <div className={styles.frameParent}>
           <div className={styles.frame}>
-            <div className={styles.address}>Email</div>
-            <input
-              className={styles.frame1}
-              placeholder="Enter Your Email"
-              type="text"
-              name="email"
-              value={values.email}
-              required
-              onChange={handleChange}
-            />
+            <FormControl required size="lg" style={{ width: "100%" }}>
+              <FormLabel>Email</FormLabel>
+              <Input
+                variant="soft"
+                color="primary"
+                defaultValue={values.email}
+                type="email"
+                placeholder="Your email"
+                autoFocus
+                name="email"
+                onChange={handleChange}
+              />
+            </FormControl>
           </div>
           <div className={styles.frame}>
-            <div className={styles.address}>Password</div>
-            <input
-              className={styles.frame1}
-              placeholder="Enter Your password"
-              type="text"
-              name="password"
-              value={values.password}
-              required
-              onChange={handleChange}
-            />
+            <FormControl required size="lg" style={{ width: "100%" }}>
+              <FormLabel>Password</FormLabel>
+              <Input
+                variant="soft"
+                color="primary"
+                defaultValue={values.password}
+                type="password"
+                placeholder="Your password"
+                name="password"
+                onChange={handleChange}
+              />
+            </FormControl>
           </div>
           <div className={styles.frame}>
-            <div className={styles.address}>Confirm password</div>
-            <input
-              className={styles.frame1}
-              placeholder="Retype your password"
-              type="text"
-              name="confirmpassword"
-              value={values.confirmpassword}
-              onChange={handleChange}
-            />
+            <FormControl required size="lg" style={{ width: "100%" }}>
+              <FormLabel>Confirm password</FormLabel>
+              <Input
+                variant="soft"
+                color="primary"
+                defaultValue={values.password}
+                type="password"
+                placeholder="Your password"
+                name="password"
+                onChange={handleChange}
+              />
+            </FormControl>
           </div>
         </div>
 
