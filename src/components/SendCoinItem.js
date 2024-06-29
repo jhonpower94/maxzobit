@@ -13,7 +13,7 @@ const SendCoinItem = ({ coin }) => {
           className={styles.frame}
           style={{ backgroundImage: `url(${image})` }}
         >
-          <img className={styles.imageIcon} alt="" src={image} />
+          <img className={styles.imageIcon} alt="" src={coin.thumbimage} />
         </div>
         <div className={styles.frame1}>
           <div className={styles.testnetMatic}>{coinname}</div>

@@ -1,8 +1,8 @@
 import {
   Add,
   ArrowDownward,
-  ArrowDropDown,
   ArrowUpward,
+  ExpandMoreRounded,
   Notifications,
   Settings,
   SwapHoriz,
@@ -66,7 +66,7 @@ const HomeAssets = () => {
                 startDecorator={
                   <Avatar alt="Kryptovault" src="./logo.png" size="sm" />
                 }
-                endDecorator={<ArrowDropDown />}
+                endDecorator={<ExpandMoreRounded />}
               >
                 {/*<div className={styles.jhonpower94c}>{userinfo.username}</div>*/}
                 Account

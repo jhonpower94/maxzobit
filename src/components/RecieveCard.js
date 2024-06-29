@@ -1,11 +1,10 @@
-import CopyToClipboard from "react-copy-to-clipboard";
-import styles from "./RecieveCard.module.css";
-import { Snackbar } from "@mui/joy";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { CircularProgress, Snackbar } from "@mui/joy";
 import { doc, getDoc } from "firebase/firestore";
+import { useEffect, useState } from "react";
+import CopyToClipboard from "react-copy-to-clipboard";
+import { useNavigate } from "react-router-dom";
 import { db } from "../config/firebase";
-import { LoaderSmall } from "./loader";
+import styles from "./RecieveCard.module.css";
 
 const RecieveCard = ({ coin }) => {
   const navigate = useNavigate();
@@ -47,7 +46,7 @@ const RecieveCard = ({ coin }) => {
           <img className={styles.vectorIcon} alt="" src="/vector2@2x.png" />
         </button>
         {loading ? (
-          <LoaderSmall />
+          <CircularProgress size="sm" />
         ) : (
           <CopyToClipboard text={adminWallet} onCopy={() => setOpen(true)}>
             <button className={styles.frame1}>
