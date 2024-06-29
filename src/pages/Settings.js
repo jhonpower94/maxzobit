@@ -7,11 +7,13 @@ import {
 import SettingsHeader from "../components/SettingsHeader";
 import styles from "./Settings.module.css";
 import { useNavigate } from "react-router-dom";
+import HeaderBackButton from "../components/HeaderBackButton";
 
 const Settings = () => {
   const navigate = useNavigate();
   return (
     <div className={styles.settings}>
+      <HeaderBackButton userImageUrl="Settings" />
       <SettingsHeader />
       <div className={styles.frameParent}>
         {[

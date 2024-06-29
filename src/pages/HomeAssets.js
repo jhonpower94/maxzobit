@@ -79,7 +79,7 @@ const HomeAssets = () => {
           </div>
           <Stack direction="row" spacing={2}>
             <IconButton
-              //  onClick={() => navigate("notifications")}
+              onClick={() => navigate("settings")}
               color="primary"
               variant="soft"
             >
@@ -163,8 +163,15 @@ const HomeAssets = () => {
               <Add />
             </MenuButton>
             <Menu size="lg">
-              <MenuItem>Kraken</MenuItem>
-              <MenuItem>Coinbase</MenuItem>
+              {[
+                { title: "Banxa", link: "" },
+                { title: "Transak", link: "" },
+                { title: "AlchemyPay", link: "" },
+                { title: "Simplex", link: "" },
+                { title: "Mercuryo", link: "" },
+              ].map((pay, index) => (
+                <MenuItem key={index}>{pay.title}</MenuItem>
+              ))}
             </Menu>
           </Dropdown>
           <div className={styles.buy1}>Buy</div>

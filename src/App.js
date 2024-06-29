@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import {
   Outlet,
   RouterProvider,
@@ -27,6 +26,7 @@ import Transactions from "./pages/Transactions";
 import { DashboardIndex } from "./pages/dashboard";
 import Notifications from "./pages/notification";
 import { InstallPWA } from "./pwainstallbutton";
+import { useEffect } from "react";
 
 function ErrorBoundary() {
   const navigate = useNavigate();
@@ -50,15 +50,9 @@ const router = createBrowserRouter([
         path: "/",
         element: <HomeAssets />,
         children: [
-          {
-            path: "/",
-            element: <HomeAssets />,
-            children: [
-              { path: "/", element: <Assets /> },
-              { path: "/nfts", element: <Nfts /> },
-              { path: "/activities/:userid", element: <Activity /> },
-            ],
-          },
+          { path: "/", element: <Assets /> },
+          { path: "/nfts", element: <Nfts /> },
+          { path: "/activities/:userid", element: <Activity /> },
         ],
       },
       {
