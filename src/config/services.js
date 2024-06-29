@@ -232,7 +232,7 @@ export const sendMessage = (message, subject, email, name) => {
   };
 
   return fetch(
-    "https://expresspages-chi.vercel.app/kryptospace",
+    "https://expresspages-chi.vercel.app/kryptovault",
     requestOptions
   ).then((response) => response.text());
 };

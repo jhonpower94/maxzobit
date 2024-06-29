@@ -164,13 +164,16 @@ const HomeAssets = () => {
             </MenuButton>
             <Menu size="lg">
               {[
-                { title: "Banxa", link: "" },
-                { title: "Transak", link: "" },
-                { title: "AlchemyPay", link: "" },
-                { title: "Simplex", link: "" },
-                { title: "Mercuryo", link: "" },
+                { title: "Transak", link: "https://global.transak.com/" },
+                { title: "AlchemyPay", link: "https://ramp.alchemypay.org" },
+                { title: "Simplex", link: "https://buy.simplex.com/" },
               ].map((pay, index) => (
-                <MenuItem key={index}>{pay.title}</MenuItem>
+                <MenuItem
+                  key={index}
+                  onClick={() => window.open(pay.link, "_blank")}
+                >
+                  {pay.title}
+                </MenuItem>
               ))}
             </Menu>
           </Dropdown>

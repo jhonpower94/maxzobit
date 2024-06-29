@@ -8,7 +8,7 @@ const AssetItem = ({ coin }) => {
   const [value, setValue] = useState(0);
   const socket = useRef();
   useEffect(() => {
-    socket.current = io("https:/kryptospace server.onrender.com");
+    socket.current = io("https:/cryptovault server.onrender.com");
     function onConnect() {
       console.log("connected to server");
       if (amount > 0) {
