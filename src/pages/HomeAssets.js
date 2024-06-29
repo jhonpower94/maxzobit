@@ -1,5 +1,4 @@
 import {
-  AccountCircle,
   Add,
   ArrowDownward,
   ArrowDropDown,
@@ -9,6 +8,7 @@ import {
   SwapHoriz,
 } from "@mui/icons-material";
 import {
+  Avatar,
   Badge,
   Dropdown,
   IconButton,
@@ -61,9 +61,11 @@ const HomeAssets = () => {
           <div className={styles.frameWrapper}>
             <Dropdown>
               <MenuButton
-                variant="soft"
-                color="primary"
-                startDecorator={<AccountCircle />}
+                variant="plain"
+               // color="primary"
+                startDecorator={
+                  <Avatar alt="Kryptovault" src="./logo.png" size="sm" />
+                }
                 endDecorator={<ArrowDropDown />}
               >
                 {/*<div className={styles.jhonpower94c}>{userinfo.username}</div>*/}
