@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
   Outlet,
   RouterProvider,
@@ -10,7 +11,6 @@ import { SocketContext, socket } from "./context/socket";
 import Allcoins from "./pages/Allcoins";
 import Coindetail from "./pages/Coindetail";
 import Connevtwallet from "./pages/Connevtwallet";
-import Explore from "./pages/Explore";
 import HomeAssets, { Activity, Assets, Nfts } from "./pages/HomeAssets";
 import Kyc from "./pages/Kyc";
 import Login from "./pages/Login";
@@ -26,9 +26,7 @@ import Swap from "./pages/Swap";
 import Transactions from "./pages/Transactions";
 import { DashboardIndex } from "./pages/dashboard";
 import Notifications from "./pages/notification";
-import TabIndex from "./pages/tabindex";
 import { InstallPWA } from "./pwainstallbutton";
-import { useEffect } from "react";
 
 function ErrorBoundary() {
   const navigate = useNavigate();
@@ -50,7 +48,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <TabIndex />,
+        element: <HomeAssets />,
         children: [
           {
             path: "/",
@@ -61,15 +59,11 @@ const router = createBrowserRouter([
               { path: "/activities/:userid", element: <Activity /> },
             ],
           },
-          {
-            path: "/explore",
-            element: <Explore />,
-          },
-          {
-            path: "/settings",
-            element: <Settings />,
-          },
         ],
+      },
+      {
+        path: "/settings",
+        element: <Settings />,
       },
       {
         path: "/swap",

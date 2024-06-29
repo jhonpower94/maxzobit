@@ -115,7 +115,7 @@ const HomeAssets = () => {
           { title: "Send", path: "allcoin", icon: <ArrowUpward /> },
           { title: "Receive", path: "receive", icon: <ArrowDownward /> },
           { title: "Swap", path: "swap", icon: <SwapHoriz /> },
-          { title: "Buy", path: "buy", icon: <Add /> },
+          //  { title: "Buy", path: "buy", icon: <Add /> },
         ].map((btn, index) => (
           <Stack
             key={index}
@@ -139,6 +139,36 @@ const HomeAssets = () => {
             <div className={styles.buy1}>{btn.title}</div>
           </Stack>
         ))}
+        <Stack
+          direction="column"
+          spacing={1}
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Dropdown>
+            <MenuButton
+              slots={{ root: IconButton }}
+              slotProps={{
+                root: {
+                  variant: "soft",
+                  color: "primary",
+                  sx: {
+                    "--IconButton-size": "50px",
+                    width: "fit-content",
+                  },
+                },
+              }}
+              size="lg"
+            >
+              <Add />
+            </MenuButton>
+            <Menu size="lg">
+              <MenuItem>Kraken</MenuItem>
+              <MenuItem>Coinbase</MenuItem>
+            </Menu>
+          </Dropdown>
+          <div className={styles.buy1}>Buy</div>
+        </Stack>
       </div>
       <CustomizedTabs value={value} handleChange={handleChange} />
       <Outlet />
@@ -154,16 +184,6 @@ export const Assets = () => {
 
   return (
     <>
-      <div className={styles.lightbuttonWrapper}>
-        <button
-          className={styles.lightbutton}
-          onClick={() => window.open("https://www.kraken.com", "_blank")}
-        >
-          <div className={styles.getFreeTestnet}>
-            Buy crypto at cheaper rate
-          </div>
-        </button>
-      </div>
       <div className={styles.coinlist}>
         {walletData.map((coin, index) => (
           <AssetItem
