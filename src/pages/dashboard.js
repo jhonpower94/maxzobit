@@ -12,9 +12,9 @@ import { getNotification } from "../config/services";
 import { Backdrop } from "@mui/material";
 import { CustomCirleLoader } from "../components/loader";
 import { Helmet } from "react-helmet";
-import { CssVarsProvider, extendTheme } from "@mui/joy";
+import { extendTheme } from "@mui/joy";
 
-const theme = extendTheme({
+export const joyTheme = extendTheme({
   colorSchemes: {
     light: {
       palette: {
@@ -39,6 +39,7 @@ const theme = extendTheme({
     body: "Inter, var(--joy-fontFamily-fallback)",
   },
 });
+
 
 export function DashboardIndex() {
   const navigate = useNavigate();
@@ -337,9 +338,8 @@ export function DashboardIndex() {
           async
         ></script>
       </Helmet>
-      <CssVarsProvider theme={theme}>
-        <Outlet />
-      </CssVarsProvider>
+
+      <Outlet />
 
       <Backdrop
         sx={{ backgroundColor: "rgb(255 255 255 / 50%)" }}

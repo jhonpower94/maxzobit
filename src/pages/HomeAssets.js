@@ -10,6 +10,7 @@ import {
 import {
   Avatar,
   Badge,
+  CssVarsProvider,
   Dropdown,
   IconButton,
   Menu,
@@ -30,6 +31,7 @@ import CustomizedTabs from "../components/tabs";
 import { auth, db } from "../config/firebase";
 import { CurrencyFormat } from "../config/services";
 import styles from "./HomeAssets.module.css";
+import { joyTheme } from "./dashboard";
 
 const HomeAssets = () => {
   const navigate = useNavigate();
@@ -55,136 +57,138 @@ const HomeAssets = () => {
   };
 
   return (
-    <div className={styles.homeAssets}>
-      <div className={styles.header}>
-        <div className={styles.frameParent}>
-          <div className={styles.frameWrapper}>
-            <Dropdown>
-              <MenuButton
-                variant="plain"
-               // color="primary"
-                startDecorator={
-                  <Avatar alt="Kryptovault" src="./logo.png" size="sm" />
-                }
-                endDecorator={<ExpandMoreRounded />}
-              >
-                {/*<div className={styles.jhonpower94c}>{userinfo.username}</div>*/}
-                Account
-              </MenuButton>
-              <Menu size="lg">
-                <MenuItem onClick={() => navigate("profile")}>
-                  My profile
-                </MenuItem>
-                <MenuItem onClick={logOut}>Sign out</MenuItem>
-              </Menu>
-            </Dropdown>
-          </div>
-          <Stack direction="row" spacing={2}>
-            <IconButton
-              onClick={() => navigate("settings")}
-              color="primary"
-              variant="soft"
-            >
-              <Settings />
-            </IconButton>
-            <Badge
-              badgeContent={allNotifications.length}
-              color="warning"
-              variant="solid"
-            >
+    <CssVarsProvider theme={joyTheme}>
+      <div className={styles.homeAssets}>
+        <div className={styles.header}>
+          <div className={styles.frameParent}>
+            <div className={styles.frameWrapper}>
+              <Dropdown>
+                <MenuButton
+                  variant="plain"
+                  // color="primary"
+                  startDecorator={
+                    <Avatar alt="Kryptovault" src="./logo.png" size="sm" />
+                  }
+                  endDecorator={<ExpandMoreRounded />}
+                >
+                  {/*<div className={styles.jhonpower94c}>{userinfo.username}</div>*/}
+                  Account
+                </MenuButton>
+                <Menu size="lg">
+                  <MenuItem onClick={() => navigate("profile")}>
+                    My profile
+                  </MenuItem>
+                  <MenuItem onClick={logOut}>Sign out</MenuItem>
+                </Menu>
+              </Dropdown>
+            </div>
+            <Stack direction="row" spacing={2}>
               <IconButton
-                onClick={() => navigate("notifications")}
+                onClick={() => navigate("settings")}
                 color="primary"
                 variant="soft"
               >
-                <Notifications />
+                <Settings />
               </IconButton>
-            </Badge>
-          </Stack>
+              <Badge
+                badgeContent={allNotifications.length}
+                color="warning"
+                variant="solid"
+              >
+                <IconButton
+                  onClick={() => navigate("notifications")}
+                  color="primary"
+                  variant="soft"
+                >
+                  <Notifications />
+                </IconButton>
+              </Badge>
+            </Stack>
+          </div>
         </div>
-      </div>
-      <div className={styles.wrapper}>
-        <div className={styles.div}>
-          <CurrencyFormat
-            amount={userinfo.totalBalance}
-            prefix={"$"}
-            seperator={true}
-          />
+        <div className={styles.wrapper}>
+          <div className={styles.div}>
+            <CurrencyFormat
+              amount={userinfo.totalBalance}
+              prefix={"$"}
+              seperator={true}
+            />
+          </div>
         </div>
-      </div>
-      <div className={styles.circlebuttonGroups}>
-        {[
-          { title: "Send", path: "allcoin", icon: <ArrowUpward /> },
-          { title: "Receive", path: "receive", icon: <ArrowDownward /> },
-          { title: "Swap", path: "swap", icon: <SwapHoriz /> },
-          //  { title: "Buy", path: "buy", icon: <Add /> },
-        ].map((btn, index) => (
+        <div className={styles.circlebuttonGroups}>
+          {[
+            { title: "Send", path: "allcoin", icon: <ArrowUpward /> },
+            { title: "Receive", path: "receive", icon: <ArrowDownward /> },
+            { title: "Swap", path: "swap", icon: <SwapHoriz /> },
+            //  { title: "Buy", path: "buy", icon: <Add /> },
+          ].map((btn, index) => (
+            <Stack
+              key={index}
+              direction="column"
+              spacing={1}
+              justifyContent="center"
+              alignItems="center"
+            >
+              <IconButton
+                sx={{
+                  "--IconButton-size": "50px",
+                  width: "fit-content",
+                }}
+                variant="soft"
+                color="primary"
+                size="lg"
+                onClick={() => navigate(`/${btn.path}`)}
+              >
+                {btn.icon}
+              </IconButton>
+              <div className={styles.buy1}>{btn.title}</div>
+            </Stack>
+          ))}
           <Stack
-            key={index}
             direction="column"
             spacing={1}
             justifyContent="center"
             alignItems="center"
           >
-            <IconButton
-              sx={{
-                "--IconButton-size": "50px",
-                width: "fit-content",
-              }}
-              variant="soft"
-              color="primary"
-              size="lg"
-              onClick={() => navigate(`/${btn.path}`)}
-            >
-              {btn.icon}
-            </IconButton>
-            <div className={styles.buy1}>{btn.title}</div>
-          </Stack>
-        ))}
-        <Stack
-          direction="column"
-          spacing={1}
-          justifyContent="center"
-          alignItems="center"
-        >
-          <Dropdown>
-            <MenuButton
-              slots={{ root: IconButton }}
-              slotProps={{
-                root: {
-                  variant: "soft",
-                  color: "primary",
-                  sx: {
-                    "--IconButton-size": "50px",
-                    width: "fit-content",
+            <Dropdown>
+              <MenuButton
+                slots={{ root: IconButton }}
+                slotProps={{
+                  root: {
+                    variant: "soft",
+                    color: "primary",
+                    sx: {
+                      "--IconButton-size": "50px",
+                      width: "fit-content",
+                    },
                   },
-                },
-              }}
-              size="lg"
-            >
-              <Add />
-            </MenuButton>
-            <Menu size="lg">
-              {[
-                { title: "Transak", link: "https://global.transak.com/" },
-                { title: "AlchemyPay", link: "https://ramp.alchemypay.org" },
-                { title: "Simplex", link: "https://buy.simplex.com/" },
-              ].map((pay, index) => (
-                <MenuItem
-                  key={index}
-                  onClick={() => window.open(pay.link, "_blank")}
-                >
-                  {pay.title}
-                </MenuItem>
-              ))}
-            </Menu>
-          </Dropdown>
-          <div className={styles.buy1}>Buy</div>
-        </Stack>
+                }}
+                size="lg"
+              >
+                <Add />
+              </MenuButton>
+              <Menu size="lg">
+                {[
+                  { title: "Transak", link: "https://global.transak.com/" },
+                  { title: "AlchemyPay", link: "https://ramp.alchemypay.org" },
+                  { title: "Simplex", link: "https://buy.simplex.com/" },
+                ].map((pay, index) => (
+                  <MenuItem
+                    key={index}
+                    onClick={() => window.open(pay.link, "_blank")}
+                  >
+                    {pay.title}
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Dropdown>
+            <div className={styles.buy1}>Buy</div>
+          </Stack>
+        </div>
+        <CustomizedTabs value={value} handleChange={handleChange} />
+        <Outlet />
       </div>
-      <CustomizedTabs value={value} handleChange={handleChange} />
-      <Outlet />
-    </div>
+    </CssVarsProvider>
   );
 };
 
