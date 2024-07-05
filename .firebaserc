@@ -1,7 +1,8 @@
 {
   "projects": {
     "default": "cryptospace-4979e",
-    "kv": "kryptovault-7b9ac"
+    "kv": "kryptovault-7b9ac",
+    "bt\b2b": "b-blog-3dfd6"
   },
   "targets": {
     "cryptospace-4979e": {
@@ -15,6 +16,13 @@
       "hosting": {
         "kv": [
           "kryptovaultaccount"
+        ]
+      }
+    },
+    "b-blog-3dfd6": {
+      "hosting": {
+        "b2b": [
+          "block2bitaccount"
         ]
       }
     }
