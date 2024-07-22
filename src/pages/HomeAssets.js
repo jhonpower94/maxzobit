@@ -1,22 +1,22 @@
 import {
-    Add,
-    ArrowDownward,
-    ArrowUpward,
-    ExpandMoreRounded,
-    Notifications,
-    Settings,
-    SwapHoriz,
+  Add,
+  ArrowDownward,
+  ArrowUpward,
+  ExpandMoreRounded,
+  Notifications,
+  Settings,
+  SwapHoriz,
 } from "@mui/icons-material";
 import {
-    Avatar,
-    Badge,
-    CssVarsProvider,
-    Dropdown,
-    IconButton,
-    Menu,
-    MenuButton,
-    MenuItem,
-    Stack,
+  Avatar,
+  Badge,
+  CssVarsProvider,
+  Dropdown,
+  IconButton,
+  Menu,
+  MenuButton,
+  MenuItem,
+  Stack,
 } from "@mui/joy";
 import { Typography } from "@mui/material";
 import { useFirestoreQuery } from "@react-query-firebase/firestore";
@@ -67,7 +67,7 @@ const HomeAssets = () => {
                   variant="plain"
                   // color="primary"
                   startDecorator={
-                    <Avatar alt="Block2bit" src="./logo.png" size="sm" />
+                    <Avatar alt="bitbox" src="./logo.png" size="sm" />
                   }
                   endDecorator={<ExpandMoreRounded />}
                 >

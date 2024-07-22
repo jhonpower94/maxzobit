@@ -11,7 +11,6 @@ import axiosRetry from "axios-retry";
 import { getNotification } from "../config/services";
 import { Backdrop } from "@mui/material";
 import { CustomCirleLoader } from "../components/loader";
-import { Helmet } from "react-helmet";
 import { extendTheme } from "@mui/joy";
 
 export const joyTheme = extendTheme({
@@ -331,13 +330,6 @@ export function DashboardIndex() {
 
   return (
     <>
-      <Helmet>
-        <script
-          src="//code.tidio.co/q44kq0kljcuqe64smt1woipzemfjhvfh.js"
-          async
-        ></script>
-      </Helmet>
-
       <Outlet />
 
       <Backdrop
