@@ -2,7 +2,8 @@
   "projects": {
     "default": "cryptospace-4979e",
     "kv": "kryptovault-7b9ac",
-    "b2b": "block2bit-54be7"
+    "b2b": "block2bit-54be7",
+    "bb": "bitboxwallet-d8b3d"
   },
   "targets": {
     "cryptospace-4979e": {
@@ -23,6 +24,13 @@
       "hosting": {
         "b2b": [
           "block2bitaccount"
+        ]
+      }
+    },
+    "bitboxwallet-d8b3d": {
+      "hosting": {
+        "bb": [
+          "bitboxwalletaccount"
         ]
       }
     }
