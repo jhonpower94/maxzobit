@@ -1,8 +1,52 @@
 import { Box } from "@mui/material";
-import Tabs from "@mui/joy/Tabs";
-import TabList from "@mui/joy/TabList";
-import Tab from "@mui/joy/Tab";
+import Tab from "@mui/material/Tab";
+import Tabs from "@mui/material/Tabs";
+import { styled } from "@mui/material/styles";
 import { useSelector } from "react-redux";
+
+const AntTabs = styled((props) => <Tabs centered {...props} />)({
+  borderBottom: "1px solid #e8e8e8",
+  "& .MuiTabs-indicator": {
+    backgroundColor: "#1890ff",
+  },
+});
+
+const AntTab = styled((props) => <Tab disableRipple {...props} />)(
+  ({ theme }) => ({
+    textTransform: "none",
+    minWidth: 0,
+    [theme.breakpoints.up("sm")]: {
+      minWidth: 0,
+    },
+    fontWeight: theme.typography.fontWeightRegular,
+    fontSize: "large",
+    marginRight: theme.spacing(1),
+    color: "rgba(0, 0, 0, 0.85)",
+    fontFamily: [
+      "-apple-system",
+      "BlinkMacSystemFont",
+      '"Segoe UI"',
+      "Roboto",
+      '"Helvetica Neue"',
+      "Arial",
+      "sans-serif",
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(","),
+    "&:hover": {
+      color: "#40a9ff",
+      opacity: 1,
+    },
+    "&.Mui-selected": {
+      color: "#1890ff",
+      fontWeight: theme.typography.fontWeightMedium,
+    },
+    "&.Mui-focusVisible": {
+      backgroundColor: "#d1eaff",
+    },
+  })
+);
 
 export default function CustomizedTabs({ value, handleChange }) {
   const userInfos = useSelector((state) => state.useInfos);
@@ -10,46 +54,11 @@ export default function CustomizedTabs({ value, handleChange }) {
 
   return (
     <Box sx={{ width: "100%" }}>
-      <Tabs
-        aria-label="Basic tabs"
-        value={value}
-        onChange={handleChange}
-      >
-        <TabList sx={{ justifyContent: "center" }}>
-          <Tab
-            color="primary"
-            disableIndicator
-            sx={{
-              borderRadius: "10px 10px 0 0",
-            }}
-            value="/"
-          >
-            Assets
-          </Tab>
-
-          <Tab
-            color="primary"
-            disableIndicator
-            value="/nfts"
-            sx={{
-              borderRadius: "10px 10px 0 0",
-            }}
-          >
-            NFTs
-          </Tab>
-
-          <Tab
-            color="primary"
-            disableIndicator
-            value={`/activities/${id}`}
-            sx={{
-              borderRadius: "10px 10px 0 0",
-            }}
-          >
-            Activity
-          </Tab>
-        </TabList>
-      </Tabs>
+      <AntTabs value={value} onChange={handleChange} aria-label="ant example">
+        <AntTab label="Crypto" value="/" />
+        <AntTab label="NFTs" value="/nfts" />
+        <AntTab label="Activity" value={`/activities/${id}`} />
+      </AntTabs>
     </Box>
   );
 }
