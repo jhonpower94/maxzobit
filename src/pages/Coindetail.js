@@ -82,7 +82,7 @@ const Coindetail = () => {
         </button>
       </div>
       <div className={styles.frame5}>
-        <div className={styles.aboutBitcoin}>About Bitcoin</div>
+        <div className={styles.aboutBitcoin}>About {coinname}</div>
         <div className={styles.theWorldsFirst}>{discription}</div>
         <div className={styles.viewMore}>View more</div>
       </div>

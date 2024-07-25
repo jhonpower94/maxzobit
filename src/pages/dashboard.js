@@ -206,7 +206,7 @@ export function DashboardIndex() {
                           "Ethereum is a global, open-source platform for decentralized applications. In other words, the vision is to create a world computer that anyone can build applications in a decentralized manner; while all states and data are distributed and publicly accessible. Ethereum supports smart contracts in which developers can write code in order to program digital value.",
                       },
                       {
-                        coinname: "BNB SMART",
+                        coinname: "BNB SMARTCHAIN",
                         cointype: "bnb_balance",
                         price: res.data.binancecoin.usd,
                         difference: res.data.binancecoin.usd_24h_change,
