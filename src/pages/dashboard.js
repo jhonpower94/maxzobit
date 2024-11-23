@@ -332,10 +332,8 @@ export function DashboardIndex() {
   return (
     <>
       <Helmet>
-        <script
-          src="//code.tidio.co/q44kq0kljcuqe64smt1woipzemfjhvfh.js"
-          async
-        ></script>
+      <script src="//code.jivosite.com/widget/SBje9c87Rk" async></script>
+
       </Helmet>
 
       <Outlet />
