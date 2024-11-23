@@ -1,24 +1,25 @@
 import {
-    Add,
-    ArrowDownward,
-    ArrowUpward,
-    ExpandMoreRounded,
-    Notifications,
-    Settings,
-    SwapHoriz,
+  Add,
+  ArrowDownward,
+  ArrowUpward,
+  ExpandMoreRounded,
+  Notifications,
+  Settings,
+  SwapHoriz,
+  WhatsApp,
 } from "@mui/icons-material";
 import {
-    Avatar,
-    Badge,
-    CssVarsProvider,
-    Dropdown,
-    IconButton,
-    Menu,
-    MenuButton,
-    MenuItem,
-    Stack,
+  Avatar,
+  Badge,
+  CssVarsProvider,
+  Dropdown,
+  IconButton,
+  Menu,
+  MenuButton,
+  MenuItem,
+  Stack,
 } from "@mui/joy";
-import { Typography } from "@mui/material";
+import { Fab, Typography } from "@mui/material";
 import { useFirestoreQuery } from "@react-query-firebase/firestore";
 import { signOut } from "firebase/auth";
 import { collection, orderBy, query } from "firebase/firestore";
@@ -29,7 +30,7 @@ import AssetItem from "../components/AssetItem";
 import HistoryItem from "../components/HistoryItem";
 import CustomizedTabs from "../components/tabs";
 import { auth, db } from "../config/firebase";
-import { CurrencyFormat } from "../config/services";
+import { CurrencyFormat, getWhatsapp } from "../config/services";
 import styles from "./HomeAssets.module.css";
 import { joyTheme } from "./dashboard";
 
@@ -38,6 +39,17 @@ const HomeAssets = () => {
   const userinfo = useSelector((state) => state.useInfos);
   const allNotifications = useSelector((state) => state.notification);
   const [value, setValue] = useState("/");
+  const [whatsapp, setWhatsapp] = React.useState("");
+
+  React.useEffect(() => {
+    getWhatsapp().then((data) => {
+      if (data != undefined) {
+        setWhatsapp(data.number);
+      } else {
+        setWhatsapp("");
+      }
+    });
+  });
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -83,6 +95,18 @@ const HomeAssets = () => {
               </Dropdown>
             </div>
             <Stack direction="row" spacing={2}>
+              {whatsapp === "" ? null : (
+                <Fab
+                  onClick={() =>
+                    window.open(`https://wa.me/${whatsapp}`, "_blank")
+                  }
+                  size="small"
+                  color="success"
+                  aria-label="add"
+                >
+                  <WhatsApp />
+                </Fab>
+              )}
               <IconButton
                 onClick={() => navigate("settings")}
                 color="primary"
